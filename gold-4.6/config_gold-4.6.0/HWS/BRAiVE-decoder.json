@@ -1,0 +1,40 @@
+{
+    "Accel":
+    {
+        "IDs": "0x153",
+        "FUNCTION": "LIN_TRANS",
+        "LIN_TRANS":
+        {
+            "STARTBIT": "29",
+            "BITLENGHT": "8",
+            "MULTIPLIER": "1.2",
+            "OFFSET": "0.0"
+        }
+    },
+    "WheelSpeed":
+    {
+        "IDs": "0x1f1",
+        "FUNCTION": "BRAIVE_WHEELSPEED"
+    },
+    "Steering":
+    {
+        "IDs": "0x2B0",
+        "FUNCTION": "BRAIVE_STEERING"
+    },
+    "INS":
+    {
+        "IDs": "0x306,0x307,0x308,0x309",
+        "FUNCTION": "RLVBIMU02_IMU"
+    },
+    "GPS":
+    {
+        "IDs": "0x301,0x302,0x303",
+        "FUNCTION": "VB2SX_GPS"
+    },
+    "Position":
+    {
+        "IDs": "0x301,0x302,0x303,0x304",
+        "FUNCTION": "VB2SX_GPSIMU"
+    }
+}
+

@@ -1,0 +1,39 @@
+###############################################################
+# Sintassi per le applicazioni
+#  [SECTION AppName]
+#     ENABLED = false
+#     VISIBLE = true
+#     CLASS_ID = Dummy
+#     SCHED TYPE = FULL_SPEED  # PERIODIC, DATA_DRIVEN, FULL_SPEED
+#     PERIOD = 0:0:0.100       # Time duration HH:MM:SS.____us
+#  [END]
+# AppName: the name of the section is the application name.
+#          Multiple instances of the same app are allowed
+#          with different names
+# ENABLED: true if the app is enabled at startup
+# VISIBLE: true if the app is visible at startup
+#          When ENABLED==true and VISIBLE==false
+#          VISIBLE is automatically changed to true
+# CLASS_ID: The identifier of the App class instantiated
+# SCHED_TYPE: Can be DATA_DRIVEN, PERIODIC
+#   - DATA_DRIVEN: new mode for data drive apps. The application
+#     is scheduled when all the new requested data are available.
+#   - PERIODIC: The application is scheduled with the period
+#     specified in PERIOD
+# PERIOD: policy speed throttle
+#
+#################################################################
+#salva le impostazioni in uscita:
+SAVE ON EXIT = None    # None,Ask,Always
+#specifica il comportamento di GOLD in uscita
+ON EXCEPTION = QUIT    # choice: QUIT RESTART DISABLE
+[SECTION Applications]
+	[SECTION Dummy]
+		CLASS_ID = Dummy
+		ENABLED = FALSE
+		VISIBLE = TRUE
+		SCHED_TYPE = DATA_DRIVEN
+		COMPAT_4_5 = TRUE
+		PERIOD = 00:00:00
+	[END]
+[END]

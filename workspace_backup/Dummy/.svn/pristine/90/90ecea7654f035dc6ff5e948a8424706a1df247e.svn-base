@@ -1,0 +1,282 @@
+/**********************************************************************
+ *                                                                    *
+ *  This file is part of the GOLD software                            *
+ *                                                                    *
+ *            University of Parma, Italy   1996-2011                  *
+ *                                                                    *
+ *       http://www.vislab.it                                         *
+ *                                                                    *
+ **********************************************************************/
+
+
+/**
+ * \author VisLab (vislab@ce.unipr.it)
+ * \date 2006-04-27
+ */
+
+#include "dummy.h"
+
+#include <Devices/Camera/CCamera.h>
+#include <Devices/Clock/CClock.h>
+#include <Devices/Profiler/Profiler.h>
+#include <Framework/CRecordingCtl.h>
+#include <Framework/Transport.h>
+#include <Processing/Vision/CImage/BasicOperations/BasicOperations.h>
+#include <Processing/Vision/CImage/Conversions/CImageConversions.h>
+#include <Processing/Vision/CImage/Filters/SobelFilter.h>
+
+#define __LOCATION__ __CLASS_METHOD__
+// #define __LOCATION__ __FILE_LINE__
+// #define VERBOSITY_DEBUG true
+#include <Libs/Logger/Log.h>
+
+#include <boost/date_time/posix_time/posix_time.hpp>
+
+#include <algorithm>
+#include <functional>
+#include <iterator>
+#include <sstream>
+#include <string>
+#include <utility>
+
+using namespace cimage;
+using namespace cimage::filter;
+using namespace ui::conf;
+using namespace ui::var;
+using namespace ui::wgt;
+using namespace ui::win;
+
+void CDummy::On_Initialization()
+{    
+    // recuperiamo l'elenco delle camere...
+    CDeviceNode& cameras = Dev()["CAMERAS"];
+
+    // ...e poi inseriamo in m_cameraNames i nomi di ognuna
+    std::transform(cameras.Children().begin(), cameras.Children().end(),
+                   std::back_inserter(m_cameraNames), std::mem_fun(&CDeviceNode::Name));
+
+    Configuration config(INIFile());
+    
+    // dichiariamo una variabile di tipo stringa associata al dato membro m_inputCameraName...
+    Choice<std::string> inputCameraName(&m_inputCameraName, m_cameraNames.begin(), m_cameraNames.end());
+    // ...e la colleghiamo alla chiave CAMERA di Dummy.ini; se la chiave CAMERA non esiste usiamo m_cameraNames[0] come default
+    config.Bind(inputCameraName, "CAMERA", m_cameraNames[0]);
+
+    // come sopra, si caricano alcuni parametri da file di configurazione    
+    Value<unsigned int> width(&m_width);
+    config.Bind(width, "WIDTH", 0);
+    
+    Value<unsigned int> height(&m_height);
+    config.Bind(height, "HEIGHT", 0);
+    
+    Value<bool> showInputMono(&m_showInputMono);
+    config.Bind(showInputMono, "SHOW INPUT MONO", true);
+    
+    Value<bool> showInputRGB(&m_showInputRGB);
+    config.Bind(showInputRGB, "SHOW INPUT RGB", false);
+    
+    Value<bool> showSobel(&m_showSobel);
+    config.Bind(showSobel, "SHOW SOBEL", false);
+    
+    Range<float> radius(&m_radius, 0.0f, 50.0f, 0.1f);
+    config.Bind(radius, "RADIUS", 10.0f);
+    
+    Range<int> value(&m_value, 0, 150, 2);
+    config.Bind(value, "VALUE", 40);
+    
+    Value<bool> showCircle(&m_showCircle);
+    config.Bind(showCircle, "SHOW CIRCLE", false);
+    
+    Value<bool> showBox(&m_showBox);
+    config.Bind(showBox, "SHOW BOX", false);
+    
+    Value<bool> showText(&m_showText);
+    config.Bind(showText, "SHOW TEXT", false);
+
+    Map<int> features(&m_selectedFeature,
+                      std::make_pair("First", 0),
+                      std::make_pair("Second", 1),
+                      std::make_pair("Third", 2));
+    
+    //popoliamo il pannello dell'applicazione
+    panel.Label("Dummy Main Panel").Geometry(300, 150)
+    (
+        VSizer()
+        (
+            NoteBook()
+            (
+                Page("Basic")
+                (
+                    VSizer()
+                    (
+                        CheckBox(showInputMono, "Show input mono"),
+                        CheckBox(showInputRGB, "Show input RGB"),
+                        CheckBox(showSobel, "Show input Sobel")
+                    )
+                ),
+                Page("Advanced")
+                (
+                    VSizer()
+                    (
+                        Slider(radius, "Radius"),
+                        Slider(value, "Value"),
+                        CheckBox(showCircle, "Show circle"),
+                        CheckBox(showBox, "Show box"),
+                        CheckBox(showText, "Show text"),
+                        ComboBox(features, "Features")
+                    )
+                )
+            )
+        )
+    );
+    
+    m_synchro.SetApplication(*this);
+    
+    // configuriamo il Synchronizer in modo che ritorni sempre l'ultimo frame ricevuto dalla camera indicata
+    m_pCam = (Dev()["CAMERAS/" + m_inputCameraName]);
+    m_synchro.ConnectLast(*m_pCam);
+    
+    // inizializziamo alcune variabili
+    m_pInputMonoWindow = NULL;
+    m_pInputRGBWindow = NULL;
+    m_pSobelWindow = NULL;
+}
+
+// questo metodo viene chiamato incondizionatamente all'inizio playback
+void CDummy::On_Initialization(Transport& tr)
+{
+    m_synchro.SetTransport(tr);
+}
+
+void CDummy::On_ShutDown()
+{
+    delete m_pInputMonoWindow;
+    delete m_pInputRGBWindow;
+    delete m_pSobelWindow;
+}
+
+void CDummy::On_Execute()
+{
+    CImage::SharedPtrConstType image;
+    
+    {
+        // sospendiamo l'esecuzione in attesa di un nuovo frame
+        boost::mutex::scoped_lock lock(m_synchro.Mutex());
+        m_synchro.Wait(lock);
+        
+        // copiamo lo shared pointer al frame, che utilizzeremo in seguito per l'elaborazione
+        image = m_synchro.LastFrameFrom<dev::CCamera>(*m_pCam).Data;
+        
+        log_debug << " Processing frame: " << m_synchro.LastFrameFrom<dev::CCamera>(*m_pCam).TimeStamp << std::endl;
+    }
+
+    // se nel file INI non compaiono WIDTH o HEIGHT le corrispondenti variabili membro di Dummy m_width e m_height hanno assunto
+    // il valore di default specificato nella Bind, cioè 0, a cui sostituiamo la risoluzione del frame corrente
+    if(!m_width)
+        m_width = image->W();
+    if(!m_height)
+        m_height = image->H();
+
+    // per semplicità eseguiamo la Resize comunque: se m_width e m_height sono già corrette non succede nulla
+    Resize(m_inputImageMono, m_width, m_height);
+    Resize(m_inputImageRGB, m_width, m_height);
+    Resize(m_sobelImage, m_width, m_height);
+
+    // convertiamo il frame in una immagine a colori
+    Convert(*image, m_inputImageRGB, BAYER_DECODING_SIMPLE);
+
+    // convertiamo il frame in una immagine in bianco e nero
+    Convert(*image, m_inputImageMono, BAYER_DECODING_LUMINANCE);
+
+    // applichiamo un filtro che converte una immagine CImageMono in una CImageMono usando un kernel SobelVertical di dimensione 3x3
+    SobelVertical3x3(m_inputImageMono, m_sobelImage);
+
+    // chiamiamo la funzione di disegno
+    Output();
+    
+    m_synchro.EndOfProcessing();
+}
+
+
+
+void CDummy::Output()
+{
+    // da pannello e' abilitato il disegno della finestra?
+    if(m_showInputMono)
+    {   
+        // non e' ancora stata creata? la creiamo
+        if(m_pInputMonoWindow == NULL)
+            m_pInputMonoWindow = new CWindow ( "Input Mono", m_width, m_height);
+
+        // cancelliamo le primitive di disegno
+        m_pInputMonoWindow->Clear();
+
+        // disegniamo una immagine CImageMono
+        m_pInputMonoWindow->DrawImage(m_inputImageMono);
+
+        if(m_showBox)
+        {
+            m_pInputMonoWindow->SetColor(255, 0, 0);
+            m_pInputMonoWindow->DrawRectangle(15, 20, 50, 40);
+            m_pInputMonoWindow->SetColor(255, 0, 255);
+            m_pInputMonoWindow->DrawRectangle(50, 20, 90, 40);
+        }
+
+        if (m_showCircle)
+        {
+            m_pInputMonoWindow->SetColor(255, 255, 0);
+            m_pInputMonoWindow->DrawCircle(m_value, m_value, m_radius, false);
+        }
+
+        if (m_showText)
+        {
+            std::ostringstream oss;
+            oss << m_value;
+
+            m_pInputMonoWindow->SetFontName("arial");
+            m_pInputMonoWindow->SetFontSize(12);
+            m_pInputMonoWindow->DrawText(8, 10, oss.str());
+        }
+
+        // in fondo a tutto, eseguiamo la Refresh sulla finestra
+        m_pInputMonoWindow->Refresh();
+
+        // rendiamo la finestra visibile
+        if(!m_pInputMonoWindow->IsVisible())
+            m_pInputMonoWindow->Show();
+    } else if(m_pInputMonoWindow)
+        m_pInputMonoWindow->Hide();
+
+    if(m_showInputRGB)
+    {
+        if(m_pInputRGBWindow == NULL)
+            m_pInputRGBWindow = new CWindow("Input RGB", m_width, m_height);
+
+        m_pInputRGBWindow->Clear();
+        m_pInputRGBWindow->DrawImage(m_inputImageRGB);
+        m_pInputRGBWindow->Refresh();
+
+        if(!m_pInputRGBWindow->IsVisible())
+            m_pInputRGBWindow->Show();
+    } else if(m_pInputRGBWindow)
+        m_pInputRGBWindow->Hide();
+
+    if(m_showSobel)
+    {
+        if(m_pSobelWindow == NULL)
+            m_pSobelWindow = new CWindow("Sobel", m_width, m_height);
+
+        m_pSobelWindow->Clear();
+        m_pSobelWindow->DrawImage(m_sobelImage);
+        m_pSobelWindow->Refresh();
+
+        if(!m_pSobelWindow->IsVisible())
+            m_pSobelWindow->Show();
+    } else if(m_pSobelWindow)
+        m_pSobelWindow->Hide();
+}
+
+#include <Framework/Application_Registration.h>
+
+// registriamo la classe CDummy col nome Dummy
+REGISTER_APPLICATION(CDummy, "Dummy");

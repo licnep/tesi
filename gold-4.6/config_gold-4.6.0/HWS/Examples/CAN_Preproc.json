@@ -1,0 +1,24 @@
+{
+    "Accel":
+    {
+        "IDs": "0x153",
+        "FUNCTION": "LIN_TRANS",
+        "LIN_TRANS":
+        {
+            "STARTBIT": "29",
+            "BITLENGHT": "8",
+            "MULTIPLIER": "1.2",
+            "OFFSET": "0.0"
+        }
+    },
+    "Route":
+    {
+        "IDs": "0x600,0x601,0x602,0x603",
+        "FUNCTION": "RACE_LOGIC_IMU"
+    },
+    "Position":
+    {
+        "IDs": "0x301,0x302,0x303,0x304,0x305",
+        "FUNCTION": "GPS"
+    }
+}

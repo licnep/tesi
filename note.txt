@@ -1,0 +1,20 @@
+ICF features
+
+prima provare con HOG di openCV
+
+(se l'include non basta forse openCV va aggiunto in Dummy/src/Cmake)
+
+
+RUN:
+/opt/gold...
+
+~/.config/gold/session.ini (per selezionare sequenza da usare)
+........./gold/INI/configdell'app
+
+eclipse cero progetto,
+nome cartella src
+poi
+import->existing prog->prendo cartella build
+
+ccmake -G "Eclipse......" ../src
+NativeRel
