@@ -1,0 +1,1 @@
+/opt/gold-4.6/lib/x86_64-linux-gnu/plugins/libgold_app_dummy.so

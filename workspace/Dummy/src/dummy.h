@@ -27,6 +27,8 @@
 #include <UI/CWindows/CWindow.h>
 #include <UI/Panel/Panel.h>
 
+#include <opencv2/opencv.hpp>
+
 #include <string>
 #include <vector>
 

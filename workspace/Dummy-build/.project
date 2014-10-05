@@ -149,6 +149,11 @@
 			<location>/home/alox/Tesi/workspace/Dummy/src/dummy.cpp</location>
 		</link>
 		<link>
+			<name>[Targets]/[lib] gold_app_dummy/Source Files/HOGVisualizer.cpp</name>
+			<type>1</type>
+			<location>/home/alox/Tesi/workspace/Dummy/src/HOGVisualizer.cpp</location>
+		</link>
+		<link>
 			<name>[Targets]/[lib] gold_app_dummy/Header Files</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>

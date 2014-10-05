@@ -271,8 +271,8 @@
 <pathentry include="/home/alox/Tesi/workspace/Dummy/src" kind="inc" path="" system="true"/>
 <pathentry include="/opt/gold-4.6/include/gold-4.6.0/Config" kind="inc" path="" system="true"/>
 <pathentry include="/opt/gold-4.6/include/gold-4.6.0" kind="inc" path="" system="true"/>
-<pathentry include="/usr/lib/gcc/x86_64-linux-gnu/4.8/include" kind="inc" path="" system="true"/>
 <pathentry include="/usr/local/include" kind="inc" path="" system="true"/>
+<pathentry include="/usr/lib/gcc/x86_64-linux-gnu/4.8/include" kind="inc" path="" system="true"/>
 <pathentry include="/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed" kind="inc" path="" system="true"/>
 <pathentry include="/usr/include/x86_64-linux-gnu" kind="inc" path="" system="true"/>
 <pathentry include="/usr/include" kind="inc" path="" system="true"/>
@@ -384,6 +384,27 @@
 <buildCommand>/usr/bin/make</buildCommand>
 <buildArguments>-j17</buildArguments>
 <buildTarget>clean</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[obj] HOGVisualizer.cpp.o" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>HOGVisualizer.cpp.o</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[pre] HOGVisualizer.cpp.i" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>HOGVisualizer.cpp.i</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[to asm] HOGVisualizer.cpp.s" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>HOGVisualizer.cpp.s</buildTarget>
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 </target>

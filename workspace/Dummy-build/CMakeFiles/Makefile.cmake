@@ -35,6 +35,7 @@ SET(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-2.8/Modules/Platform/Linux.cmake"
   "/usr/share/cmake-2.8/Modules/Platform/UnixPaths.cmake"
   "/usr/share/cmake-2.8/Modules/ProcessorCount.cmake"
+  "/usr/share/cmake-2.8/Modules/gold-4.6.0/FindOpenCV.cmake"
   "/usr/share/cmake-2.8/Modules/gold-4.6.0/Find_Boost.cmake"
   "/usr/share/cmake-2.8/Modules/gold-4.6.0/GOLD_AutoCompilerFlags.cmake"
   "/usr/share/cmake-2.8/Modules/gold-4.6.0/GOLD_FindPackage.cmake"

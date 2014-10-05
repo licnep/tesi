@@ -418,6 +418,48 @@ GOLD_WS_LIBRARY:FILEPATH=/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_ws.s
 //The directory containing a CMake configuration file for Loki.
 Loki_DIR:PATH=Loki_DIR-NOTFOUND
 
+//OpenCV root directory
+OPENCV_ROOT_DIR:PATH=
+
+//Path to a file.
+OpenCV_INCLUDE_DIR:PATH=/usr/local/include
+
+//Path to a library.
+OpenCV_LIBRARIES_CALIB3D:FILEPATH=/usr/local/lib/libopencv_calib3d.so
+
+//Path to a library.
+OpenCV_LIBRARIES_CONTRIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libopencv_contrib.so
+
+//Path to a library.
+OpenCV_LIBRARIES_CORE:FILEPATH=/usr/local/lib/libopencv_core.so
+
+//Path to a library.
+OpenCV_LIBRARIES_FEATURES2:FILEPATH=/usr/local/lib/libopencv_features2d.so
+
+//Path to a library.
+OpenCV_LIBRARIES_FLANN:FILEPATH=/usr/local/lib/libopencv_flann.so
+
+//Path to a library.
+OpenCV_LIBRARIES_GPU:FILEPATH=/usr/lib/x86_64-linux-gnu/libopencv_gpu.so
+
+//Path to a library.
+OpenCV_LIBRARIES_HIGHGUI:FILEPATH=/usr/local/lib/libopencv_highgui.so
+
+//Path to a library.
+OpenCV_LIBRARIES_IMGPROC:FILEPATH=/usr/local/lib/libopencv_imgproc.so
+
+//Path to a library.
+OpenCV_LIBRARIES_LEGACY:FILEPATH=/usr/lib/x86_64-linux-gnu/libopencv_legacy.so
+
+//Path to a library.
+OpenCV_LIBRARIES_ML:FILEPATH=/usr/local/lib/libopencv_ml.so
+
+//Path to a library.
+OpenCV_LIBRARIES_OBJECTDETECT:FILEPATH=/usr/local/lib/libopencv_objdetect.so
+
+//Path to a library.
+OpenCV_LIBRARIES_VIDEO:FILEPATH=/usr/local/lib/libopencv_video.so
+
 //Flags used by the compiler
 PLATFORM_CPU_NAME:STRING=Intel(R) Core(TM) i7-4700MQ CPU @ 2.40GHz
 
@@ -434,7 +476,7 @@ dummy_BINARY_DIR:STATIC=/home/alox/Tesi/workspace/Dummy-build
 dummy_SOURCE_DIR:STATIC=/home/alox/Tesi/workspace/Dummy
 
 //Dependencies for the target
-gold_app_dummy_LIB_DEPENDS:STATIC=general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_logger.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_lwnn.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_math.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_pm_widget.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_var_replacer.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_pm.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_ws.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_ui.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_framework.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_inifiles.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_tessellation.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_bbox.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_dev.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_cimage.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_time.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_msg_bus.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_vehicle_transformation.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_aco.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_data.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_ddk.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_dynamic_module_loader.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_stereo.so;general;/usr/lib/x86_64-linux-gnu/libboost_serialization.so;general;/usr/lib/x86_64-linux-gnu/libboost_signals.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so;general;/usr/lib/x86_64-linux-gnu/libboost_thread.so;
+gold_app_dummy_LIB_DEPENDS:STATIC=general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_logger.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_lwnn.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_math.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_pm_widget.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_var_replacer.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_pm.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_ws.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_ui.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_framework.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_inifiles.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_tessellation.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_bbox.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_dev.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_cimage.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_time.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_msg_bus.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_vehicle_transformation.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_aco.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_data.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_ddk.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_dynamic_module_loader.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_stereo.so;general;/usr/lib/x86_64-linux-gnu/libboost_serialization.so;general;/usr/lib/x86_64-linux-gnu/libboost_signals.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so;general;/usr/lib/x86_64-linux-gnu/libboost_thread.so;general;-lopencv_core;general;-lopencv_highgui;general;-lopencv_imgproc;general;-lopencv_objdetect;
 
 
 ########################
@@ -736,6 +778,34 @@ GOLD_UI_LIBRARY-ADVANCED:INTERNAL=1
 GOLD_VAR_REPLACER_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: GOLD_WS_LIBRARY
 GOLD_WS_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OPENCV_ROOT_DIR
+OPENCV_ROOT_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenCV_INCLUDE_DIR
+OpenCV_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenCV_LIBRARIES_CALIB3D
+OpenCV_LIBRARIES_CALIB3D-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenCV_LIBRARIES_CONTRIB
+OpenCV_LIBRARIES_CONTRIB-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenCV_LIBRARIES_CORE
+OpenCV_LIBRARIES_CORE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenCV_LIBRARIES_FEATURES2
+OpenCV_LIBRARIES_FEATURES2-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenCV_LIBRARIES_FLANN
+OpenCV_LIBRARIES_FLANN-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenCV_LIBRARIES_GPU
+OpenCV_LIBRARIES_GPU-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenCV_LIBRARIES_HIGHGUI
+OpenCV_LIBRARIES_HIGHGUI-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenCV_LIBRARIES_IMGPROC
+OpenCV_LIBRARIES_IMGPROC-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenCV_LIBRARIES_LEGACY
+OpenCV_LIBRARIES_LEGACY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenCV_LIBRARIES_ML
+OpenCV_LIBRARIES_ML-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenCV_LIBRARIES_OBJECTDETECT
+OpenCV_LIBRARIES_OBJECTDETECT-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenCV_LIBRARIES_VIDEO
+OpenCV_LIBRARIES_VIDEO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PLATFORM_CPU_NAME
 PLATFORM_CPU_NAME-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: ProcessorCount_cmd_getconf

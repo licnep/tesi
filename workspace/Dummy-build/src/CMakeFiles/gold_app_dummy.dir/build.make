@@ -78,14 +78,39 @@ src/CMakeFiles/gold_app_dummy.dir/dummy.cpp.o.provides: src/CMakeFiles/gold_app_
 
 src/CMakeFiles/gold_app_dummy.dir/dummy.cpp.o.provides.build: src/CMakeFiles/gold_app_dummy.dir/dummy.cpp.o
 
+src/CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.o: src/CMakeFiles/gold_app_dummy.dir/flags.make
+src/CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.o: /home/alox/Tesi/workspace/Dummy/src/HOGVisualizer.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/alox/Tesi/workspace/Dummy-build/CMakeFiles $(CMAKE_PROGRESS_2)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.o"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.o -c /home/alox/Tesi/workspace/Dummy/src/HOGVisualizer.cpp
+
+src/CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.i"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/alox/Tesi/workspace/Dummy/src/HOGVisualizer.cpp > CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.i
+
+src/CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.s"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/alox/Tesi/workspace/Dummy/src/HOGVisualizer.cpp -o CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.s
+
+src/CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.o.requires:
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.o.requires
+
+src/CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.o.provides: src/CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.o.provides.build
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.o.provides
+
+src/CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.o.provides.build: src/CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.o
+
 # Object files for target gold_app_dummy
 gold_app_dummy_OBJECTS = \
-"CMakeFiles/gold_app_dummy.dir/dummy.cpp.o"
+"CMakeFiles/gold_app_dummy.dir/dummy.cpp.o" \
+"CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.o"
 
 # External object files for target gold_app_dummy
 gold_app_dummy_EXTERNAL_OBJECTS =
 
 /home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/dummy.cpp.o
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.o
 /home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/build.make
 /home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_logger.so
 /home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_lwnn.so
@@ -122,6 +147,7 @@ src/CMakeFiles/gold_app_dummy.dir/build: /home/alox/.config/gold-4.6.0/plugins/l
 .PHONY : src/CMakeFiles/gold_app_dummy.dir/build
 
 src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/dummy.cpp.o.requires
+src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.o.requires
 .PHONY : src/CMakeFiles/gold_app_dummy.dir/requires
 
 src/CMakeFiles/gold_app_dummy.dir/clean:

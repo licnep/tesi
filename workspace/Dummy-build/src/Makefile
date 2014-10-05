@@ -179,6 +179,30 @@ gold_app_dummy/fast:
 	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/build
 .PHONY : gold_app_dummy/fast
 
+HOGVisualizer.o: HOGVisualizer.cpp.o
+.PHONY : HOGVisualizer.o
+
+# target to build an object file
+HOGVisualizer.cpp.o:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.o
+.PHONY : HOGVisualizer.cpp.o
+
+HOGVisualizer.i: HOGVisualizer.cpp.i
+.PHONY : HOGVisualizer.i
+
+# target to preprocess a source file
+HOGVisualizer.cpp.i:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.i
+.PHONY : HOGVisualizer.cpp.i
+
+HOGVisualizer.s: HOGVisualizer.cpp.s
+.PHONY : HOGVisualizer.s
+
+# target to generate assembly for a file
+HOGVisualizer.cpp.s:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.s
+.PHONY : HOGVisualizer.cpp.s
+
 dummy.o: dummy.cpp.o
 .PHONY : dummy.o
 
@@ -218,6 +242,9 @@ help:
 	@echo "... package"
 	@echo "... package_source"
 	@echo "... rebuild_cache"
+	@echo "... HOGVisualizer.o"
+	@echo "... HOGVisualizer.i"
+	@echo "... HOGVisualizer.s"
 	@echo "... dummy.o"
 	@echo "... dummy.i"
 	@echo "... dummy.s"
