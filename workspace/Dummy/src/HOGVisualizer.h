@@ -13,6 +13,7 @@ class CHOGVisualizer {
                                                    cv::Size,
                                                    int,
                                                    double);
+		static cv::Mat GetHogDescriptorVisu(const cv::Mat&, std::vector<float>&, const cv::Size&);
 		static cv::Mat CImageRGB8ToMat(cimage::CImageRGB8&);
 		static void MatToCImageRGB8(cv::Mat&,cimage::CImageRGB8&);
 
