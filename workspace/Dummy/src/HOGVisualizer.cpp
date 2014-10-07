@@ -198,6 +198,7 @@ Mat CHOGVisualizer::GetHogDescriptorVisu(const Mat& color_origImg, vector<float>
     float zoomFac = 3;
     Mat visu;
     resize(color_origImg, visu, Size( (int)(color_origImg.cols*zoomFac), (int)(color_origImg.rows*zoomFac) ) );
+    visu = Scalar(0,0,0);
 
     int cellSize        = 8;
     int gradientBinSize = 9;
@@ -312,19 +313,22 @@ Mat CHOGVisualizer::GetHogDescriptorVisu(const Mat& color_origImg, vector<float>
 
                 float currRad = bin * radRangeForOneBin + radRangeForOneBin/2;
 
-                float dirVecX = cos( currRad );
-                float dirVecY = sin( currRad );
+                float dirVecX = -sin( currRad ); //cos( currRad );
+                float dirVecY = cos( currRad ); //sin( currRad );
                 float maxVecLen = (float)(cellSize/2.f);
-                float scale = 2.5; // just a visualization scale, to see the lines better
+                float scale = 3; // just a visualization scale, to see the lines better
 
                 // compute line coordinates
-                float x1 = mx - dirVecX * currentGradStrength * maxVecLen * scale;
-                float y1 = my - dirVecY * currentGradStrength * maxVecLen * scale;
-                float x2 = mx + dirVecX * currentGradStrength * maxVecLen * scale;
-                float y2 = my + dirVecY * currentGradStrength * maxVecLen * scale;
 
+                float x1 = mx - dirVecX * maxVecLen;// * scale * currentGradStrength ;
+                float y1 = my - dirVecY * maxVecLen;// * scale * currentGradStrength ;
+                float x2 = mx + dirVecX * maxVecLen;// * scale * currentGradStrength ;
+                float y2 = my + dirVecY * maxVecLen;// * scale * currentGradStrength ;
+
+                float strength = currentGradStrength * scale * 255;
+                //cout << "whiteness: " << whiteness << endl;
                 // draw gradient visualization
-                line(visu, Point((int)(x1*zoomFac),(int)(y1*zoomFac)), Point((int)(x2*zoomFac),(int)(y2*zoomFac)), Scalar(0,255,0), 1);
+                line(visu, Point((int)(x1*zoomFac),(int)(y1*zoomFac)), Point((int)(x2*zoomFac),(int)(y2*zoomFac)), Scalar(strength,strength,strength), 1);
 
             } // for (all bins)
 
