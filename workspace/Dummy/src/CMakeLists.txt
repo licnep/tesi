@@ -19,7 +19,7 @@ target_link_libraries( gold_app_dummy
     ${Boost_SYSTEM_LIBRARY}
     ${Boost_THREAD_LIBRARY}
     #${OpenCV_LIBRARIES}
-    -lopencv_core -lopencv_highgui -lopencv_imgproc -lopencv_objdetect
+    -lopencv_core -lopencv_highgui -lopencv_imgproc -lopencv_objdetect -lopencv_imgcodecs
 )
 
 message ("AAAopenCVdir=${OpenCV_LIBS},includeDir=${OpenCV_INCLUDE_DIRS}")

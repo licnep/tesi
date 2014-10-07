@@ -215,23 +215,38 @@ void CDummy::On_Execute()
     	data[i].B = 0;
 	}
 
-    HOGDescriptor d;
 	std::vector<float> descriptorsValues;
 	std::vector<cv::Point> locations;
-	resize(m, m, Size(128,256) );
+	resize(m, m, Size(512,256) );
+	Mat img;
+	cvtColor(m, img, COLOR_BGR2GRAY);
+	img.convertTo(img,CV_8U);
+	imwrite( "./butta.jpg", img );
+	HOGDescriptor d(Size(128,64), Size(16,16), Size(8,8),Size(8,8), 9);
+	d.compute(img, descriptorsValues, Size(8,8), Size(0,0), locations);
+	Mat viz = CHOGVisualizer::GetHogDescriptorVisu(m,descriptorsValues,Size(128,64) /*Size(512,256)*/);
+	viz.convertTo(viz,CV_16UC3);
+
+	resize(viz,viz,Size(m_inputImageRGB.W(),m_inputImageRGB.H()));
+	//resize(img,img,Size(m_inputImageRGB.W(),m_inputImageRGB.H()));
+	imwrite( "./butta2.jpg", viz );
+	CHOGVisualizer::MatToCImageRGB8(viz,m_inputImageRGB);
+	/*
 	Mat img;
 	cvtColor(m, img, COLOR_BGR2GRAY);
 	img.convertTo(img,CV_8U);
 	cout << "type:" << img.type() << endl;
 	d.compute(img, descriptorsValues, Size(8,8), Size(0,0), locations);
-	Mat viz = CHOGVisualizer::GetHOGDescriptorVisualImage(img,descriptorsValues,Size(128,256),Size(8,8),4,3);
+	Mat viz = CHOGVisualizer::GetHOGDescriptorVisualImage(img,descriptorsValues,Size(512,256),Size(8,8),4,3);
+
+	viz = CHOGVisualizer::GetHogDescriptorVisu(img,descriptorsValues,Size(512,256));
 
 	resize(viz,viz,Size(m_height,m_width));
 	cout << "type2:" << viz.type() << endl;
 	//m.convertTo(m,CV_8U);
 	//cvtColor(viz,viz,COLOR_GRAY2BGR);
 	viz.convertTo(viz,CV_16UC3);
-	CHOGVisualizer::MatToCImageRGB8(viz,m_inputImageRGB);
+	CHOGVisualizer::MatToCImageRGB8(viz,m_inputImageRGB);*/
 
     /*HOGDescriptor d;
     std::vector<float> descriptorsValues;
