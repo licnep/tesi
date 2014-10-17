@@ -19,6 +19,21 @@ https://github.com/ivanaslamov/HoG_SSE
 ffld: fast hog detection  in c++:
 http://charles.dubout.ch/en/coding.html
 
+//implementazione piu' rapida di deformable parts model con branch and bound
+http://cvn.ecp.fr/personnel/iasonas/dpms.html
+
+==========================================
+Alox:
+
+il training anche di oggetti diversi sarebbe utile, per esempio, gambe di cavallo possono sembrare gambe di umano, ma se vedi che c'e' un cavallo con una buona certezza, quello e' parte di un cavallo, e non un umano
+
+Applicazione struttura occhio umano. A parte la fovea, il resto dell'occhio vede soprattutto in bianco e nero (e' anche piu' sensibile a basse luminosita'), ed ha una frequenza temporale maggiore, e maggiore sensibilita' al movimento, 
+poi la fovea va a guardare nel dettaglio con risoluzione maggiore e colori
+
+Anche informazione profondita' e' importante posso stimare la dimensione, un umano non puo' essere alto 5 metri :P
+
+Problema di scelta della dimensione della finestra, va risolto. 
+
 ==========================================
 
 ICF features

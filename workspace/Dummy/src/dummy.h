@@ -75,14 +75,14 @@ class CDummy : public CApplication
         unsigned int m_width, m_height;
 
         ui::win::CWindow* m_pInputMonoWindow;
-        ui::win::CWindow* m_pInputRGBWindow;
+        ui::win::CWindow* m_pInputHOGWindow;
         ui::win::CWindow* m_pSobelWindow;
 
         float m_radius;
         int m_value;
 
         bool m_showInputMono;
-        bool m_showInputRGB;
+        bool m_showInputHOG;
         bool m_showSobel;
         bool m_showBox;
         bool m_showCircle;

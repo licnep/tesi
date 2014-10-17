@@ -1,7 +1,7 @@
 #include "HOGVisualizer.h"
 
 #include <opencv2/opencv.hpp>
-#include <opencv2/highgui.hpp>
+#include <opencv2/highgui/highgui.hpp>
 #include <Data/CImage/Images/CImageRGB8.h>
 
 using namespace cv;

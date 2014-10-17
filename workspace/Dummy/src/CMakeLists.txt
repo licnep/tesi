@@ -6,6 +6,7 @@ include_directories(
     ${GOLD_INCLUDE_DIR}
     ${Boost_INCLUDE_DIR}
     ${OpenCV_INCLUDE_DIR}
+    ${OpenCV_INCLUDE_DIRS} #for 2.4
 )
 
 # elenco dei file da compilare
@@ -19,7 +20,8 @@ target_link_libraries( gold_app_dummy
     ${Boost_SYSTEM_LIBRARY}
     ${Boost_THREAD_LIBRARY}
     #${OpenCV_LIBRARIES}
-    -lopencv_core -lopencv_highgui -lopencv_imgproc -lopencv_objdetect -lopencv_imgcodecs
+    ${OpenCV_LIBS} #for 2.4
+    -lopencv_core -lopencv_highgui -lopencv_imgproc -lopencv_objdetect #-lopencv_imgcodecs
 )
 
 message ("AAAopenCVdir=${OpenCV_LIBS},includeDir=${OpenCV_INCLUDE_DIRS}")
