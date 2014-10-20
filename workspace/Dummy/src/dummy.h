@@ -66,7 +66,7 @@ class CDummy : public CApplication
         std::string m_inputCameraName;
 
         cimage::CImageMono m_inputImageMono;
-        cimage::CImageMono m_sobelImage;
+        cimage::CImageRGB8 m_detectedImage;
         cimage::CImageRGB8 m_inputImageRGB;
 
         dev::CCamera * m_pCam;
@@ -76,14 +76,14 @@ class CDummy : public CApplication
 
         ui::win::CWindow* m_pInputMonoWindow;
         ui::win::CWindow* m_pInputHOGWindow;
-        ui::win::CWindow* m_pSobelWindow;
+        ui::win::CWindow* m_pDetectedWindow;
 
         float m_radius;
         int m_value;
 
         bool m_showInputMono;
         bool m_showInputHOG;
-        bool m_showSobel;
+        bool m_showDetected;
         bool m_showBox;
         bool m_showCircle;
         bool m_showText;

@@ -87,8 +87,8 @@ void CDummy::On_Initialization()
     Value<bool> showInputHOG(&m_showInputHOG);
     config.Bind(showInputHOG, "SHOW INPUT RGB", false);
     
-    Value<bool> showSobel(&m_showSobel);
-    config.Bind(showSobel, "SHOW SOBEL", true);
+    Value<bool> showDetected(&m_showDetected);
+    config.Bind(showDetected, "SHOW DETECTED", false);
     
     ui::var::Range<float> radius(&m_radius, 0.0f, 50.0f, 0.1f);
     config.Bind(radius, "RADIUS", 10.0f);
@@ -123,7 +123,7 @@ void CDummy::On_Initialization()
                     (
                         CheckBox(showInputMono, "Show input mono"),
                         CheckBox(showInputHOG, "Show input HOG"),
-                        CheckBox(showSobel, "Show input Sobel")
+                        CheckBox(showDetected, "Show detected")
                     )
                 ),
                 Page("Advanced")
@@ -149,14 +149,14 @@ void CDummy::On_Initialization()
     // inizializziamo alcune variabili
     m_pInputMonoWindow = NULL;
     m_pInputHOGWindow = NULL;
-    m_pSobelWindow = NULL;
+    m_pDetectedWindow = NULL;
 }
 
 void CDummy::On_ShutDown()
 {
     delete m_pInputMonoWindow;
     delete m_pInputHOGWindow;
-    delete m_pSobelWindow;
+    delete m_pDetectedWindow;
 }
 
 void CDummy::On_Execute()
@@ -181,7 +181,7 @@ void CDummy::On_Execute()
     // per semplicità eseguiamo la Resize comunque: se m_width e m_height sono già corrette non succede nulla
     Resize(m_inputImageMono, m_width, m_height);
     Resize(m_inputImageRGB, m_width, m_height);
-    Resize(m_sobelImage, m_width, m_height);
+    Resize(m_detectedImage, m_width, m_height);
 
     // convertiamo il frame in una immagine a colori
     Convert(*image, m_inputImageRGB, BAYER_DECODING_SIMPLE);
@@ -190,7 +190,7 @@ void CDummy::On_Execute()
     Convert(*image, m_inputImageMono, BAYER_DECODING_LUMINANCE);
 
     // applichiamo un filtro che converte una immagine CImageMono in una CImageMono usando un kernel SobelVertical di dimensione 3x3
-    SobelVertical3x3(m_inputImageMono, m_sobelImage);
+    //SobelVertical3x3(m_inputImageMono, m_sobelImage);
 
     Mat m = CHOGVisualizer::CImageRGB8ToMat(m_inputImageRGB);
     /*RGB8* data = m_inputImageRGB.Buffer();
@@ -204,9 +204,9 @@ void CDummy::On_Execute()
 	std::vector<cv::Point> locations;
 	//resize(m, m, Size(512,256) );
 	Mat img;
+	resize(m, m, Size(512,256) ); //la dimensione su cui calcolo le feature HOG
 	cvtColor(m, img, COLOR_BGR2GRAY);
-	resize(img, img, Size(512,256) );
-	img.convertTo(img,CV_8U);
+	img.convertTo(img,CV_8U); //converto in scala di grigi perche' openCV vuole scala di grigi (di solito si usano tutti i canali e si prende il gradiente maggiore)
 	imwrite( "./butta.jpg", img );
 	//cv::gpu::HOGDescriptor d(Size(512,256), Size(16,16), Size(8,8),Size(8,8), 9);
 	HOGDescriptor d(Size(512,256), Size(16,16), Size(8,8),Size(8,8), 9);
@@ -219,28 +219,30 @@ void CDummy::On_Execute()
 	imwrite( "./butta2.jpg", viz );
 	CHOGVisualizer::MatToCImageRGB8(viz,m_inputImageRGB);
 
-
-	std::vector<String> filenames;
-	filenames.push_back("/home/alox/Downloads/person.xml");
-	LatentSvmDetector detector(filenames);
-	if( detector.empty() )
+	if(m_showDetected)
 	{
-		cout << "Models cann't be loaded" << endl;
-		exit(-1);
-	}
-    vector<LatentSvmDetector::ObjectDetection> detections;
-    cout << "Detecting..." << endl;
-	detector.detect( m, detections, 0.2f, 1);
 
-	for( size_t i = 0; i < detections.size(); i++ )
-	{
-		const LatentSvmDetector::ObjectDetection& od = detections[i];
-		cout << "confidence:" << od.score << endl;
-		if (od.score > 0.3f) rectangle( m, od.rect, Scalar(255,0,255*od.score), 2 );
-	}
-	//resize(m,m,Size(m_inputImageRGB.W(),m_inputImageRGB.H()));
-	CHOGVisualizer::MatToCImageRGB8(m,m_inputImageRGB);
+		std::vector<String> filenames;
+		filenames.push_back("/home/alox/Downloads/person.xml");
+		LatentSvmDetector detector(filenames);
+		if( detector.empty() )
+		{
+			cout << "Models cann't be loaded" << endl;
+			exit(-1);
+		}
+		vector<LatentSvmDetector::ObjectDetection> detections;
+		cout << "Detecting..." << endl;
+		detector.detect( m, detections, 0.2f, 8);
 
+		for( size_t i = 0; i < detections.size(); i++ )
+		{
+			const LatentSvmDetector::ObjectDetection& od = detections[i];
+			cout << "confidence:" << od.score << endl;
+			if (od.score > 0.1f) rectangle( m, od.rect, Scalar(255,0,255*od.score), 2 );
+		}
+		resize(m,m,Size(m_inputImageRGB.W(),m_inputImageRGB.H()));
+		CHOGVisualizer::MatToCImageRGB8(m,m_detectedImage);
+	}
 
 	/*
 
@@ -319,19 +321,19 @@ void CDummy::Output()
     } else if(m_pInputHOGWindow)
         m_pInputHOGWindow->Hide();
 
-    if(m_showSobel)
+    if(m_showDetected)
     {
-        if(m_pSobelWindow == NULL)
-            m_pSobelWindow = new CWindow("Sobel", m_width, m_height);
+        if(m_pDetectedWindow == NULL)
+            m_pDetectedWindow = new CWindow("Detected", m_width, m_height);
 
-        m_pSobelWindow->Clear();
-        m_pSobelWindow->DrawImage(m_sobelImage);
-        m_pSobelWindow->Refresh();
+        m_pDetectedWindow->Clear();
+        m_pDetectedWindow->DrawImage(m_detectedImage);
+        m_pDetectedWindow->Refresh();
 
-        if(!m_pSobelWindow->IsVisible())
-            m_pSobelWindow->Show();
-    } else if(m_pSobelWindow)
-        m_pSobelWindow->Hide();
+        if(!m_pDetectedWindow->IsVisible())
+            m_pDetectedWindow->Show();
+    } else if(m_pDetectedWindow)
+        m_pDetectedWindow->Hide();
 }
 
 #include <Framework/Application_Registration.h>
