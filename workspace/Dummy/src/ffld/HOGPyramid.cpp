@@ -78,7 +78,7 @@ pady_(0), interval_(0)
 		
 		cimage::CImageRGB8 scaledImg(srcImage.W() * scale + 0.5,srcImage.H() * scale + 0.5);
 		cimage::Resample(srcImage,scaledImg,cimage::NEAREST);
-		cimage::Save("/home/alox/buttaScalata.jpg",scaledImg);
+		//cimage::Save("/home/alox/buttaScalata.jpg",scaledImg);
 		//TODO:: remove next line
 		JPEGImage scaled = image.resize(image.width() * scale + 0.5, image.height() * scale + 0.5);
 		
@@ -352,9 +352,9 @@ void HOGPyramid::Hog(const cimage::CImageRGB8 & srcImage, const JPEGImage & imag
 		const int yp = min(y + 1, height - 1);
 		const int ym = max(y - 1, 0);
 		
-		const uint8_t * linep = reinterpret_cast<const uint8_t *>(image.scanLine(yp));
-		const uint8_t * line = reinterpret_cast<const uint8_t *>(image.scanLine(y));
-		const uint8_t * linem = reinterpret_cast<const uint8_t *>(image.scanLine(ym));
+		//const uint8_t * linep = reinterpret_cast<const uint8_t *>(image.scanLine(yp));
+		//const uint8_t * line = reinterpret_cast<const uint8_t *>(image.scanLine(y));
+		//const uint8_t * linem = reinterpret_cast<const uint8_t *>(image.scanLine(ym));
 		
 		for (int x = 0; x < width; ++x) {
 			const int xp = min(x + 1, width - 1);
@@ -364,27 +364,28 @@ void HOGPyramid::Hog(const cimage::CImageRGB8 & srcImage, const JPEGImage & imag
 			Scalar magnitude = 0;
 			Scalar theta = 0;
 			
-			for (int i = 0; i < depth; ++i) {
-				const int dx = static_cast<int>(line[xp * depth + i]) -
-							   static_cast<int>(line[xm * depth + i]);
-				//destination.at<cv::Vec3w>(r,c)[0] = srcBuffer[r*(destination.cols)+c].B;
-				const int dxx = static_cast<int>(srcBuffer[y*width+ xp].B) - static_cast<int>(srcBuffer[y*width + xm].B);
-				//const int dxx = img(xp,y) - img(xm,y);
-				const int dyy = static_cast<int>(srcBuffer[yp*width+ x].B) - static_cast<int>(srcBuffer[ym*width + x].B);
-				//const int dyy = img(x,yp) - img(x,ym);
-				const int dy = static_cast<int>(linep[x * depth + i]) -
-							   static_cast<int>(linem[x * depth + i]);
-				/*
-				if (dx * dx + dy * dy > magnitude) {
-					magnitude = dx * dx + dy * dy;
-					theta = ATAN2_TABLE[dy + 255][dx + 255];
-				}*/
-
-				if (dxx * dxx + dyy * dyy > magnitude) {
-					magnitude = dxx * dxx + dyy * dyy;
-					theta = ATAN2_TABLE[dyy + 255][dxx + 255];
-				}
+			//for (int i = 0; i < depth; ++i) {
+				//const int dx = static_cast<int>(line[xp * depth + i]) - static_cast<int>(line[xm * depth + i]);
+				//const int dy = static_cast<int>(linep[x * depth + i]) - static_cast<int>(linem[x * depth + i]);
+			const int dxR = static_cast<int>(srcBuffer[y*width+ xp].R) - static_cast<int>(srcBuffer[y*width + xm].R);
+			const int dyR = static_cast<int>(srcBuffer[yp*width+ x].R) - static_cast<int>(srcBuffer[ym*width + x].R);
+			if (dxR * dxR + dyR * dyR > magnitude) {
+				magnitude = dxR * dxR + dyR * dyR;
+				theta = ATAN2_TABLE[dyR + 255][dxR + 255];
 			}
+			const int dxG = static_cast<int>(srcBuffer[y*width+ xp].G) - static_cast<int>(srcBuffer[y*width + xm].G);
+			const int dyG = static_cast<int>(srcBuffer[yp*width+ x].G) - static_cast<int>(srcBuffer[ym*width + x].G);
+			if (dxG * dxG + dyG * dyG > magnitude) {
+				magnitude = dxG * dxG + dyG * dyG;
+				theta = ATAN2_TABLE[dyG + 255][dxG + 255];
+			}
+			const int dxB = static_cast<int>(srcBuffer[y*width+ xp].B) - static_cast<int>(srcBuffer[y*width + xm].B);
+			const int dyB = static_cast<int>(srcBuffer[yp*width+ x].B) - static_cast<int>(srcBuffer[ym*width + x].B);
+			if (dxB * dxB + dyB * dyB > magnitude) {
+				magnitude = dxB * dxB + dyB * dyB;
+				theta = ATAN2_TABLE[dyB + 255][dxB + 255];
+			}
+			//}
 			
 			magnitude = sqrt(magnitude);
 			
