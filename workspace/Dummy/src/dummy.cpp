@@ -47,6 +47,8 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/objdetect/objdetect.hpp>
 #include "HOGVisualizer.h"
+#include "ffld/ffld.h"
+#include "ffld/JPEGImage.h"
 
 using namespace cimage;
 using namespace cimage::filter;
@@ -59,7 +61,7 @@ using namespace cv;
 using namespace std;
 
 void CDummy::On_Initialization()
-{    
+{
     // recuperiamo l'elenco delle camere...
     CDeviceNode& cameras = Dev()["CAMERAS"];
 
@@ -193,6 +195,7 @@ void CDummy::On_Execute()
     //SobelVertical3x3(m_inputImageMono, m_sobelImage);
 
     Mat m = CHOGVisualizer::CImageRGB8ToMat(m_inputImageRGB);
+    imwrite( "./butta.jpg", m );
     /*RGB8* data = m_inputImageRGB.Buffer();
     for (int i=0;i<m_width*m_height;i++) {
     	data[i].R = 0;
@@ -207,7 +210,7 @@ void CDummy::On_Execute()
 	resize(m, m, Size(512,256) ); //la dimensione su cui calcolo le feature HOG
 	cvtColor(m, img, COLOR_BGR2GRAY);
 	img.convertTo(img,CV_8U); //converto in scala di grigi perche' openCV vuole scala di grigi (di solito si usano tutti i canali e si prende il gradiente maggiore)
-	imwrite( "./butta.jpg", img );
+	//imwrite( "./butta.jpg", img );
 	//cv::gpu::HOGDescriptor d(Size(512,256), Size(16,16), Size(8,8),Size(8,8), 9);
 	HOGDescriptor d(Size(512,256), Size(16,16), Size(8,8),Size(8,8), 9);
 	d.compute(img, descriptorsValues, Size(8,8), Size(0,0), locations);
@@ -244,14 +247,26 @@ void CDummy::On_Execute()
 		CHOGVisualizer::MatToCImageRGB8(m,m_detectedImage);
 	}
 
-	/*
+	//-m models/person_final2007.txt -i ./result/ -r ./result/result.txt -t=-0.1 004963.jpg
+	//-m /home/alox/Tesi/workspace/Dummy/src/ffld/models/person_final2007.txt -i / -r  -t=-0.1 /home/alox/Tesi/ffld/pedoni.jpg
+	char arg0[] = "ffld";
+	char arg1[] = "-m";
+	char arg2[] = "/home/alox/Tesi/workspace/Dummy/src/ffld/models/person_final2007.txt";
+	char arg3[] = "-i";
+	char arg4[] = "/home/alox/Tesi/workspace/Dummy/src/ffld/result/";
+	char arg5[] = "-r";
+	char arg6[] = "/home/alox/Tesi/workspace/Dummy/src/ffld/result/result.txt";
+	char arg7[] = "-t=-0.0";
+	//char arg8[] = "/home/alox/Tesi/ffld/pedoni.jpg";
+	char arg8[] = "./butta.jpg";
+	char* argv[] = { &arg0[0], &arg1[0], &arg2[0], &arg3[0], &arg4[0], &arg5[0], &arg6[0], &arg7[0], &arg8[0], NULL };
+	FFLD::JPEGImage immmg();
+	int argc = sizeof(argv) / sizeof(char*) - 1;
+	main_ffld(argc,argv);
 
-    cout << "HOG descriptor size is " << d.getDescriptorSize() << endl;
-    cout << "img dimensions: " << img.cols << " width x " << img.rows << "height" << endl;
-    cout << "Found " << descriptorsValues.size() << " descriptor values" << endl;
-    cout << "Nr of locations specified : " << locations.size() << endl;
-    cout << "IMG cols: " << img.cols << "  rows: " << img.rows << endl;
-	 */
+	Mat detectionResult = imread("/home/alox/Tesi/workspace/Dummy/src/ffld/result/butta.jpg");
+	detectionResult.convertTo(detectionResult,CV_16UC3);
+	CHOGVisualizer::MatToCImageRGB8(detectionResult,m_inputImageMono);
 
     // chiamiamo la funzione di disegno
     Output();

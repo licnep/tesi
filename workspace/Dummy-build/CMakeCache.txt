@@ -119,7 +119,7 @@ Boost_USE_STATIC_RUNTIME:BOOL=OFF
 CMAKE_AR:FILEPATH=/usr/bin/ar
 
 //Path of the GOLD executable
-CMAKE_BUILD_TYPE:PATH=Debug
+CMAKE_BUILD_TYPE:PATH=Release
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
@@ -312,6 +312,32 @@ CPACK_SOURCE_TZ:BOOL=ON
 //Enable to build ZIP source packages
 CPACK_SOURCE_ZIP:BOOL=OFF
 
+//Path to a file.
+EIGEN_INCLUDE_DIR:PATH=/home/alox/Tesi/workspace/Dummy/src/ffld
+
+//Value Computed by CMake
+FFLD_BINARY_DIR:STATIC=/home/alox/Tesi/workspace/Dummy-build/src/ffld
+
+//Use doubles instead of floats (slower, uses twice more memory,
+// and the increase in precision is not necessarily useful).
+FFLD_HOGPYRAMID_DOUBLE:BOOL=OFF
+
+//Use Felzenszwalb's original features (slower and not as accurate,
+// provided for compatibility only).
+FFLD_HOGPYRAMID_FELZENSZWALB_FEATURES:BOOL=OFF
+
+//Dependencies for the target
+FFLD_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libfftw3f.so;general;/usr/lib/x86_64-linux-gnu/libjpeg.so;general;/usr/lib/x86_64-linux-gnu/libxml2.so;
+
+//Value Computed by CMake
+FFLD_SOURCE_DIR:STATIC=/home/alox/Tesi/workspace/Dummy/src/ffld
+
+//Path to a file.
+FFTW3_INCLUDE_DIR:PATH=/usr/include
+
+//Path to a library.
+FFTW3_LIBRARIES:FILEPATH=/usr/lib/x86_64-linux-gnu/libfftw3f.so
+
 //Path of the GOLD executable
 GOLD_BIN_DIR:PATH=/opt/gold-4.6/bin
 
@@ -415,6 +441,21 @@ GOLD_VAR_REPLACER_LIBRARY:FILEPATH=/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/li
 //Path to a library.
 GOLD_WS_LIBRARY:FILEPATH=/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_ws.so
 
+//Path to a file.
+JPEG_INCLUDE_DIR:PATH=/usr/include
+
+//Path to a library.
+JPEG_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libjpeg.so
+
+//Path to a file.
+LIBXML2_INCLUDE_DIR:PATH=/usr/include/libxml2
+
+//Path to a library.
+LIBXML2_LIBRARIES:FILEPATH=/usr/lib/x86_64-linux-gnu/libxml2.so
+
+//Path to a program.
+LIBXML2_XMLLINT_EXECUTABLE:FILEPATH=/usr/bin/xmllint
+
 //The directory containing a CMake configuration file for Loki.
 Loki_DIR:PATH=Loki_DIR-NOTFOUND
 
@@ -460,6 +501,15 @@ OpenCV_LIBRARIES_OBJECTDETECT:FILEPATH=/usr/local/lib/libopencv_objdetect.so
 //Path to a library.
 OpenCV_LIBRARIES_VIDEO:FILEPATH=/usr/local/lib/libopencv_video.so
 
+//C++ compiler flags for OpenMP parallization
+OpenMP_CXX_FLAGS:STRING=-fopenmp
+
+//C compiler flags for OpenMP parallization
+OpenMP_C_FLAGS:STRING=-fopenmp
+
+//pkg-config executable
+PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
+
 //Flags used by the compiler
 PLATFORM_CPU_NAME:STRING=Intel(R) Core(TM) i7-4700MQ CPU @ 2.40GHz
 
@@ -469,6 +519,9 @@ ProcessorCount_cmd_getconf:FILEPATH=/usr/bin/getconf
 //Path to a program.
 ProcessorCount_cmd_sysctl:FILEPATH=/sbin/sysctl
 
+//Use HIDDEN visibility support if available.
+USE_COMPILER_HIDDEN_VISIBILITY:BOOL=ON
+
 //Value Computed by CMake
 dummy_BINARY_DIR:STATIC=/home/alox/Tesi/workspace/Dummy-build
 
@@ -476,7 +529,10 @@ dummy_BINARY_DIR:STATIC=/home/alox/Tesi/workspace/Dummy-build
 dummy_SOURCE_DIR:STATIC=/home/alox/Tesi/workspace/Dummy
 
 //Dependencies for the target
-gold_app_dummy_LIB_DEPENDS:STATIC=general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_logger.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_lwnn.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_math.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_pm_widget.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_var_replacer.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_pm.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_ws.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_ui.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_framework.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_inifiles.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_tessellation.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_bbox.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_dev.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_cimage.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_time.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_msg_bus.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_vehicle_transformation.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_aco.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_data.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_ddk.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_dynamic_module_loader.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_stereo.so;general;/usr/lib/x86_64-linux-gnu/libboost_serialization.so;general;/usr/lib/x86_64-linux-gnu/libboost_signals.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so;general;/usr/lib/x86_64-linux-gnu/libboost_thread.so;general;-lopencv_core;general;-lopencv_highgui;general;-lopencv_imgproc;general;-lopencv_objdetect;
+ffld_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libfftw3f.so;general;/usr/lib/x86_64-linux-gnu/libjpeg.so;general;/usr/lib/x86_64-linux-gnu/libxml2.so;
+
+//Dependencies for the target
+gold_app_dummy_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libfftw3f.so;general;/usr/lib/x86_64-linux-gnu/libjpeg.so;general;/usr/lib/x86_64-linux-gnu/libxml2.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_logger.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_lwnn.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_math.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_pm_widget.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_var_replacer.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_pm.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_ws.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_ui.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_framework.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_inifiles.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_tessellation.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_bbox.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_dev.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_cimage.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_time.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_msg_bus.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_vehicle_transformation.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_aco.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_data.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_ddk.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_dynamic_module_loader.so;general;/opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_stereo.so;general;/usr/lib/x86_64-linux-gnu/libboost_serialization.so;general;/usr/lib/x86_64-linux-gnu/libboost_signals.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so;general;/usr/lib/x86_64-linux-gnu/libboost_thread.so;general;-lopencv_core;general;-lopencv_highgui;general;-lopencv_imgproc;general;-lopencv_objdetect;
 
 
 ########################
@@ -710,6 +766,14 @@ CMAKE_UNAME:INTERNAL=/bin/uname
 CMAKE_USE_RELATIVE_PATHS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Compiler support for a deprecated attribute
+COMPILER_HAS_DEPRECATED:INTERNAL=1
+//Test COMPILER_HAS_DEPRECATED_ATTR
+COMPILER_HAS_DEPRECATED_ATTR:INTERNAL=1
+//Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY
+COMPILER_HAS_HIDDEN_INLINE_VISIBILITY:INTERNAL=1
+//Test COMPILER_HAS_HIDDEN_VISIBILITY
+COMPILER_HAS_HIDDEN_VISIBILITY:INTERNAL=1
 //Result of TRY_COMPILE
 COMPILE_RESULT:INTERNAL=TRUE
 //ADVANCED property for variable: CPACK_SOURCE_TBZ2
@@ -720,6 +784,12 @@ CPACK_SOURCE_TGZ-ADVANCED:INTERNAL=1
 CPACK_SOURCE_TZ-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CPACK_SOURCE_ZIP
 CPACK_SOURCE_ZIP-ADVANCED:INTERNAL=1
+//Details about finding JPEG
+FIND_PACKAGE_MESSAGE_DETAILS_JPEG:INTERNAL=[/usr/lib/x86_64-linux-gnu/libjpeg.so][/usr/include][v()]
+//Details about finding LibXml2
+FIND_PACKAGE_MESSAGE_DETAILS_LibXml2:INTERNAL=[/usr/lib/x86_64-linux-gnu/libxml2.so][/usr/include/libxml2][v2.9.1()]
+//Details about finding OpenMP
+FIND_PACKAGE_MESSAGE_DETAILS_OpenMP:INTERNAL=[-fopenmp][-fopenmp][v()]
 //GOLD_AutoCompilerFlagsHasRun
 GOLD_AutoCompilerFlagsHasRun:INTERNAL=TRUE
 //ADVANCED property for variable: GOLD_BOOST_USE_SIGNAL2
@@ -778,6 +848,16 @@ GOLD_UI_LIBRARY-ADVANCED:INTERNAL=1
 GOLD_VAR_REPLACER_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: GOLD_WS_LIBRARY
 GOLD_WS_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: JPEG_INCLUDE_DIR
+JPEG_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: JPEG_LIBRARY
+JPEG_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: LIBXML2_INCLUDE_DIR
+LIBXML2_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: LIBXML2_LIBRARIES
+LIBXML2_LIBRARIES-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: LIBXML2_XMLLINT_EXECUTABLE
+LIBXML2_XMLLINT_EXECUTABLE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENCV_ROOT_DIR
 OPENCV_ROOT_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OpenCV_INCLUDE_DIR
@@ -806,6 +886,48 @@ OpenCV_LIBRARIES_ML-ADVANCED:INTERNAL=1
 OpenCV_LIBRARIES_OBJECTDETECT-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OpenCV_LIBRARIES_VIDEO
 OpenCV_LIBRARIES_VIDEO-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenMP_CXX_FLAGS
+OpenMP_CXX_FLAGS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenMP_C_FLAGS
+OpenMP_C_FLAGS-ADVANCED:INTERNAL=1
+//Test OpenMP_FLAG_DETECTED
+OpenMP_FLAG_DETECTED:INTERNAL=1
+PC_LIBXML_CFLAGS:INTERNAL=-I/usr/include/libxml2
+PC_LIBXML_CFLAGS_I:INTERNAL=
+PC_LIBXML_CFLAGS_OTHER:INTERNAL=
+PC_LIBXML_FOUND:INTERNAL=1
+PC_LIBXML_INCLUDEDIR:INTERNAL=/usr/include
+PC_LIBXML_INCLUDE_DIRS:INTERNAL=/usr/include/libxml2
+PC_LIBXML_LDFLAGS:INTERNAL=-lxml2
+PC_LIBXML_LDFLAGS_OTHER:INTERNAL=
+PC_LIBXML_LIBDIR:INTERNAL=/usr/lib/x86_64-linux-gnu
+PC_LIBXML_LIBRARIES:INTERNAL=xml2
+PC_LIBXML_LIBRARY_DIRS:INTERNAL=
+PC_LIBXML_LIBS:INTERNAL=
+PC_LIBXML_LIBS_L:INTERNAL=
+PC_LIBXML_LIBS_OTHER:INTERNAL=
+PC_LIBXML_LIBS_PATHS:INTERNAL=
+PC_LIBXML_PREFIX:INTERNAL=/usr
+PC_LIBXML_STATIC_CFLAGS:INTERNAL=-I/usr/include/libxml2
+PC_LIBXML_STATIC_CFLAGS_I:INTERNAL=
+PC_LIBXML_STATIC_CFLAGS_OTHER:INTERNAL=
+PC_LIBXML_STATIC_INCLUDE_DIRS:INTERNAL=/usr/include/libxml2
+PC_LIBXML_STATIC_LDFLAGS:INTERNAL=-lxml2;-lz;-lm;-llzma
+PC_LIBXML_STATIC_LDFLAGS_OTHER:INTERNAL=
+PC_LIBXML_STATIC_LIBDIR:INTERNAL=
+PC_LIBXML_STATIC_LIBRARIES:INTERNAL=xml2;z;m;lzma
+PC_LIBXML_STATIC_LIBRARY_DIRS:INTERNAL=
+PC_LIBXML_STATIC_LIBS:INTERNAL=
+PC_LIBXML_STATIC_LIBS_L:INTERNAL=
+PC_LIBXML_STATIC_LIBS_OTHER:INTERNAL=
+PC_LIBXML_STATIC_LIBS_PATHS:INTERNAL=
+PC_LIBXML_VERSION:INTERNAL=2.9.1
+PC_LIBXML_libxml-2.0_INCLUDEDIR:INTERNAL=
+PC_LIBXML_libxml-2.0_LIBDIR:INTERNAL=
+PC_LIBXML_libxml-2.0_PREFIX:INTERNAL=
+PC_LIBXML_libxml-2.0_VERSION:INTERNAL=
+//ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
+PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PLATFORM_CPU_NAME
 PLATFORM_CPU_NAME-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: ProcessorCount_cmd_getconf
@@ -814,6 +936,8 @@ ProcessorCount_cmd_getconf-ADVANCED:INTERNAL=1
 ProcessorCount_cmd_sysctl-ADVANCED:INTERNAL=1
 //Result of TRY_RUN
 RUN_RESULT:INTERNAL=254
+//ADVANCED property for variable: USE_COMPILER_HIDDEN_VISIBILITY
+USE_COMPILER_HIDDEN_VISIBILITY-ADVANCED:INTERNAL=1
 //Last used BOOST_INCLUDEDIR value.
 _BOOST_INCLUDEDIR_LAST:INTERNAL=/usr/include
 //Last used BOOST_LIBRARYDIR value.
@@ -834,4 +958,5 @@ _Boost_USE_MULTITHREADED_LAST:INTERNAL=ON
 _Boost_USE_STATIC_LIBS_LAST:INTERNAL=OFF
 //Last used Boost_USE_STATIC_RUNTIME value.
 _Boost_USE_STATIC_RUNTIME_LAST:INTERNAL=OFF
+__pkg_config_checked_PC_LIBXML:INTERNAL=1
 

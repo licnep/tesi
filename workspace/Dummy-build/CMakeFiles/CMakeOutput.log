@@ -261,3 +261,119 @@ Parsed CXX implicit link information from above output:
   implicit fwks: []
 
 
+Performing C SOURCE FILE Test OpenMP_FLAG_DETECTED succeded with the following output:
+Change Dir: /home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec109583435/fast"
+make[1]: Entering directory `/home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec109583435.dir/build.make CMakeFiles/cmTryCompileExec109583435.dir/build
+make[2]: Entering directory `/home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec109583435.dir/src.c.o
+/usr/bin/cc   -DOpenMP_FLAG_DETECTED -fopenmp   -o CMakeFiles/cmTryCompileExec109583435.dir/src.c.o   -c /home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTryCompileExec109583435
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec109583435.dir/link.txt --verbose=1
+/usr/bin/cc   -DOpenMP_FLAG_DETECTED -fopenmp    CMakeFiles/cmTryCompileExec109583435.dir/src.c.o  -o cmTryCompileExec109583435 -rdynamic 
+make[2]: Leaving directory `/home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory `/home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+#include <omp.h>
+int main() {
+#ifdef _OPENMP
+  return 0;
+#else
+  breaks_on_purpose
+#endif
+}
+
+Performing C++ SOURCE FILE Test OpenMP_FLAG_DETECTED succeded with the following output:
+Change Dir: /home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec4011124741/fast"
+make[1]: Entering directory `/home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec4011124741.dir/build.make CMakeFiles/cmTryCompileExec4011124741.dir/build
+make[2]: Entering directory `/home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec4011124741.dir/src.cxx.o
+/usr/bin/c++    -fmessage-length=0 -fdiagnostics-show-location=every-line -fvisibility=hidden -fvisibility-inlines-hidden -DOpenMP_FLAG_DETECTED -fopenmp   -o CMakeFiles/cmTryCompileExec4011124741.dir/src.cxx.o -c /home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTryCompileExec4011124741
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec4011124741.dir/link.txt --verbose=1
+/usr/bin/c++    -fmessage-length=0 -fdiagnostics-show-location=every-line -fvisibility=hidden -fvisibility-inlines-hidden -DOpenMP_FLAG_DETECTED -fopenmp    CMakeFiles/cmTryCompileExec4011124741.dir/src.cxx.o  -o cmTryCompileExec4011124741 -rdynamic 
+make[2]: Leaving directory `/home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory `/home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+#include <omp.h>
+int main() {
+#ifdef _OPENMP
+  return 0;
+#else
+  breaks_on_purpose
+#endif
+}
+
+Performing C++ SOURCE FILE Test COMPILER_HAS_HIDDEN_VISIBILITY succeded with the following output:
+Change Dir: /home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec4174857810/fast"
+make[1]: Entering directory `/home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec4174857810.dir/build.make CMakeFiles/cmTryCompileExec4174857810.dir/build
+make[2]: Entering directory `/home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec4174857810.dir/src.cxx.o
+/usr/bin/c++    -fmessage-length=0 -fdiagnostics-show-location=every-line -fvisibility=hidden -fvisibility-inlines-hidden -DCOMPILER_HAS_HIDDEN_VISIBILITY   -fvisibility=hidden -o CMakeFiles/cmTryCompileExec4174857810.dir/src.cxx.o -c /home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTryCompileExec4174857810
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec4174857810.dir/link.txt --verbose=1
+/usr/bin/c++    -fmessage-length=0 -fdiagnostics-show-location=every-line -fvisibility=hidden -fvisibility-inlines-hidden -DCOMPILER_HAS_HIDDEN_VISIBILITY    CMakeFiles/cmTryCompileExec4174857810.dir/src.cxx.o  -o cmTryCompileExec4174857810 -rdynamic 
+make[2]: Leaving directory `/home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory `/home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp'
+
+Source file was:
+int main() { return 0;}
+Performing C++ SOURCE FILE Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY succeded with the following output:
+Change Dir: /home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec2860664238/fast"
+make[1]: Entering directory `/home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec2860664238.dir/build.make CMakeFiles/cmTryCompileExec2860664238.dir/build
+make[2]: Entering directory `/home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec2860664238.dir/src.cxx.o
+/usr/bin/c++    -fmessage-length=0 -fdiagnostics-show-location=every-line -fvisibility=hidden -fvisibility-inlines-hidden -DCOMPILER_HAS_HIDDEN_INLINE_VISIBILITY   -fvisibility-inlines-hidden -o CMakeFiles/cmTryCompileExec2860664238.dir/src.cxx.o -c /home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTryCompileExec2860664238
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2860664238.dir/link.txt --verbose=1
+/usr/bin/c++    -fmessage-length=0 -fdiagnostics-show-location=every-line -fvisibility=hidden -fvisibility-inlines-hidden -DCOMPILER_HAS_HIDDEN_INLINE_VISIBILITY    CMakeFiles/cmTryCompileExec2860664238.dir/src.cxx.o  -o cmTryCompileExec2860664238 -rdynamic 
+make[2]: Leaving directory `/home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory `/home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp'
+
+Source file was:
+int main() { return 0;}
+Performing C++ SOURCE FILE Test COMPILER_HAS_DEPRECATED_ATTR succeded with the following output:
+Change Dir: /home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec3636778302/fast"
+make[1]: Entering directory `/home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3636778302.dir/build.make CMakeFiles/cmTryCompileExec3636778302.dir/build
+make[2]: Entering directory `/home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec3636778302.dir/src.cxx.o
+/usr/bin/c++    -fmessage-length=0 -fdiagnostics-show-location=every-line -fvisibility=hidden -fvisibility-inlines-hidden -DCOMPILER_HAS_DEPRECATED_ATTR   -o CMakeFiles/cmTryCompileExec3636778302.dir/src.cxx.o -c /home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp/src.cxx
+/home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp/src.cxx: In function ‘int main()’:
+/home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp/src.cxx:2:25: warning: ‘int somefunc()’ is deprecated (declared at /home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp/src.cxx:1) [-Wdeprecated-declarations]
+     int main() { return somefunc();}
+                         ^
+/home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp/src.cxx:2:34: warning: ‘int somefunc()’ is deprecated (declared at /home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp/src.cxx:1) [-Wdeprecated-declarations]
+     int main() { return somefunc();}
+                                  ^
+Linking CXX executable cmTryCompileExec3636778302
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3636778302.dir/link.txt --verbose=1
+/usr/bin/c++    -fmessage-length=0 -fdiagnostics-show-location=every-line -fvisibility=hidden -fvisibility-inlines-hidden -DCOMPILER_HAS_DEPRECATED_ATTR    CMakeFiles/cmTryCompileExec3636778302.dir/src.cxx.o  -o cmTryCompileExec3636778302 -rdynamic 
+make[2]: Leaving directory `/home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory `/home/alox/Tesi/workspace/Dummy-build/CMakeFiles/CMakeTmp'
+
+Source file was:
+__attribute__((__deprecated__)) int somefunc() { return 0; }
+    int main() { return somefunc();}

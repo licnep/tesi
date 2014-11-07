@@ -227,6 +227,222 @@ dummy.cpp.s:
 	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/dummy.cpp.s
 .PHONY : dummy.cpp.s
 
+ffld/HOGPyramid.o: ffld/HOGPyramid.cpp.o
+.PHONY : ffld/HOGPyramid.o
+
+# target to build an object file
+ffld/HOGPyramid.cpp.o:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.o
+.PHONY : ffld/HOGPyramid.cpp.o
+
+ffld/HOGPyramid.i: ffld/HOGPyramid.cpp.i
+.PHONY : ffld/HOGPyramid.i
+
+# target to preprocess a source file
+ffld/HOGPyramid.cpp.i:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.i
+.PHONY : ffld/HOGPyramid.cpp.i
+
+ffld/HOGPyramid.s: ffld/HOGPyramid.cpp.s
+.PHONY : ffld/HOGPyramid.s
+
+# target to generate assembly for a file
+ffld/HOGPyramid.cpp.s:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.s
+.PHONY : ffld/HOGPyramid.cpp.s
+
+ffld/JPEGImage.o: ffld/JPEGImage.cpp.o
+.PHONY : ffld/JPEGImage.o
+
+# target to build an object file
+ffld/JPEGImage.cpp.o:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.o
+.PHONY : ffld/JPEGImage.cpp.o
+
+ffld/JPEGImage.i: ffld/JPEGImage.cpp.i
+.PHONY : ffld/JPEGImage.i
+
+# target to preprocess a source file
+ffld/JPEGImage.cpp.i:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.i
+.PHONY : ffld/JPEGImage.cpp.i
+
+ffld/JPEGImage.s: ffld/JPEGImage.cpp.s
+.PHONY : ffld/JPEGImage.s
+
+# target to generate assembly for a file
+ffld/JPEGImage.cpp.s:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.s
+.PHONY : ffld/JPEGImage.cpp.s
+
+ffld/Mixture.o: ffld/Mixture.cpp.o
+.PHONY : ffld/Mixture.o
+
+# target to build an object file
+ffld/Mixture.cpp.o:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o
+.PHONY : ffld/Mixture.cpp.o
+
+ffld/Mixture.i: ffld/Mixture.cpp.i
+.PHONY : ffld/Mixture.i
+
+# target to preprocess a source file
+ffld/Mixture.cpp.i:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.i
+.PHONY : ffld/Mixture.cpp.i
+
+ffld/Mixture.s: ffld/Mixture.cpp.s
+.PHONY : ffld/Mixture.s
+
+# target to generate assembly for a file
+ffld/Mixture.cpp.s:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.s
+.PHONY : ffld/Mixture.cpp.s
+
+ffld/Model.o: ffld/Model.cpp.o
+.PHONY : ffld/Model.o
+
+# target to build an object file
+ffld/Model.cpp.o:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.o
+.PHONY : ffld/Model.cpp.o
+
+ffld/Model.i: ffld/Model.cpp.i
+.PHONY : ffld/Model.i
+
+# target to preprocess a source file
+ffld/Model.cpp.i:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.i
+.PHONY : ffld/Model.cpp.i
+
+ffld/Model.s: ffld/Model.cpp.s
+.PHONY : ffld/Model.s
+
+# target to generate assembly for a file
+ffld/Model.cpp.s:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.s
+.PHONY : ffld/Model.cpp.s
+
+ffld/Object.o: ffld/Object.cpp.o
+.PHONY : ffld/Object.o
+
+# target to build an object file
+ffld/Object.cpp.o:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.o
+.PHONY : ffld/Object.cpp.o
+
+ffld/Object.i: ffld/Object.cpp.i
+.PHONY : ffld/Object.i
+
+# target to preprocess a source file
+ffld/Object.cpp.i:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.i
+.PHONY : ffld/Object.cpp.i
+
+ffld/Object.s: ffld/Object.cpp.s
+.PHONY : ffld/Object.s
+
+# target to generate assembly for a file
+ffld/Object.cpp.s:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.s
+.PHONY : ffld/Object.cpp.s
+
+ffld/Patchwork.o: ffld/Patchwork.cpp.o
+.PHONY : ffld/Patchwork.o
+
+# target to build an object file
+ffld/Patchwork.cpp.o:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.o
+.PHONY : ffld/Patchwork.cpp.o
+
+ffld/Patchwork.i: ffld/Patchwork.cpp.i
+.PHONY : ffld/Patchwork.i
+
+# target to preprocess a source file
+ffld/Patchwork.cpp.i:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.i
+.PHONY : ffld/Patchwork.cpp.i
+
+ffld/Patchwork.s: ffld/Patchwork.cpp.s
+.PHONY : ffld/Patchwork.s
+
+# target to generate assembly for a file
+ffld/Patchwork.cpp.s:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.s
+.PHONY : ffld/Patchwork.cpp.s
+
+ffld/Rectangle.o: ffld/Rectangle.cpp.o
+.PHONY : ffld/Rectangle.o
+
+# target to build an object file
+ffld/Rectangle.cpp.o:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.o
+.PHONY : ffld/Rectangle.cpp.o
+
+ffld/Rectangle.i: ffld/Rectangle.cpp.i
+.PHONY : ffld/Rectangle.i
+
+# target to preprocess a source file
+ffld/Rectangle.cpp.i:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.i
+.PHONY : ffld/Rectangle.cpp.i
+
+ffld/Rectangle.s: ffld/Rectangle.cpp.s
+.PHONY : ffld/Rectangle.s
+
+# target to generate assembly for a file
+ffld/Rectangle.cpp.s:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.s
+.PHONY : ffld/Rectangle.cpp.s
+
+ffld/Scene.o: ffld/Scene.cpp.o
+.PHONY : ffld/Scene.o
+
+# target to build an object file
+ffld/Scene.cpp.o:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.o
+.PHONY : ffld/Scene.cpp.o
+
+ffld/Scene.i: ffld/Scene.cpp.i
+.PHONY : ffld/Scene.i
+
+# target to preprocess a source file
+ffld/Scene.cpp.i:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.i
+.PHONY : ffld/Scene.cpp.i
+
+ffld/Scene.s: ffld/Scene.cpp.s
+.PHONY : ffld/Scene.s
+
+# target to generate assembly for a file
+ffld/Scene.cpp.s:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.s
+.PHONY : ffld/Scene.cpp.s
+
+ffld/ffld.o: ffld/ffld.cpp.o
+.PHONY : ffld/ffld.o
+
+# target to build an object file
+ffld/ffld.cpp.o:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.o
+.PHONY : ffld/ffld.cpp.o
+
+ffld/ffld.i: ffld/ffld.cpp.i
+.PHONY : ffld/ffld.i
+
+# target to preprocess a source file
+ffld/ffld.cpp.i:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.i
+.PHONY : ffld/ffld.cpp.i
+
+ffld/ffld.s: ffld/ffld.cpp.s
+.PHONY : ffld/ffld.s
+
+# target to generate assembly for a file
+ffld/ffld.cpp.s:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.s
+.PHONY : ffld/ffld.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -248,6 +464,33 @@ help:
 	@echo "... dummy.o"
 	@echo "... dummy.i"
 	@echo "... dummy.s"
+	@echo "... ffld/HOGPyramid.o"
+	@echo "... ffld/HOGPyramid.i"
+	@echo "... ffld/HOGPyramid.s"
+	@echo "... ffld/JPEGImage.o"
+	@echo "... ffld/JPEGImage.i"
+	@echo "... ffld/JPEGImage.s"
+	@echo "... ffld/Mixture.o"
+	@echo "... ffld/Mixture.i"
+	@echo "... ffld/Mixture.s"
+	@echo "... ffld/Model.o"
+	@echo "... ffld/Model.i"
+	@echo "... ffld/Model.s"
+	@echo "... ffld/Object.o"
+	@echo "... ffld/Object.i"
+	@echo "... ffld/Object.s"
+	@echo "... ffld/Patchwork.o"
+	@echo "... ffld/Patchwork.i"
+	@echo "... ffld/Patchwork.s"
+	@echo "... ffld/Rectangle.o"
+	@echo "... ffld/Rectangle.i"
+	@echo "... ffld/Rectangle.s"
+	@echo "... ffld/Scene.o"
+	@echo "... ffld/Scene.i"
+	@echo "... ffld/Scene.s"
+	@echo "... ffld/ffld.o"
+	@echo "... ffld/ffld.i"
+	@echo "... ffld/ffld.s"
 .PHONY : help
 
 

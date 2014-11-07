@@ -1,4 +1,6 @@
 
+frames w ppl: 422, 4963
+
 Questi hanno implementato il tutto in matlab:
 http://www.cs.berkeley.edu/~rbg/latent/index.html
 (https://github.com/rbgirshick/voc-dpm)
@@ -21,6 +23,15 @@ http://charles.dubout.ch/en/coding.html
 
 //implementazione piu' rapida di deformable parts model con branch and bound
 http://cvn.ecp.fr/personnel/iasonas/dpms.html
+
+//Vari link utili di machine learning per computer vision:
+http://rogerioferis.com/VisualRecognitionAndSearch2014/Resources.html 
+
+Convolutional network e' come usare modello a parti perche' i livelli piu' bassi identificano parti, mentre approcci vecchi matchano il tutto quindi vanno trainati con tante angolazioni, luci, etc. (https://www.youtube.com/watch?v=clgMTk5V2Sk minuto 4)
+
+conversione octave:
+load ./models/person_final2007.mat
+convertmodel(model,"./models/person_final2007.txt")
 
 ==========================================
 Alox:

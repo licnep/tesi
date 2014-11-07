@@ -65,7 +65,8 @@ class CDummy : public CApplication
         std::vector<std::string> m_cameraNames;
         std::string m_inputCameraName;
 
-        cimage::CImageMono m_inputImageMono;
+        //cimage::CImageMono m_inputImageMono;
+        cimage::CImageRGB8 m_inputImageMono;
         cimage::CImageRGB8 m_detectedImage;
         cimage::CImageRGB8 m_inputImageRGB;
 

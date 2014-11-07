@@ -101,17 +101,245 @@ src/CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.o.provides: src/CMakeFiles/g
 
 src/CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.o.provides.build: src/CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.o
 
+src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.o: src/CMakeFiles/gold_app_dummy.dir/flags.make
+src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.o: /home/alox/Tesi/workspace/Dummy/src/ffld/ffld.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/alox/Tesi/workspace/Dummy-build/CMakeFiles $(CMAKE_PROGRESS_3)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.o"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.o -c /home/alox/Tesi/workspace/Dummy/src/ffld/ffld.cpp
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.i"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/alox/Tesi/workspace/Dummy/src/ffld/ffld.cpp > CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.i
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.s"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/alox/Tesi/workspace/Dummy/src/ffld/ffld.cpp -o CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.s
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.o.requires:
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.o.requires
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.o.provides: src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.o.provides.build
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.o.provides
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.o.provides.build: src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.o
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.o: src/CMakeFiles/gold_app_dummy.dir/flags.make
+src/CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.o: /home/alox/Tesi/workspace/Dummy/src/ffld/Object.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/alox/Tesi/workspace/Dummy-build/CMakeFiles $(CMAKE_PROGRESS_4)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.o"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.o -c /home/alox/Tesi/workspace/Dummy/src/ffld/Object.cpp
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.i"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/alox/Tesi/workspace/Dummy/src/ffld/Object.cpp > CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.i
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.s"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/alox/Tesi/workspace/Dummy/src/ffld/Object.cpp -o CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.s
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.o.requires:
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.o.requires
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.o.provides: src/CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.o.provides.build
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.o.provides
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.o.provides.build: src/CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.o
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.o: src/CMakeFiles/gold_app_dummy.dir/flags.make
+src/CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.o: /home/alox/Tesi/workspace/Dummy/src/ffld/Rectangle.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/alox/Tesi/workspace/Dummy-build/CMakeFiles $(CMAKE_PROGRESS_5)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.o"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.o -c /home/alox/Tesi/workspace/Dummy/src/ffld/Rectangle.cpp
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.i"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/alox/Tesi/workspace/Dummy/src/ffld/Rectangle.cpp > CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.i
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.s"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/alox/Tesi/workspace/Dummy/src/ffld/Rectangle.cpp -o CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.s
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.o.requires:
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.o.requires
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.o.provides: src/CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.o.provides.build
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.o.provides
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.o.provides.build: src/CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.o
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.o: src/CMakeFiles/gold_app_dummy.dir/flags.make
+src/CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.o: /home/alox/Tesi/workspace/Dummy/src/ffld/Model.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/alox/Tesi/workspace/Dummy-build/CMakeFiles $(CMAKE_PROGRESS_6)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.o"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.o -c /home/alox/Tesi/workspace/Dummy/src/ffld/Model.cpp
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.i"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/alox/Tesi/workspace/Dummy/src/ffld/Model.cpp > CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.i
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.s"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/alox/Tesi/workspace/Dummy/src/ffld/Model.cpp -o CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.s
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.o.requires:
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.o.requires
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.o.provides: src/CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.o.provides.build
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.o.provides
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.o.provides.build: src/CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.o
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.o: src/CMakeFiles/gold_app_dummy.dir/flags.make
+src/CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.o: /home/alox/Tesi/workspace/Dummy/src/ffld/Patchwork.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/alox/Tesi/workspace/Dummy-build/CMakeFiles $(CMAKE_PROGRESS_7)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.o"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.o -c /home/alox/Tesi/workspace/Dummy/src/ffld/Patchwork.cpp
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.i"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/alox/Tesi/workspace/Dummy/src/ffld/Patchwork.cpp > CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.i
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.s"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/alox/Tesi/workspace/Dummy/src/ffld/Patchwork.cpp -o CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.s
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.o.requires:
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.o.requires
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.o.provides: src/CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.o.provides.build
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.o.provides
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.o.provides.build: src/CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.o
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.o: src/CMakeFiles/gold_app_dummy.dir/flags.make
+src/CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.o: /home/alox/Tesi/workspace/Dummy/src/ffld/Scene.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/alox/Tesi/workspace/Dummy-build/CMakeFiles $(CMAKE_PROGRESS_8)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.o"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.o -c /home/alox/Tesi/workspace/Dummy/src/ffld/Scene.cpp
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.i"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/alox/Tesi/workspace/Dummy/src/ffld/Scene.cpp > CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.i
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.s"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/alox/Tesi/workspace/Dummy/src/ffld/Scene.cpp -o CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.s
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.o.requires:
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.o.requires
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.o.provides: src/CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.o.provides.build
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.o.provides
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.o.provides.build: src/CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.o
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.o: src/CMakeFiles/gold_app_dummy.dir/flags.make
+src/CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.o: /home/alox/Tesi/workspace/Dummy/src/ffld/JPEGImage.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/alox/Tesi/workspace/Dummy-build/CMakeFiles $(CMAKE_PROGRESS_9)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.o"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.o -c /home/alox/Tesi/workspace/Dummy/src/ffld/JPEGImage.cpp
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.i"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/alox/Tesi/workspace/Dummy/src/ffld/JPEGImage.cpp > CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.i
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.s"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/alox/Tesi/workspace/Dummy/src/ffld/JPEGImage.cpp -o CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.s
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.o.requires:
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.o.requires
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.o.provides: src/CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.o.provides.build
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.o.provides
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.o.provides.build: src/CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.o
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.o: src/CMakeFiles/gold_app_dummy.dir/flags.make
+src/CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.o: /home/alox/Tesi/workspace/Dummy/src/ffld/HOGPyramid.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/alox/Tesi/workspace/Dummy-build/CMakeFiles $(CMAKE_PROGRESS_10)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.o"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.o -c /home/alox/Tesi/workspace/Dummy/src/ffld/HOGPyramid.cpp
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.i"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/alox/Tesi/workspace/Dummy/src/ffld/HOGPyramid.cpp > CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.i
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.s"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/alox/Tesi/workspace/Dummy/src/ffld/HOGPyramid.cpp -o CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.s
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.o.requires:
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.o.requires
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.o.provides: src/CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.o.provides.build
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.o.provides
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.o.provides.build: src/CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.o
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o: src/CMakeFiles/gold_app_dummy.dir/flags.make
+src/CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o: /home/alox/Tesi/workspace/Dummy/src/ffld/Mixture.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/alox/Tesi/workspace/Dummy-build/CMakeFiles $(CMAKE_PROGRESS_11)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o -c /home/alox/Tesi/workspace/Dummy/src/ffld/Mixture.cpp
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.i"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/alox/Tesi/workspace/Dummy/src/ffld/Mixture.cpp > CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.i
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.s"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/alox/Tesi/workspace/Dummy/src/ffld/Mixture.cpp -o CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.s
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o.requires:
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o.requires
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o.provides: src/CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o.provides.build
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o.provides
+
+src/CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o.provides.build: src/CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o
+
 # Object files for target gold_app_dummy
 gold_app_dummy_OBJECTS = \
 "CMakeFiles/gold_app_dummy.dir/dummy.cpp.o" \
-"CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.o"
+"CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.o" \
+"CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.o" \
+"CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.o" \
+"CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.o" \
+"CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.o" \
+"CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.o" \
+"CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.o" \
+"CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.o" \
+"CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.o" \
+"CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o"
 
 # External object files for target gold_app_dummy
 gold_app_dummy_EXTERNAL_OBJECTS =
 
 /home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/dummy.cpp.o
 /home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.o
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.o
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.o
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.o
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.o
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.o
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.o
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.o
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.o
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o
 /home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/build.make
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /usr/lib/x86_64-linux-gnu/libfftw3f.so
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /usr/lib/x86_64-linux-gnu/libjpeg.so
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /usr/lib/x86_64-linux-gnu/libxml2.so
 /home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_logger.so
 /home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_lwnn.so
 /home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /opt/gold-4.6/lib/x86_64-linux-gnu/runtime/libgold_proc_math.so
@@ -148,6 +376,15 @@ src/CMakeFiles/gold_app_dummy.dir/build: /home/alox/.config/gold-4.6.0/plugins/l
 
 src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/dummy.cpp.o.requires
 src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/HOGVisualizer.cpp.o.requires
+src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.o.requires
+src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.o.requires
+src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.o.requires
+src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.o.requires
+src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.o.requires
+src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.o.requires
+src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.o.requires
+src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.o.requires
+src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o.requires
 .PHONY : src/CMakeFiles/gold_app_dummy.dir/requires
 
 src/CMakeFiles/gold_app_dummy.dir/clean:
