@@ -26,6 +26,8 @@
 #include <Eigen/Core>
 #include <Eigen/Sparse>
 
+#include <Data/CImage/Images/CImageRGB8.h>
+
 namespace FFLD
 {
 /// The HOGPyramid class computes and stores the HOG features extracted from a jpeg image at
@@ -81,7 +83,7 @@ public:
 	/// @param[in] pady Amount of vertical zero padding (in cells).
 	/// @param[in] interval Number of levels per octave in the pyramid.
 	/// @note The amount of padding and the interval should be at least 1.
-	HOGPyramid(const JPEGImage & image, int padx, int pady, int interval = 10);
+	HOGPyramid(cimage::CImageRGB8 srcImage, const JPEGImage & image, int padx, int pady, int interval = 10);
 	
 	/// Returns whether the pyramid is empty. An empty pyramid has no level.
 	bool empty() const;
@@ -147,7 +149,7 @@ private:
 	// Code to compute HOG features as described in "Object Detection with Discriminatively Trained
 	// Part Based Models" by Felzenszwalb, Girshick, McAllester and Ramanan, PAMI10
 	// cellSize should be either 4 or 8
-	static void Hog(const JPEGImage & image, Level & level, int padx, int pady,
+	static void Hog(const cimage::CImageRGB8 & srcImage, const JPEGImage & image, Level & level, int padx, int pady,
 					int cellSize = 8);
 #else
 	// Felzenszwalb version (not as accurate, provided for compatibility only)

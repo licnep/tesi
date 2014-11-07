@@ -511,6 +511,30 @@ src/CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.o
  /home/alox/Tesi/workspace/Dummy/src/ffld/HOGPyramid.cpp
  /home/alox/Tesi/workspace/Dummy/src/ffld/HOGPyramid.h
  /home/alox/Tesi/workspace/Dummy/src/ffld/JPEGImage.h
+ /opt/gold-4.6/include/gold-4.6.0/Config/CImageConfig.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/Base/FormatsEnumerator.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Buffer.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/CImage.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/CImageFlag.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Definitions.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Exceptions.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Geometry.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/IO/CImageIO.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Images/CImageRGB8.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/PixelTraits/PixelTraits.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/Bayer.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/Mono8o127.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/RGB8.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TBGRA.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TCustomPixel.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/THSL.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/THSV.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TRGB.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TRGBA.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/TImage.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/gold_data_export.h
+ /opt/gold-4.6/include/gold-4.6.0/Processing/Vision/CImage/BasicOperations/BasicOperations.h
+ /opt/gold-4.6/include/gold-4.6.0/Processing/Vision/CImage/gold_proc_cimage_export.h
 src/CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.o
  /home/alox/Tesi/workspace/Dummy/src/ffld/JPEGImage.cpp
  /home/alox/Tesi/workspace/Dummy/src/ffld/JPEGImage.h
@@ -683,6 +707,25 @@ src/CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o
  /home/alox/Tesi/workspace/Dummy/src/ffld/Model.h
  /home/alox/Tesi/workspace/Dummy/src/ffld/Patchwork.h
  /home/alox/Tesi/workspace/Dummy/src/ffld/Rectangle.h
+ /opt/gold-4.6/include/gold-4.6.0/Config/CImageConfig.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Buffer.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/CImage.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Definitions.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Exceptions.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Geometry.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Images/CImageRGB8.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/PixelTraits/PixelTraits.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/Bayer.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/Mono8o127.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/RGB8.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TBGRA.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TCustomPixel.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/THSL.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/THSV.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TRGB.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TRGBA.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/TImage.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/gold_data_export.h
 src/CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.o
  /home/alox/Tesi/workspace/Dummy/src/ffld/Eigen/Core
  /home/alox/Tesi/workspace/Dummy/src/ffld/Eigen/Eigen2Support
@@ -848,6 +891,25 @@ src/CMakeFiles/gold_app_dummy.dir/ffld/Model.cpp.o
  /home/alox/Tesi/workspace/Dummy/src/ffld/JPEGImage.h
  /home/alox/Tesi/workspace/Dummy/src/ffld/Model.cpp
  /home/alox/Tesi/workspace/Dummy/src/ffld/Model.h
+ /opt/gold-4.6/include/gold-4.6.0/Config/CImageConfig.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Buffer.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/CImage.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Definitions.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Exceptions.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Geometry.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Images/CImageRGB8.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/PixelTraits/PixelTraits.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/Bayer.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/Mono8o127.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/RGB8.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TBGRA.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TCustomPixel.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/THSL.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/THSV.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TRGB.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TRGBA.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/TImage.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/gold_data_export.h
 src/CMakeFiles/gold_app_dummy.dir/ffld/Object.cpp.o
  /home/alox/Tesi/workspace/Dummy/src/ffld/Object.cpp
  /home/alox/Tesi/workspace/Dummy/src/ffld/Object.h
@@ -1018,6 +1080,25 @@ src/CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.o
  /home/alox/Tesi/workspace/Dummy/src/ffld/Patchwork.cpp
  /home/alox/Tesi/workspace/Dummy/src/ffld/Patchwork.h
  /home/alox/Tesi/workspace/Dummy/src/ffld/Rectangle.h
+ /opt/gold-4.6/include/gold-4.6.0/Config/CImageConfig.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Buffer.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/CImage.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Definitions.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Exceptions.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Geometry.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Images/CImageRGB8.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/PixelTraits/PixelTraits.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/Bayer.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/Mono8o127.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/RGB8.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TBGRA.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TCustomPixel.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/THSL.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/THSV.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TRGB.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TRGBA.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/TImage.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/gold_data_export.h
 src/CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.o
  /home/alox/Tesi/workspace/Dummy/src/ffld/Rectangle.cpp
  /home/alox/Tesi/workspace/Dummy/src/ffld/Rectangle.h
@@ -1221,3 +1302,22 @@ src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.o
  /home/alox/Tesi/workspace/Dummy/src/ffld/ffld.cpp
  /home/alox/Tesi/workspace/Dummy/src/ffld/ffld.h
  /home/alox/Tesi/workspace/Dummy/src/ffld/ffld_export.h
+ /opt/gold-4.6/include/gold-4.6.0/Config/CImageConfig.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Buffer.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/CImage.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Definitions.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Exceptions.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Geometry.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Images/CImageRGB8.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/PixelTraits/PixelTraits.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/Bayer.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/Mono8o127.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/RGB8.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TBGRA.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TCustomPixel.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/THSL.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/THSV.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TRGB.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TRGBA.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/TImage.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/gold_data_export.h

@@ -184,9 +184,11 @@ void CDummy::On_Execute()
     Resize(m_inputImageMono, m_width, m_height);
     Resize(m_inputImageRGB, m_width, m_height);
     Resize(m_detectedImage, m_width, m_height);
+    Resize(m_srcImageRGB, m_width, m_height);
 
     // convertiamo il frame in una immagine a colori
     Convert(*image, m_inputImageRGB, BAYER_DECODING_SIMPLE);
+    Convert(*image, m_srcImageRGB, BAYER_DECODING_SIMPLE);
 
     // convertiamo il frame in una immagine in bianco e nero
     Convert(*image, m_inputImageMono, BAYER_DECODING_LUMINANCE);
@@ -262,7 +264,7 @@ void CDummy::On_Execute()
 	char* argv[] = { &arg0[0], &arg1[0], &arg2[0], &arg3[0], &arg4[0], &arg5[0], &arg6[0], &arg7[0], &arg8[0], NULL };
 	FFLD::JPEGImage immmg();
 	int argc = sizeof(argv) / sizeof(char*) - 1;
-	main_ffld(argc,argv);
+	main_ffld(argc,argv,m_srcImageRGB);
 
 	Mat detectionResult = imread("/home/alox/Tesi/workspace/Dummy/src/ffld/result/butta.jpg");
 	detectionResult.convertTo(detectionResult,CV_16UC3);

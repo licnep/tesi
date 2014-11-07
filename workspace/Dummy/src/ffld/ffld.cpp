@@ -358,7 +358,7 @@ void detect(const Mixture & mixture, int width, int height, const HOGPyramid & p
 }
 
 // Test a mixture model (compute a ROC curve)
-int main_ffld(int argc, char * argv[])
+int main_ffld(int argc, char * argv[], cimage::CImageRGB8 srcImage)
 {
 	// Default parameters
 	string model("model.txt");
@@ -521,16 +521,18 @@ int main_ffld(int argc, char * argv[])
 	if (file.substr(lastDot) == ".jpg") {
 		JPEGImage image(file);
 		
+		//TODO:: remove =================0
 		if (image.empty()) {
 			showUsage();
 			cerr << "\nInvalid image " << file << endl;
 			return -1;
 		}
-		
+		//TODO:: end remove===============
+
 		// Compute the HOG features
 		start();
 		
-		HOGPyramid pyramid(image, padding, padding, interval);
+		HOGPyramid pyramid(srcImage, image, padding, padding, interval);
 		
 		if (pyramid.empty()) {
 			showUsage();
@@ -562,8 +564,8 @@ int main_ffld(int argc, char * argv[])
 		
 		vector<Detection> detections;
 		
-		detect(mixture, image.width(), image.height(), pyramid, threshold, overlap, file, out,
-			   images, detections);
+		//detect(mixture, image.width(), image.height(), pyramid, threshold, overlap, file, out,images, detections);
+		detect(mixture, srcImage.W(), srcImage.H(), pyramid, threshold, overlap, file, out,images, detections);
 		
 		cout << "Computed the convolutions and distance transforms in " << stop() << " ms" << endl;
 	}
@@ -663,7 +665,7 @@ int main_ffld(int argc, char * argv[])
 #pragma omp parallel for private(i)
 		for (i = 0; i < scenes.size(); ++i) {
 			JPEGImage image(scenes[i].filename());
-			HOGPyramid pyramid(image, padding, padding, interval);
+			HOGPyramid pyramid(srcImage, image, padding, padding, interval);
 			
 			// Compute the detections
 			vector<Detection> detections;

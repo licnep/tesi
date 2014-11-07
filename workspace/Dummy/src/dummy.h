@@ -69,6 +69,7 @@ class CDummy : public CApplication
         cimage::CImageRGB8 m_inputImageMono;
         cimage::CImageRGB8 m_detectedImage;
         cimage::CImageRGB8 m_inputImageRGB;
+        cimage::CImageRGB8 m_srcImageRGB;
 
         dev::CCamera * m_pCam;
 	Synchronizer_Basic m_synchro;

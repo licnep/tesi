@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>dummy-NativeRel@Dummy-build</name>
+	<name>dummy-Release@Dummy-build</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -152,6 +152,51 @@
 			<name>[Targets]/[lib] gold_app_dummy/Source Files/HOGVisualizer.cpp</name>
 			<type>1</type>
 			<location>/home/alox/Tesi/workspace/Dummy/src/HOGVisualizer.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] gold_app_dummy/Source Files/ffld.cpp</name>
+			<type>1</type>
+			<location>/home/alox/Tesi/workspace/Dummy/src/ffld/ffld.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] gold_app_dummy/Source Files/Object.cpp</name>
+			<type>1</type>
+			<location>/home/alox/Tesi/workspace/Dummy/src/ffld/Object.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] gold_app_dummy/Source Files/Rectangle.cpp</name>
+			<type>1</type>
+			<location>/home/alox/Tesi/workspace/Dummy/src/ffld/Rectangle.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] gold_app_dummy/Source Files/Model.cpp</name>
+			<type>1</type>
+			<location>/home/alox/Tesi/workspace/Dummy/src/ffld/Model.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] gold_app_dummy/Source Files/Patchwork.cpp</name>
+			<type>1</type>
+			<location>/home/alox/Tesi/workspace/Dummy/src/ffld/Patchwork.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] gold_app_dummy/Source Files/Scene.cpp</name>
+			<type>1</type>
+			<location>/home/alox/Tesi/workspace/Dummy/src/ffld/Scene.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] gold_app_dummy/Source Files/JPEGImage.cpp</name>
+			<type>1</type>
+			<location>/home/alox/Tesi/workspace/Dummy/src/ffld/JPEGImage.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] gold_app_dummy/Source Files/HOGPyramid.cpp</name>
+			<type>1</type>
+			<location>/home/alox/Tesi/workspace/Dummy/src/ffld/HOGPyramid.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] gold_app_dummy/Source Files/Mixture.cpp</name>
+			<type>1</type>
+			<location>/home/alox/Tesi/workspace/Dummy/src/ffld/Mixture.cpp</location>
 		</link>
 		<link>
 			<name>[Targets]/[lib] gold_app_dummy/Header Files</name>

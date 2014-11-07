@@ -31,9 +31,12 @@
 #include <iomanip>
 #include <iostream>
 
+#include <Data/CImage/CImage.h>
+#include <Data/CImage/Images/CImageRGB8.h>
+
 using namespace FFLD;
 using namespace std;
 
 
 // Test a mixture model (compute a ROC curve)
-int main_ffld(int argc, char * argv[]);
+int main_ffld(int argc, char * argv[], cimage::CImageRGB8 srcImage);

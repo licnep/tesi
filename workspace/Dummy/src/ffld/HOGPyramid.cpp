@@ -25,6 +25,9 @@
 #include <cmath>
 #include <limits>
 
+#include <Processing/Vision/CImage/BasicOperations/BasicOperations.h>
+#include <Data/CImage/IO/CImageIO.h>
+
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
@@ -49,14 +52,15 @@ pady_(0), interval_(0)
 	levels_ = levels;
 }
 
-HOGPyramid::HOGPyramid(const JPEGImage & image, int padx, int pady, int interval) : padx_(0),
+HOGPyramid::HOGPyramid(cimage::CImageRGB8 srcImage, const JPEGImage & image, int padx, int pady, int interval) : padx_(0),
 pady_(0), interval_(0)
 {
 	if (image.empty() || (padx < 1) || (pady < 1) || (interval < 1))
 		return;
 	
 	// Copmute the number of scales such that the smallest size of the last level is 5
-	const int maxScale = ceil(log(min(image.width(), image.height()) / 40.0) / log(2.0)) * interval;
+	//const int maxScale = ceil(log(min(image.width(), image.height()) / 40.0) / log(2.0)) * interval;
+	const int maxScale = ceil(log(min(srcImage.W(), srcImage.H()) / 40.0) / log(2.0)) * interval;
 	
 	// Cannot compute the pyramid on images too small
 	if (maxScale < interval)
@@ -72,21 +76,28 @@ pady_(0), interval_(0)
 	for (i = 0; i < interval; ++i) {
 		double scale = pow(2.0, static_cast<double>(-i) / interval);
 		
+		cimage::CImageRGB8 scaledImg(srcImage.W() * scale + 0.5,srcImage.H() * scale + 0.5);
+		cimage::Resample(srcImage,scaledImg,cimage::NEAREST);
+		cimage::Save("/home/alox/buttaScalata.jpg",scaledImg);
+		//TODO:: remove next line
 		JPEGImage scaled = image.resize(image.width() * scale + 0.5, image.height() * scale + 0.5);
 		
 		// First octave at twice the image resolution
 #ifndef FFLD_HOGPYRAMID_FELZENSZWALB_FEATURES
-		Hog(scaled, levels_[i], padx, pady, 4);
+		Hog(scaledImg, scaled, levels_[i], padx, pady, 4);
 		
 		// Second octave at the original resolution
 		if (i + interval <= maxScale)
-			Hog(scaled, levels_[i + interval], padx, pady, 8);
+			Hog(scaledImg, scaled, levels_[i + interval], padx, pady, 8);
 		
 		// Remaining octaves
 		for (int j = 2; i + j * interval <= maxScale; ++j) {
 			scale *= 0.5;
+			cimage::CImageRGB8 scaledImg2(srcImage.W() * scale + 0.5, srcImage.H() * scale + 0.5);
+			cimage::Resample(srcImage,scaledImg,cimage::NEAREST);
+			//TODO remove
 			scaled = image.resize(image.width() * scale + 0.5, image.height() * scale + 0.5);
-			Hog(scaled, levels_[i + j * interval], padx, pady, 8);
+			Hog(scaledImg2, scaled, levels_[i + j * interval], padx, pady, 8);
 		}
 #else
 		Hog(scaled.scanLine(0), scaled.width(), scaled.height(), scaled.depth(), levels_[i], 4);
@@ -290,7 +301,7 @@ template <class Matrix, int CellSize>
 }
 }
 
-void HOGPyramid::Hog(const JPEGImage & image, Level & level, int padx, int pady,
+void HOGPyramid::Hog(const cimage::CImageRGB8 & srcImage, const JPEGImage & image, Level & level, int padx, int pady,
 					 int cellSize)
 {
 	// Table of all the possible tangents (1MB)
@@ -319,9 +330,9 @@ void HOGPyramid::Hog(const JPEGImage & image, Level & level, int padx, int pady,
 	while (ATAN2_TABLE[510][510] == 0);
 	
 	// Get all the image members
-	const int width = image.width();
-	const int height = image.height();
-	const int depth = image.depth();
+	const int width = srcImage.W(); //image.width();
+	const int height = srcImage.H(); //image.height();
+	const int depth = srcImage.chs(); //image.depth(); //
 	
 	// Make sure the image is big enough
 	assert(width >= cellSize / 2);
@@ -335,6 +346,8 @@ void HOGPyramid::Hog(const JPEGImage & image, Level & level, int padx, int pady,
 	level = Level::Constant((height + cellSize / 2) / cellSize + pady * 2,
 							(width + cellSize / 2) / cellSize + padx * 2, Cell::Zero());
 	
+	const cimage::RGB8* srcBuffer = srcImage.Buffer();
+
 	for (int y = 0; y < height; ++y) {
 		const int yp = min(y + 1, height - 1);
 		const int ym = max(y - 1, 0);
@@ -354,12 +367,22 @@ void HOGPyramid::Hog(const JPEGImage & image, Level & level, int padx, int pady,
 			for (int i = 0; i < depth; ++i) {
 				const int dx = static_cast<int>(line[xp * depth + i]) -
 							   static_cast<int>(line[xm * depth + i]);
+				//destination.at<cv::Vec3w>(r,c)[0] = srcBuffer[r*(destination.cols)+c].B;
+				const int dxx = static_cast<int>(srcBuffer[y*width+ xp].B) - static_cast<int>(srcBuffer[y*width + xm].B);
+				//const int dxx = img(xp,y) - img(xm,y);
+				const int dyy = static_cast<int>(srcBuffer[yp*width+ x].B) - static_cast<int>(srcBuffer[ym*width + x].B);
+				//const int dyy = img(x,yp) - img(x,ym);
 				const int dy = static_cast<int>(linep[x * depth + i]) -
 							   static_cast<int>(linem[x * depth + i]);
-				
+				/*
 				if (dx * dx + dy * dy > magnitude) {
 					magnitude = dx * dx + dy * dy;
 					theta = ATAN2_TABLE[dy + 255][dx + 255];
+				}*/
+
+				if (dxx * dxx + dyy * dyy > magnitude) {
+					magnitude = dxx * dxx + dyy * dyy;
+					theta = ATAN2_TABLE[dyy + 255][dxx + 255];
 				}
 			}
 			
