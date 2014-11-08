@@ -149,7 +149,7 @@ private:
 	// Code to compute HOG features as described in "Object Detection with Discriminatively Trained
 	// Part Based Models" by Felzenszwalb, Girshick, McAllester and Ramanan, PAMI10
 	// cellSize should be either 4 or 8
-	static void Hog(const cimage::CImageRGB8 & srcImage, const JPEGImage & image, Level & level, int padx, int pady,
+	static void Hog(const cimage::CImageRGB8 & srcImage, Level & level, int padx, int pady,
 					int cellSize = 8);
 #else
 	// Felzenszwalb version (not as accurate, provided for compatibility only)

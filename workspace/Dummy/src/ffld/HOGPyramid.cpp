@@ -80,24 +80,22 @@ pady_(0), interval_(0)
 		cimage::Resample(srcImage,scaledImg,cimage::NEAREST);
 		//cimage::Save("/home/alox/buttaScalata.jpg",scaledImg);
 		//TODO:: remove next line
-		JPEGImage scaled = image.resize(image.width() * scale + 0.5, image.height() * scale + 0.5);
+		//JPEGImage scaled = image.resize(image.width() * scale + 0.5, image.height() * scale + 0.5);
 		
 		// First octave at twice the image resolution
 #ifndef FFLD_HOGPYRAMID_FELZENSZWALB_FEATURES
-		Hog(scaledImg, scaled, levels_[i], padx, pady, 4);
+		Hog(scaledImg, levels_[i], padx, pady, 4);
 		
 		// Second octave at the original resolution
 		if (i + interval <= maxScale)
-			Hog(scaledImg, scaled, levels_[i + interval], padx, pady, 8);
+			Hog(scaledImg, levels_[i + interval], padx, pady, 8);
 		
 		// Remaining octaves
 		for (int j = 2; i + j * interval <= maxScale; ++j) {
 			scale *= 0.5;
 			cimage::CImageRGB8 scaledImg2(srcImage.W() * scale + 0.5, srcImage.H() * scale + 0.5);
 			cimage::Resample(srcImage,scaledImg,cimage::NEAREST);
-			//TODO remove
-			scaled = image.resize(image.width() * scale + 0.5, image.height() * scale + 0.5);
-			Hog(scaledImg2, scaled, levels_[i + j * interval], padx, pady, 8);
+			Hog(scaledImg2, levels_[i + j * interval], padx, pady, 8);
 		}
 #else
 		Hog(scaled.scanLine(0), scaled.width(), scaled.height(), scaled.depth(), levels_[i], 4);
@@ -301,7 +299,7 @@ template <class Matrix, int CellSize>
 }
 }
 
-void HOGPyramid::Hog(const cimage::CImageRGB8 & srcImage, const JPEGImage & image, Level & level, int padx, int pady,
+void HOGPyramid::Hog(const cimage::CImageRGB8 & srcImage, Level & level, int padx, int pady,
 					 int cellSize)
 {
 	// Table of all the possible tangents (1MB)

@@ -34,6 +34,11 @@
 #ifndef _WIN32
 #include <sys/time.h>
 
+#include <Data/Math/Rects.h>
+#include <Processing/Vision/CImage/Draw/Brushes.h>
+#include <Processing/Vision/CImage/Draw/Box.h>
+#include <Data/CImage/IO/CImageIO.h>
+
 timeval Start, Stop;
 
 inline void start()
@@ -143,7 +148,7 @@ void showUsage()
 		 << endl;
 }
 
-void draw(JPEGImage & image, const FFLD::Rectangle & rect, uint8_t r, uint8_t g, uint8_t b,
+void drawR(JPEGImage & image, const FFLD::Rectangle & rect, uint8_t r, uint8_t g, uint8_t b,
 		  int linewidth)
 {
 	if (image.empty() || rect.empty() || (image.depth() < 3))
@@ -239,7 +244,7 @@ void draw(JPEGImage & image, const FFLD::Rectangle & rect, uint8_t r, uint8_t g,
 	}
 }
 
-void detect(const Mixture & mixture, int width, int height, const HOGPyramid & pyramid,
+detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, int height, const HOGPyramid & pyramid,
 			double threshold, double overlap, const string image, ostream & out,
 			const string & images, vector<Detection> & detections)
 {
@@ -346,19 +351,28 @@ void detect(const Mixture & mixture, int width, int height, const HOGPyramid & p
 											 mixture.models()[argmax].partSize().second * scale + 0.5,
 											 mixture.models()[argmax].partSize().second * scale + 0.5);
 				
-				draw(im, bndbox, 0, 0, 255, 2);
+
+				drawR(im, bndbox, 0, 0, 255, 2);
+				math::Rect2i r(bndbox.left(),bndbox.top(),bndbox.right(),bndbox.bottom());
+				draw::Opaque<cimage::RGB8> brush(srcImage,cimage::RGB8(0,0,255));
+				draw::Rectangle(brush,r);
+
 			}
 			
 			// Draw the root last
-			draw(im, detections[j], 255, 0, 0, 2);
+			drawR(im, detections[j], 255, 0, 0, 2);
+			math::Rect2i r(detections[j].left(),detections[j].top(),detections[j].right(),detections[j].bottom());
+			draw::Opaque<cimage::RGB8> brush(srcImage,cimage::RGB8(255,0,0));
+			draw::Rectangle(brush,r);
 		}
 		
-		im.save(images + '/' + id + ".jpg");
+		//im.save(images + '/' + id + ".jpg");
+		//cimage::Save(images + '/' + id + ".jpg",srcImage);
 	}
 }
 
 // Test a mixture model (compute a ROC curve)
-int main_ffld(int argc, char * argv[], cimage::CImageRGB8 srcImage)
+int main_ffld(int argc, char * argv[], cimage::CImageRGB8 & srcImage)
 {
 	// Default parameters
 	string model("model.txt");
@@ -565,7 +579,7 @@ int main_ffld(int argc, char * argv[], cimage::CImageRGB8 srcImage)
 		vector<Detection> detections;
 		
 		//detect(mixture, image.width(), image.height(), pyramid, threshold, overlap, file, out,images, detections);
-		detect(mixture, srcImage.W(), srcImage.H(), pyramid, threshold, overlap, file, out,images, detections);
+		detect(srcImage,mixture, srcImage.W(), srcImage.H(), pyramid, threshold, overlap, file, out,images, detections);
 		
 		cout << "Computed the convolutions and distance transforms in " << stop() << " ms" << endl;
 	}
@@ -670,7 +684,7 @@ int main_ffld(int argc, char * argv[], cimage::CImageRGB8 srcImage)
 			// Compute the detections
 			vector<Detection> detections;
 			
-			detect(mixture, image.width(), image.height(), pyramid, threshold, overlap,
+			detect(srcImage,mixture, image.width(), image.height(), pyramid, threshold, overlap,
 				   scenes[i].filename(), out, images, detections);
 			
 			// Consider only objects of the right class

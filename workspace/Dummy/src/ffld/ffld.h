@@ -39,4 +39,4 @@ using namespace std;
 
 
 // Test a mixture model (compute a ROC curve)
-int main_ffld(int argc, char * argv[], cimage::CImageRGB8 srcImage);
+int main_ffld(int argc, char * argv[], cimage::CImageRGB8 &srcImage);

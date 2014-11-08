@@ -266,9 +266,10 @@ void CDummy::On_Execute()
 	int argc = sizeof(argv) / sizeof(char*) - 1;
 	main_ffld(argc,argv,m_srcImageRGB);
 
-	Mat detectionResult = imread("/home/alox/Tesi/workspace/Dummy/src/ffld/result/butta.jpg");
-	detectionResult.convertTo(detectionResult,CV_16UC3);
-	CHOGVisualizer::MatToCImageRGB8(detectionResult,m_inputImageMono);
+	//Mat detectionResult = imread("/home/alox/Tesi/workspace/Dummy/src/ffld/result/butta.jpg");
+	//detectionResult.convertTo(detectionResult,CV_16UC3);
+	//CHOGVisualizer::MatToCImageRGB8(detectionResult,m_inputImageMono);
+	m_inputImageMono = m_srcImageRGB;
 
     // chiamiamo la funzione di disegno
     Output();
