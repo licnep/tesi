@@ -264,7 +264,8 @@ void CDummy::On_Execute()
 	char* argv[] = { &arg0[0], &arg1[0], &arg2[0], &arg3[0], &arg4[0], &arg5[0], &arg6[0], &arg7[0], &arg8[0], NULL };
 	FFLD::JPEGImage immmg();
 	int argc = sizeof(argv) / sizeof(char*) - 1;
-	main_ffld(argc,argv,m_srcImageRGB);
+	//main_ffld(argc,argv,m_srcImageRGB);
+	dpmDetect("/home/alox/Tesi/workspace/Dummy/src/ffld/models/person_final2007.txt",m_srcImageRGB);
 
 	//Mat detectionResult = imread("/home/alox/Tesi/workspace/Dummy/src/ffld/result/butta.jpg");
 	//detectionResult.convertTo(detectionResult,CV_16UC3);

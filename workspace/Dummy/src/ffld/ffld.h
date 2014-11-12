@@ -37,6 +37,8 @@
 using namespace FFLD;
 using namespace std;
 
+//draws the detected people in the rectangle
+int dpmDetect(std::string model_path, cimage::CImageRGB8 & srcImage);
 
 // Test a mixture model (compute a ROC curve)
 int main_ffld(int argc, char * argv[], cimage::CImageRGB8 &srcImage);

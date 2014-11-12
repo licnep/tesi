@@ -244,7 +244,7 @@ void drawR(JPEGImage & image, const FFLD::Rectangle & rect, uint8_t r, uint8_t g
 	}
 }
 
-detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, int height, const HOGPyramid & pyramid,
+void detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, int height, const HOGPyramid & pyramid,
 			double threshold, double overlap, const string image, ostream & out,
 			const string & images, vector<Detection> & detections)
 {
@@ -367,8 +367,84 @@ detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, int hei
 		}
 		
 		//im.save(images + '/' + id + ".jpg");
-		//cimage::Save(images + '/' + id + ".jpg",srcImage);
+		cimage::Save("/home/alox/buttaScalata.jpg",srcImage);
 	}
+}
+
+int dpmDetect(std::string model_path,cimage::CImageRGB8 & srcImage) {
+	// Default parameters
+	string model = model_path;
+	Object::Name name = Object::PERSON;
+	string results;
+	string images = "asdNotEmpty";
+	int nbNegativeScenes = -1;
+	int padding = 12;
+	int interval = 10;
+	double threshold = 0.0;
+	double overlap = 0.5;
+
+	JPEGImage butta;
+
+	// Try to open the mixture
+	ifstream in(model.c_str(), ios::binary);
+
+	if (!in.is_open()) {
+		showUsage();
+		cerr << "\nInvalid model file " << model << endl;
+		return -1;
+	}
+
+	Mixture mixture;
+	in >> mixture;
+
+	if (mixture.empty()) {
+		showUsage();
+		cerr << "\nInvalid model file " << model << endl;
+		return -1;
+	}
+
+	// Compute the HOG features
+	start();
+
+	HOGPyramid pyramid(srcImage, butta, padding, padding, interval);
+
+	if (pyramid.empty()) {
+		showUsage();
+		cerr << "\nInvalid image " << endl;
+		return -1;
+	}
+
+	cout << "Computed HOG features in " << stop() << " ms" << endl;
+
+	// Initialize the Patchwork class
+	start();
+
+	if (!Patchwork::Init((pyramid.levels()[0].rows() - padding + 15) & ~15,
+						 (pyramid.levels()[0].cols() - padding + 15) & ~15)) {
+		cerr << "\nCould not initialize the Patchwork class" << endl;
+		return -1;
+	}
+
+	cout << "Initialized FFTW in " << stop() << " ms" << endl;
+
+	start();
+
+	mixture.cacheFilters();
+
+	cout << "Transformed the filters in " << stop() << " ms" << endl;
+
+	// Compute the detections
+	start();
+
+	vector<Detection> detections;
+
+	//detect(mixture, image.width(), image.height(), pyramid, threshold, overlap, file, out,images, detections);
+	detect(srcImage,mixture, srcImage.W(), srcImage.H(), pyramid, threshold, overlap, "filenameBUTTA", std::cout ,images, detections);
+
+	cout << "Computed the convolutions and distance transforms in " << stop() << " ms" << endl;
+
+	return EXIT_SUCCESS;
+
 }
 
 // Test a mixture model (compute a ROC curve)

@@ -55,7 +55,7 @@ pady_(0), interval_(0)
 HOGPyramid::HOGPyramid(cimage::CImageRGB8 srcImage, const JPEGImage & image, int padx, int pady, int interval) : padx_(0),
 pady_(0), interval_(0)
 {
-	if (image.empty() || (padx < 1) || (pady < 1) || (interval < 1))
+	if ( (padx < 1) || (pady < 1) || (interval < 1))
 		return;
 	
 	// Copmute the number of scales such that the smallest size of the last level is 5
