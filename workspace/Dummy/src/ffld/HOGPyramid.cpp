@@ -52,7 +52,7 @@ pady_(0), interval_(0)
 	levels_ = levels;
 }
 
-HOGPyramid::HOGPyramid(cimage::CImageRGB8 srcImage, const JPEGImage & image, int padx, int pady, int interval) : padx_(0),
+HOGPyramid::HOGPyramid(cimage::CImageRGB8 & srcImage, int padx, int pady, int interval) : padx_(0),
 pady_(0), interval_(0)
 {
 	if ( (padx < 1) || (pady < 1) || (interval < 1))

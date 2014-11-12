@@ -406,7 +406,7 @@ int dpmDetect(std::string model_path,cimage::CImageRGB8 & srcImage) {
 	// Compute the HOG features
 	start();
 
-	HOGPyramid pyramid(srcImage, butta, padding, padding, interval);
+	HOGPyramid pyramid(srcImage, padding, padding, interval);
 
 	if (pyramid.empty()) {
 		showUsage();
@@ -622,7 +622,7 @@ int main_ffld(int argc, char * argv[], cimage::CImageRGB8 & srcImage)
 		// Compute the HOG features
 		start();
 		
-		HOGPyramid pyramid(srcImage, image, padding, padding, interval);
+		HOGPyramid pyramid(srcImage, padding, padding, interval);
 		
 		if (pyramid.empty()) {
 			showUsage();
@@ -755,7 +755,7 @@ int main_ffld(int argc, char * argv[], cimage::CImageRGB8 & srcImage)
 #pragma omp parallel for private(i)
 		for (i = 0; i < scenes.size(); ++i) {
 			JPEGImage image(scenes[i].filename());
-			HOGPyramid pyramid(srcImage, image, padding, padding, interval);
+			HOGPyramid pyramid(srcImage, padding, padding, interval);
 			
 			// Compute the detections
 			vector<Detection> detections;
