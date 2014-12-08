@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>dummy-Release@Dummy-build</name>
+	<name>dummy-NativeRel@Dummy-build</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -187,6 +187,11 @@
 			<name>[Targets]/[lib] gold_app_dummy/Source Files/JPEGImage.cpp</name>
 			<type>1</type>
 			<location>/home/alox/Tesi/workspace/Dummy/src/ffld/JPEGImage.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] gold_app_dummy/Source Files/SearchRange.cpp</name>
+			<type>1</type>
+			<location>/home/alox/Tesi/workspace/Dummy/src/ffld/SearchRange.cpp</location>
 		</link>
 		<link>
 			<name>[Targets]/[lib] gold_app_dummy/Source Files/HOGPyramid.cpp</name>

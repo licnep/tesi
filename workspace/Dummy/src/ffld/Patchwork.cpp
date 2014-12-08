@@ -128,6 +128,7 @@ void Patchwork::convolve(const vector<Filter> & filters,
 						 vector<vector<HOGPyramid::Matrix> > & convolutions) const
 {
 	const int nbFilters = filters.size();
+	std::cout << "FILTERS size: " << nbFilters << std::endl;
 	const int nbPlanes = planes_.size();
 	const int nbLevels = rectangles_.size();
 	
@@ -161,6 +162,8 @@ void Patchwork::convolve(const vector<Filter> & filters,
 						 MaxRows_ * HalfCols_);
 #endif
 	
+	std::cout << "maxRows:" << MaxRows_ << std::endl;
+
 	int i;
 #pragma omp parallel for private(i)
 	for (i = 0; i <= MaxRows_ * HalfCols_ - step; i += step)
@@ -181,6 +184,8 @@ void Patchwork::convolve(const vector<Filter> & filters,
 	for (int i = 0; i < nbFilters; ++i)
 		convolutions[i].resize(nbLevels);
 	
+	int butta = 0;
+
 #pragma omp parallel for private(i)
 	for (i = 0; i < nbFilters * nbPlanes; ++i) {
 		const int k = i / nbPlanes; // Filter index
@@ -199,6 +204,7 @@ void Patchwork::convolve(const vector<Filter> & filters,
 #endif
 		
 		for (int j = 0; j < nbLevels; ++j) {
+			butta++;
 			const int rows = rectangles_[j].first.height() + pady_ - filters[k].second.first + 1;
 			const int cols = rectangles_[j].first.width() + padx_ - filters[k].second.second + 1;
 			
@@ -225,6 +231,7 @@ void Patchwork::convolve(const vector<Filter> & filters,
 			}
 		}
 	}
+	std::cout << "butta:" << butta << std::endl;
 }
 
 bool Patchwork::Init(int maxRows, int maxCols)

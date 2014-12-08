@@ -206,6 +206,7 @@ src/CMakeFiles/gold_app_dummy.dir/dummy.cpp.o
  /home/alox/Tesi/workspace/Dummy/src/ffld/Patchwork.h
  /home/alox/Tesi/workspace/Dummy/src/ffld/Rectangle.h
  /home/alox/Tesi/workspace/Dummy/src/ffld/Scene.h
+ /home/alox/Tesi/workspace/Dummy/src/ffld/SearchRange.h
  /home/alox/Tesi/workspace/Dummy/src/ffld/SimpleOpt.h
  /home/alox/Tesi/workspace/Dummy/src/ffld/ffld.h
  /home/alox/Tesi/workspace/Dummy/src/ffld/ffld_export.h
@@ -298,6 +299,11 @@ src/CMakeFiles/gold_app_dummy.dir/dummy.cpp.o
  /opt/gold-4.6/include/gold-4.6.0/Processing/Vision/CImage/Filters/detail/FilterModifier.hxx
  /opt/gold-4.6/include/gold-4.6.0/Processing/Vision/CImage/Filters/detail/TLocalFilter.hxx
  /opt/gold-4.6/include/gold-4.6.0/Processing/Vision/CImage/gold_proc_cimage_export.h
+ /opt/gold-4.6/include/gold-4.6.0/Processing/Vision/PerspectiveMapping/HomographicMatrix.h
+ /opt/gold-4.6/include/gold-4.6.0/Processing/Vision/PerspectiveMapping/HomographicTransformations.h
+ /opt/gold-4.6/include/gold-4.6.0/Processing/Vision/PerspectiveMapping/RefPlaneLimits.h
+ /opt/gold-4.6/include/gold-4.6.0/Processing/Vision/PerspectiveMapping/gold_proc_pm_export.h
+ /opt/gold-4.6/include/gold-4.6.0/Processing/Vision/PerspectiveMapping/ipm.h
  /opt/gold-4.6/include/gold-4.6.0/UI/CWindows/CDrawingQueue.h
  /opt/gold-4.6/include/gold-4.6.0/UI/CWindows/CWidget.h
  /opt/gold-4.6/include/gold-4.6.0/UI/CWindows/CWindow.h
@@ -534,6 +540,7 @@ src/CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.o
  /opt/gold-4.6/include/gold-4.6.0/Data/CImage/TImage.h
  /opt/gold-4.6/include/gold-4.6.0/Data/gold_data_export.h
  /opt/gold-4.6/include/gold-4.6.0/Processing/Vision/CImage/BasicOperations/BasicOperations.h
+ /opt/gold-4.6/include/gold-4.6.0/Processing/Vision/CImage/Conversions/CImageConversions.h
  /opt/gold-4.6/include/gold-4.6.0/Processing/Vision/CImage/gold_proc_cimage_export.h
 src/CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.o
  /home/alox/Tesi/workspace/Dummy/src/ffld/JPEGImage.cpp
@@ -1128,6 +1135,70 @@ src/CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.o
  /usr/include/libxml2/libxml/xmlregexp.h
  /usr/include/libxml2/libxml/xmlstring.h
  /usr/include/libxml2/libxml/xmlversion.h
+src/CMakeFiles/gold_app_dummy.dir/ffld/SearchRange.cpp.o
+ /home/alox/Tesi/workspace/Dummy/src/ffld/SearchRange.cpp
+ /home/alox/Tesi/workspace/Dummy/src/ffld/SearchRange.h
+ /opt/gold-4.6/include/gold-4.6.0/Config/CImageConfig.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/Base/CCameraParams.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/Base/SensorParams.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Buffer.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/CImage.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Definitions.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Exceptions.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Geometry.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Images/CImageRGB8.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/PixelTraits/PixelTraits.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/Bayer.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/Mono8o127.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/RGB8.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TBGRA.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TCustomPixel.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/THSL.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/THSV.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TRGB.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TRGBA.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/TImage.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/Math/Lines.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/Math/Points.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/Math/Rects.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/Math/TMatrices.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/gold_data_export.h
+ /opt/gold-4.6/include/gold-4.6.0/Devices/Base/CDevice.h
+ /opt/gold-4.6/include/gold-4.6.0/Devices/Base/CSampler.h
+ /opt/gold-4.6/include/gold-4.6.0/Devices/Base/CSensor.h
+ /opt/gold-4.6/include/gold-4.6.0/Devices/Base/LUTSet.h
+ /opt/gold-4.6/include/gold-4.6.0/Devices/Base/TFrame.h
+ /opt/gold-4.6/include/gold-4.6.0/Devices/Camera/CCamera.h
+ /opt/gold-4.6/include/gold-4.6.0/Devices/Camera/CCameraProperty.h
+ /opt/gold-4.6/include/gold-4.6.0/Devices/Camera/CROI.h
+ /opt/gold-4.6/include/gold-4.6.0/Devices/gold_dev_export.h
+ /opt/gold-4.6/include/gold-4.6.0/Framework/HWS_Version.h
+ /opt/gold-4.6/include/gold-4.6.0/Libs/Compatibility/DeclSpecs.h
+ /opt/gold-4.6/include/gold-4.6.0/Libs/INIFiles/INIFile.h
+ /opt/gold-4.6/include/gold-4.6.0/Libs/INIFiles/gold_inifiles_export.h
+ /opt/gold-4.6/include/gold-4.6.0/Libs/INIFiles/strcast.h
+ /opt/gold-4.6/include/gold-4.6.0/Libs/Patterns/Singleton.h
+ /opt/gold-4.6/include/gold-4.6.0/Libs/Renderer/Data/Types.h
+ /opt/gold-4.6/include/gold-4.6.0/Libs/Renderer/Data/renderer_dataconverter_export.h
+ /opt/gold-4.6/include/gold-4.6.0/Libs/Time/Accumulator.h
+ /opt/gold-4.6/include/gold-4.6.0/Libs/Time/CChronometer.h
+ /opt/gold-4.6/include/gold-4.6.0/Libs/Time/TimeUtils.h
+ /opt/gold-4.6/include/gold-4.6.0/Libs/Time/gold_time_export.h
+ /opt/gold-4.6/include/gold-4.6.0/Processing/Vision/PerspectiveMapping/HomographicMatrix.h
+ /opt/gold-4.6/include/gold-4.6.0/Processing/Vision/PerspectiveMapping/HomographicTransformations.h
+ /opt/gold-4.6/include/gold-4.6.0/Processing/Vision/PerspectiveMapping/RefPlaneLimits.h
+ /opt/gold-4.6/include/gold-4.6.0/Processing/Vision/PerspectiveMapping/gold_proc_pm_export.h
+ /opt/gold-4.6/include/gold-4.6.0/Processing/Vision/PerspectiveMapping/ipm.h
+ /opt/gold-4.6/include/gold-4.6.0/UI/CWindows/CWindowFwd.h
+ /opt/gold-4.6/include/gold-4.6.0/UI/CWindows/WindowsMap.h
+ /opt/gold-4.6/include/gold-4.6.0/UI/Panel/Vars.h
+ /opt/gold-4.6/include/gold-4.6.0/UI/Panel/Widget.h
+ /opt/gold-4.6/include/gold-4.6.0/UI/Panel/detail/PanelManager.h
+ /opt/gold-4.6/include/gold-4.6.0/UI/Panel/detail/PanelTypes.h
+ /opt/gold-4.6/include/gold-4.6.0/UI/Panel/detail/Serializable.h
+ /opt/gold-4.6/include/gold-4.6.0/UI/Panel/detail/Serializers.h
+ /opt/gold-4.6/include/gold-4.6.0/UI/Panel/detail/WidgetCore.h
+ /opt/gold-4.6/include/gold-4.6.0/UI/gold_ui_export.h
 src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.o
  /home/alox/Tesi/workspace/Dummy/src/ffld/Eigen/Core
  /home/alox/Tesi/workspace/Dummy/src/ffld/Eigen/Eigen2Support
@@ -1303,11 +1374,13 @@ src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.o
  /home/alox/Tesi/workspace/Dummy/src/ffld/ffld.h
  /home/alox/Tesi/workspace/Dummy/src/ffld/ffld_export.h
  /opt/gold-4.6/include/gold-4.6.0/Config/CImageConfig.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/Base/FormatsEnumerator.h
  /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Buffer.h
  /opt/gold-4.6/include/gold-4.6.0/Data/CImage/CImage.h
  /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Definitions.h
  /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Exceptions.h
  /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Geometry.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/IO/CImageIO.h
  /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Images/CImageRGB8.h
  /opt/gold-4.6/include/gold-4.6.0/Data/CImage/PixelTraits/PixelTraits.h
  /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/Bayer.h
@@ -1320,4 +1393,8 @@ src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.o
  /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TRGB.h
  /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TRGBA.h
  /opt/gold-4.6/include/gold-4.6.0/Data/CImage/TImage.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/Math/Points.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/Math/Rects.h
  /opt/gold-4.6/include/gold-4.6.0/Data/gold_data_export.h
+ /opt/gold-4.6/include/gold-4.6.0/Processing/Vision/CImage/Draw/Box.h
+ /opt/gold-4.6/include/gold-4.6.0/Processing/Vision/CImage/Draw/Brushes.h

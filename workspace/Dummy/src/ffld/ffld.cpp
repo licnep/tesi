@@ -261,6 +261,8 @@ void detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, in
 	// Cache the size of the models
 	vector<pair<int, int> > sizes(mixture.models().size());
 	
+	//std::cout << "MIXTURE.MODELS SIZE = " << mixture.models().size() << std::endl; //6 models
+
 	for (int i = 0; i < sizes.size(); ++i)
 		sizes[i] = mixture.models()[i].rootSize();
 	

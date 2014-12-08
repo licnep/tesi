@@ -419,6 +419,30 @@ ffld/Scene.cpp.s:
 	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.s
 .PHONY : ffld/Scene.cpp.s
 
+ffld/SearchRange.o: ffld/SearchRange.cpp.o
+.PHONY : ffld/SearchRange.o
+
+# target to build an object file
+ffld/SearchRange.cpp.o:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/SearchRange.cpp.o
+.PHONY : ffld/SearchRange.cpp.o
+
+ffld/SearchRange.i: ffld/SearchRange.cpp.i
+.PHONY : ffld/SearchRange.i
+
+# target to preprocess a source file
+ffld/SearchRange.cpp.i:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/SearchRange.cpp.i
+.PHONY : ffld/SearchRange.cpp.i
+
+ffld/SearchRange.s: ffld/SearchRange.cpp.s
+.PHONY : ffld/SearchRange.s
+
+# target to generate assembly for a file
+ffld/SearchRange.cpp.s:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/SearchRange.cpp.s
+.PHONY : ffld/SearchRange.cpp.s
+
 ffld/ffld.o: ffld/ffld.cpp.o
 .PHONY : ffld/ffld.o
 
@@ -488,6 +512,9 @@ help:
 	@echo "... ffld/Scene.o"
 	@echo "... ffld/Scene.i"
 	@echo "... ffld/Scene.s"
+	@echo "... ffld/SearchRange.o"
+	@echo "... ffld/SearchRange.i"
+	@echo "... ffld/SearchRange.s"
 	@echo "... ffld/ffld.o"
 	@echo "... ffld/ffld.i"
 	@echo "... ffld/ffld.s"

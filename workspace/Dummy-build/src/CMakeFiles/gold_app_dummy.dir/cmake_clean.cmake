@@ -8,6 +8,7 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.o"
   "CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.o"
   "CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.o"
+  "CMakeFiles/gold_app_dummy.dir/ffld/SearchRange.cpp.o"
   "CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.o"
   "CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o"
   "/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.pdb"

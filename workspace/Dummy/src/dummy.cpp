@@ -49,6 +49,9 @@
 #include "HOGVisualizer.h"
 #include "ffld/ffld.h"
 #include "ffld/JPEGImage.h"
+#include "ffld/SearchRange.h"
+
+
 
 using namespace cimage;
 using namespace cimage::filter;
@@ -62,6 +65,7 @@ using namespace std;
 
 void CDummy::On_Initialization()
 {
+
     // recuperiamo l'elenco delle camere...
     CDeviceNode& cameras = Dev()["CAMERAS"];
 
@@ -197,7 +201,7 @@ void CDummy::On_Execute()
     //SobelVertical3x3(m_inputImageMono, m_sobelImage);
 
     Mat m = CHOGVisualizer::CImageRGB8ToMat(m_inputImageRGB);
-    imwrite( "./butta.jpg", m );
+    //imwrite( "./butta.jpg", m );
     /*RGB8* data = m_inputImageRGB.Buffer();
     for (int i=0;i<m_width*m_height;i++) {
     	data[i].R = 0;
@@ -221,7 +225,7 @@ void CDummy::On_Execute()
 
 	resize(viz,viz,Size(m_inputImageRGB.W(),m_inputImageRGB.H()));
 	//resize(img,img,Size(m_inputImageRGB.W(),m_inputImageRGB.H()));
-	imwrite( "./butta2.jpg", viz );
+	//imwrite( "./butta2.jpg", viz );
 	CHOGVisualizer::MatToCImageRGB8(viz,m_inputImageRGB);
 
 	if(m_showDetected)
@@ -271,6 +275,9 @@ void CDummy::On_Execute()
 	//detectionResult.convertTo(detectionResult,CV_16UC3);
 	//CHOGVisualizer::MatToCImageRGB8(detectionResult,m_inputImageMono);
 	m_inputImageMono = m_srcImageRGB;
+
+	SearchRange r;
+	r.setSearchRange(image->W(),image->H(),m_pCam,m_inputImageMono);
 
     // chiamiamo la funzione di disegno
     Output();

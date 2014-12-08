@@ -14,6 +14,7 @@ SET(CMAKE_DEPENDS_CHECK_CXX
   "/home/alox/Tesi/workspace/Dummy/src/ffld/Patchwork.cpp" "/home/alox/Tesi/workspace/Dummy-build/src/CMakeFiles/gold_app_dummy.dir/ffld/Patchwork.cpp.o"
   "/home/alox/Tesi/workspace/Dummy/src/ffld/Rectangle.cpp" "/home/alox/Tesi/workspace/Dummy-build/src/CMakeFiles/gold_app_dummy.dir/ffld/Rectangle.cpp.o"
   "/home/alox/Tesi/workspace/Dummy/src/ffld/Scene.cpp" "/home/alox/Tesi/workspace/Dummy-build/src/CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.o"
+  "/home/alox/Tesi/workspace/Dummy/src/ffld/SearchRange.cpp" "/home/alox/Tesi/workspace/Dummy-build/src/CMakeFiles/gold_app_dummy.dir/ffld/SearchRange.cpp.o"
   "/home/alox/Tesi/workspace/Dummy/src/ffld/ffld.cpp" "/home/alox/Tesi/workspace/Dummy-build/src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")

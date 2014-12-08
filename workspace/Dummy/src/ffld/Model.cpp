@@ -114,6 +114,8 @@ void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matri
 					 vector<HOGPyramid::Matrix> & scores,
 					 vector<vector<Positions> > * positions) const
 {
+	std::cout << "Model::Convolve" << std::endl;
+
 	// Invalid parameters
 	if (empty() || pyramid.empty() || (convolutions.size() != parts_.size()))
 		return;
@@ -171,6 +173,8 @@ void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matri
 		for (i = 0; i < nbLevels; ++i)
 			scores[i].array() += bias_;
 	}
+
+	//std::cout << "scores:" << scores.size() << std::endl; //sempre 41 score e 8 positions
 }
 
 void Model::DT1D(const Scalar * x, int n, Scalar a, Scalar b, Scalar * z, int * v, Scalar * y,

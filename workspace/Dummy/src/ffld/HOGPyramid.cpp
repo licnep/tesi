@@ -26,6 +26,7 @@
 #include <limits>
 
 #include <Processing/Vision/CImage/BasicOperations/BasicOperations.h>
+#include <Processing/Vision/CImage/Conversions/CImageConversions.h>
 #include <Data/CImage/IO/CImageIO.h>
 
 #ifndef M_PI
@@ -77,7 +78,8 @@ pady_(0), interval_(0)
 		double scale = pow(2.0, static_cast<double>(-i) / interval);
 		
 		cimage::CImageRGB8 scaledImg(srcImage.W() * scale + 0.5,srcImage.H() * scale + 0.5);
-		cimage::Resample(srcImage,scaledImg,cimage::NEAREST);
+		//cimage::Resample(srcImage,scaledImg,cimage::BILINEAR_INTERPOLATION);
+		cimage::Convert(srcImage,scaledImg,cimage::BILINEAR_INTERPOLATION);
 		//cimage::Save("/home/alox/buttaScalata.jpg",scaledImg);
 		//TODO:: remove next line
 		//JPEGImage scaled = image.resize(image.width() * scale + 0.5, image.height() * scale + 0.5);
@@ -94,7 +96,8 @@ pady_(0), interval_(0)
 		for (int j = 2; i + j * interval <= maxScale; ++j) {
 			scale *= 0.5;
 			cimage::CImageRGB8 scaledImg2(srcImage.W() * scale + 0.5, srcImage.H() * scale + 0.5);
-			cimage::Resample(srcImage,scaledImg,cimage::NEAREST);
+			//cimage::Resample(srcImage,scaledImg,cimage::BILINEAR_INTERPOLATION);
+			cimage::Convert(srcImage,scaledImg,cimage::BILINEAR_INTERPOLATION);
 			Hog(scaledImg2, levels_[i + j * interval], padx, pady, 8);
 		}
 #else

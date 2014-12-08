@@ -119,7 +119,7 @@ Boost_USE_STATIC_RUNTIME:BOOL=OFF
 CMAKE_AR:FILEPATH=/usr/bin/ar
 
 //Path of the GOLD executable
-CMAKE_BUILD_TYPE:PATH=Release
+CMAKE_BUILD_TYPE:PATH=NativeRel
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
