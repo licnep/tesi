@@ -279,6 +279,8 @@ void detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, in
 						bndbox.setY(max(bndbox.y(), 0));
 						bndbox.setWidth(min(bndbox.width(), width - bndbox.x()));
 						bndbox.setHeight(min(bndbox.height(), height - bndbox.y()));
+						int nSkyPixels = srcImage.H() * 0.3;
+						bndbox.setY(bndbox.top()+nSkyPixels);
 						
 						if (!bndbox.empty())
 							detections.push_back(Detection(score, i, x, y, bndbox));
@@ -335,7 +337,8 @@ void detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, in
 											 mixture.models()[argmax].partSize().second * scale + 0.5,
 											 mixture.models()[argmax].partSize().second * scale + 0.5);
 				
-
+				int nSkyPixels = srcImage.H() * 0.3;
+				bndbox.setY(bndbox.top()+nSkyPixels);
 				drawR(im, bndbox, 0, 0, 255, 2);
 				math::Rect2i r(bndbox.left(),bndbox.top(),bndbox.right(),bndbox.bottom());
 				draw::Opaque<cimage::RGB8> brush(srcImage,cimage::RGB8(0,0,255));
@@ -397,7 +400,7 @@ int CFfld::dpmDetect(std::string model_path,cimage::CImageRGB8 & srcImage, doubl
 	string images = "asdNotEmpty";
 	int nbNegativeScenes = -1;
 	int padding = 12;
-	int interval = 1; //10;
+	int interval = 2; //10;
 	//double threshold = -0.5;//0.0; -0.5 abbastanza bene
 	double overlap = 0.5;
 

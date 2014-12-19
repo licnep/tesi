@@ -67,28 +67,28 @@ pady_(0), interval_(0)
 	ffldChronometer.Start();
 
 	int nSkyPixels = srcImage.H() * 0.3; //only keep the lower 70% of the image
-	cimage::CImageRGB8 croppedImg(srcImage.W(),srcImage.H() - nSkyPixels);
+	cimage::CImageRGB8 croppedImage(srcImage.W(),srcImage.H() - nSkyPixels);
 	/*cimage::Crop(srcImage,croppedImg,0,nSkyPixels,srcImage.W()-1,srcImage.H() - 1,true);
 	string percorso = "/home/alox/cropped.jpg";
 	cimage::Save(percorso,croppedImg);*/
 
 	int cols = srcImage.W();
 	cimage::RGB8* srcBuffer = srcImage.Buffer();
-	cimage::RGB8* dstBuffer = croppedImg.Buffer();
-	for (int r=0;r<srcImage.H();r++) {
+	cimage::RGB8* dstBuffer = croppedImage.Buffer();
+	for (int r=0;r<croppedImage.H();r++) {
 		for (int c=0;c<cols;c++) {
 			dstBuffer[r*cols+c]=srcBuffer[r*cols+c+nSkyPixels*cols];
 		}
 	}
 	string percorso = "/home/alox/cropped.jpg";
-	cimage::Save(percorso,croppedImg);
+	cimage::Save(percorso,croppedImage);
 
 	if ( (padx < 1) || (pady < 1) || (interval < 1))
 		return;
 	
 	// Copmute the number of scales such that the smallest size of the last level is 5
 	//const int maxScale = ceil(log(min(image.width(), image.height()) / 40.0) / log(2.0)) * interval;
-	const int maxScale = ceil(log(min(srcImage.W(), srcImage.H()) / 40.0) / log(2.0)) * interval;
+	const int maxScale = ceil(log(min(croppedImage.W(), croppedImage.H()) / 40.0) / log(2.0)) * interval;
 	
 	// Cannot compute the pyramid on images too small
 	if (maxScale < interval)
@@ -106,9 +106,9 @@ pady_(0), interval_(0)
 	for (i = 0; i < interval; ++i) {
 		double scale = pow(2.0, static_cast<double>(-i) / interval);
 		
-		cimage::CImageRGB8 scaledImg(srcImage.W() * scale + 0.5,srcImage.H() * scale + 0.5);
+		cimage::CImageRGB8 scaledImg(croppedImage.W() * scale + 0.5,croppedImage.H() * scale + 0.5);
 		/////cimage::Resample(srcImage,scaledImg,cimage::BILINEAR_INTERPOLATION);
-		cimage::Convert(srcImage,scaledImg,cimage::BILINEAR_INTERPOLATION);
+		cimage::Convert(croppedImage,scaledImg,cimage::BILINEAR_INTERPOLATION);
 		//char percorso[100]; std::sprintf(percorso, "/home/alox/buttaScalata%d.jpg",i);
 
 
@@ -148,9 +148,9 @@ pady_(0), interval_(0)
 		// Remaining octaves
 		for (int j = 2; i + j * interval <= maxScale; ++j) {
 			scale *= 0.5;
-			cimage::CImageRGB8 scaledImg2(srcImage.W() * scale + 0.5, srcImage.H() * scale + 0.5);
+			cimage::CImageRGB8 scaledImg2(croppedImage.W() * scale + 0.5, croppedImage.H() * scale + 0.5);
 			//cimage::Resample(srcImage,scaledImg,cimage::BILINEAR_INTERPOLATION);
-			cimage::Convert(srcImage,scaledImg2,cimage::BILINEAR_INTERPOLATION);
+			cimage::Convert(croppedImage,scaledImg2,cimage::BILINEAR_INTERPOLATION);
 			Hog(scaledImg2, levels_[i + j * interval], padx, pady, 8);
 			/*solo per debug, elimina:
 			draw::Opaque<cimage::RGB8> brush2(scaledImg2,cimage::RGB8(255,0,0));
