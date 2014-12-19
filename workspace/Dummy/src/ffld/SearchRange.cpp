@@ -8,9 +8,7 @@
 #include <SearchRange.h>
 
 
-void SearchRange::setSearchRange(int width, int height, dev::CCamera *camera,cimage::CImageRGB8 & debugImage) {
-	std::vector<std::pair<int,int> > ranges;
-
+void SearchRange::setSearchRange(int width, int height, dev::CCamera *camera,cimage::CImageRGB8 & debugImage, float w0 = 0.2f, float w1 = 1.0f) {
 	//std::string range_algo = INIFile()->Value<std::string>("RANGE MODE", "LINES"); // LINES, STATIC or SIZE
 
 	int max_width = width/2;  //INIFile()->Value<int>("MAX WIDTH", width/2);
@@ -20,10 +18,10 @@ void SearchRange::setSearchRange(int width, int height, dev::CCamera *camera,cim
 
 	double max_distance = 1000.0;//INIFile()->Value<double>("MAX DISTANCE", 1000.0);
 
-	double w0, w1, z0, z1;
+	double /*w0, w1,*/ z0, z1;
 
-	w0 = 0.2;   //INIFile()->Value<double>("W0");
-	w1 = 1.0; //INIFile()->Value<double>("W1");
+	//w0 = 0.2;   //INIFile()->Value<double>("W0");
+	//w1 = 1.0; //INIFile()->Value<double>("W1");
 	z0 = 0.0;   //INIFile()->Value<double>("Z0");
 	z1 = 0.0; //INIFile()->Value<double>("Z1");
 
@@ -36,20 +34,46 @@ void SearchRange::setSearchRange(int width, int height, dev::CCamera *camera,cim
 
 
 
-	//std::cout << "cameraParams::::::" << m_cameraParams0 << std::endl;
-	//std::cout << "Rettificati::::::" << m_cameraParams << std::endl;
+	std::cout << "cameraParams::::::" << m_cameraParams0 << std::endl;
+	std::cout << "Rettificati::::::" << m_cameraParams << std::endl;
 
 	double m_border = 0.0;
-	this->Size(ranges, m_cameraParams0, w0, w1, z0,z1, min_width, max_width, max_distance, height, m_border);
+	this->Size(m_ranges, m_cameraParams0, w0, w1, z0,z1, min_width, max_width, max_distance, height, m_border);
 
+}
+
+void SearchRange::draw(cimage::CImageRGB8 & debugImage) {
 	cimage::RGB8* dstBuffer = debugImage.Buffer();
+	int width = debugImage.W();
 
-	for (int i=0;i<ranges.size();i++) {
+	for (int i=0;i<m_ranges.size();i++) {
 		//std::cout << "first:" << ranges[i].first << " second:" << ranges[i].second << std::endl;
 
-		dstBuffer[i*(width)+ranges[i].first].B = 255;
-		dstBuffer[i*(width)+ranges[i].second].R = 255;
+		dstBuffer[i*(width)+m_ranges[i].first].B = 255;
+		dstBuffer[i*(width)+m_ranges[i].second].R = 255;
 	}
+}
+
+bool SearchRange::isPlausibleSize(int lineFromTop, int width) {
+	if ( width > m_ranges[lineFromTop].second || width < m_ranges[lineFromTop].first ) return false;
+	return true;
+}
+
+//data una certa larghezza di pedone che sto ricercando, ritorna le linee dell'immagine utili per la ricerca
+//la coppia e': min(taglio alla posizione piu' alta possibile per una testa) e max (posizione piu' bassa possibile per i piedi)
+
+//TODO: this should be cached unless the parameters w0 and w1 are changed
+std::pair<int,int> SearchRange::getUsefulLineRange(int width) {
+	int top=m_ranges.size(),bottom=0; //initialize to inverse value (max to min and min to max)
+	for (int i=0;i<m_ranges.size();i++) {
+		if (isPlausibleSize(i,width)) {
+			if (i<top) top=i;
+			if (i>bottom) bottom=i;
+		}
+	}
+	//top = top - (width*2); //assumo altezza del pedone doppia della base, piu' o meno e' cosi' ma posso usare il modello per maggior precisione (6*11 o 4*11)
+	//if (top < 0) top=0;
+	return std::pair<int,int>(top,bottom);
 }
 
 

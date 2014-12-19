@@ -22,6 +22,7 @@
 #define FFLD_HOGPYRAMID_H
 
 #include "JPEGImage.h"
+#include "SearchRange.h"
 
 #include <Eigen/Core>
 #include <Eigen/Sparse>
@@ -83,7 +84,7 @@ public:
 	/// @param[in] pady Amount of vertical zero padding (in cells).
 	/// @param[in] interval Number of levels per octave in the pyramid.
 	/// @note The amount of padding and the interval should be at least 1.
-	HOGPyramid(cimage::CImageRGB8 & srcImage, int padx, int pady, int interval = 10);
+	HOGPyramid(cimage::CImageRGB8 & srcImage, SearchRange range, int padx, int pady, int interval = 10);
 	
 	/// Returns whether the pyramid is empty. An empty pyramid has no level.
 	bool empty() const;

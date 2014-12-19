@@ -51,7 +51,12 @@
 #include "ffld/JPEGImage.h"
 #include "ffld/SearchRange.h"
 
+#include <boost/date_time/posix_time/posix_time.hpp>
 
+#include <UI/Panel/detail/PanelTypes.h>
+#include <UI/Panel/detail/WidgetCore.h>
+#include <UI/Panel/detail/PanelListener.h>
+#include <UI/Panel/Panel.h>
 
 using namespace cimage;
 using namespace cimage::filter;
@@ -62,6 +67,49 @@ using namespace ui::win;
 using namespace cv;
 //using namespace cv::ml;
 using namespace std;
+
+class CMyPanelListener : public ui::detail::PanelListener {
+public:
+	CMyPanelListener(CDummy * dummy) {
+		mDummy = dummy;
+	};
+
+	/// Quando viene aggiunto al pannello parente un nuovo widget
+	void On_Widget_Add(ui::detail::widget_guid_t parent_guid, ui::detail::widget_guid_t guid, const ui::detail::WidgetCore& widget) {
+		cout << "ON WIDGET ADD aaaaaaaaaaaaaaaaaaa" << endl;
+	};
+	/// Quando un widget cambia geometria
+	void On_Widget_Changed(ui::detail::widget_guid_t guid, const ui::detail::WidgetCore& widget) {
+		cout << "ON WIDGET CHANGED aaaaaaaaaaaaaaaaaaa" << endl;
+	};
+	/// Quando un widget viene rimosso
+	void On_Widget_Remove(ui::detail::widget_guid_t guid) {};
+	/// Quando un widget cambia valore *
+	void On_Value_Changed(ui::detail::widget_guid_t guid, const ui::detail::WidgetCore& widget) {
+		cout << "Value changed! =" << endl;
+		try {
+			mDummy->On_Execute();
+		} catch (...) {
+			cout << "EXCEPTION! load a frame before changing params" << endl;
+		}
+	};
+	/// Quando un widget cambia attributi nella parte del dato
+	void On_Data_Changed(ui::detail::widget_guid_t guid, const ui::detail::WidgetCore& widget) {
+		cout << "ON DATA CHANGED aaaaaaaaaaaaaaaaaaa" << endl;
+	};
+
+	/// Quando un pannello diventa visible
+	void On_Panel_Opened(ui::detail::widget_guid_t guid, const ui::detail::WidgetCore& widget) {
+		cout << "ON PANEL OPENED aaaaaaaaaaaaaaaaaaa" << endl;
+	};
+	/// Quando un widget viene nascosto
+	void On_Panel_Close(ui::detail::widget_guid_t guid) {
+		cout << "ON PANEL CLOSE aaaaaaaaaaaaaaaaaaa" << endl;
+	};
+
+private:
+	CDummy * mDummy;
+};
 
 void CDummy::On_Initialization()
 {
@@ -91,14 +139,20 @@ void CDummy::On_Initialization()
     config.Bind(showInputMono, "SHOW INPUT MONO", false);
     
     Value<bool> showInputHOG(&m_showInputHOG);
-    config.Bind(showInputHOG, "SHOW INPUT RGB", false);
+    config.Bind(showInputHOG, "SHOW INPUT HOG", false);
     
     Value<bool> showDetected(&m_showDetected);
     config.Bind(showDetected, "SHOW DETECTED", false);
     
-    ui::var::Range<float> radius(&m_radius, 0.0f, 50.0f, 0.1f);
-    config.Bind(radius, "RADIUS", 10.0f);
+    ui::var::Range<float> threshold(&m_threshold, -2.0f, 0.5f, 0.1f);
+    config.Bind(threshold, "THRESHOLD", -0.4f);
     
+    ui::var::Range<float> sliderW0(&m_W0, 0.0f, 2.0f, 0.01f);
+    config.Bind(sliderW0, "W0", 0.2f);
+
+    ui::var::Range<float> sliderW1(&m_W1, 0.0f, 2.0f, 0.01f);
+	config.Bind(sliderW1, "W1", 1.0f);
+
     ui::var::Range<int> value(&m_value, 0, 150, 2);
     config.Bind(value, "VALUE", 40);
     
@@ -116,6 +170,8 @@ void CDummy::On_Initialization()
                       std::make_pair("Second", 1),
                       std::make_pair("Third", 2));
     
+    Slider thresholdSlider(threshold, "Threshold");
+
     //popoliamo il pannello dell'applicazione
     panel.Label("Dummy Main Panel").Geometry(300, 150)
     (
@@ -136,7 +192,9 @@ void CDummy::On_Initialization()
                 (
                     VSizer()
                     (
-                        Slider(radius, "Radius"),
+                        thresholdSlider, //Slider(threshold, "Threshold"),
+						Slider(sliderW0, "W0"),
+						Slider(sliderW1, "W1"),
                         Slider(value, "Value"),
                         CheckBox(showCircle, "Show circle"),
                         CheckBox(showBox, "Show box"),
@@ -147,7 +205,10 @@ void CDummy::On_Initialization()
             )
         )
     );
-    
+
+    ui::detail::listener_id_t listenerId = ui::detail::PanelManagerSingleton::Instance().Register(new CMyPanelListener(this));
+    ui::detail::PanelManagerSingleton::Instance().Register(panel.GUID(),listenerId);
+
     // configuriamo il Synchronizer in modo che ritorni sempre l'ultimo frame ricevuto dalla camera indicata
     m_pCam = (Dev()["CAMERAS/" + m_inputCameraName]);
     m_synchro.ConnectSync(*m_pCam);
@@ -156,6 +217,16 @@ void CDummy::On_Initialization()
     m_pInputMonoWindow = NULL;
     m_pInputHOGWindow = NULL;
     m_pDetectedWindow = NULL;
+
+    //inzializziamo i timer per il profiler:
+	dev::CProfiler & profiler  = static_cast<dev::CProfiler&>(Dev()["Profiler"]);
+	m_cvChronometer = vl::chrono::CChronometer("openCV",vl::chrono::CChronometer::REAL_TIME_CLOCK);
+	profiler.Connect(m_cvChronometer);
+	vl::chrono::CChronometer ffldChronometer = vl::chrono::CChronometer("ffldHOG",vl::chrono::CChronometer::REAL_TIME_CLOCK);
+	profiler.Connect(ffldChronometer);
+
+	//inizializzo ffld (carica il modello)
+	ffld.init("/home/alox/Tesi/workspace/Dummy/src/ffld/models/person_final2007.txt");
 }
 
 void CDummy::On_ShutDown()
@@ -167,12 +238,15 @@ void CDummy::On_ShutDown()
 
 void CDummy::On_Execute()
 {
+	int frameNumber = 0;
+
     CImage::SharedPtrConstType image;
     
     {
 
         // copiamo lo shared pointer al frame, che utilizzeremo in seguito per l'elaborazione
         image = m_synchro.SyncFrameFrom<dev::CCamera>(*m_pCam).Data;
+        frameNumber = m_synchro.SyncFrameFrom<dev::CCamera>(*m_pCam).Number;
         
         log_debug << " Processing frame: " << m_synchro.LastFrameFrom<dev::CCamera>(*m_pCam).TimeStamp << std::endl;
     }
@@ -200,58 +274,56 @@ void CDummy::On_Execute()
     // applichiamo un filtro che converte una immagine CImageMono in una CImageMono usando un kernel SobelVertical di dimensione 3x3
     //SobelVertical3x3(m_inputImageMono, m_sobelImage);
 
-    Mat m = CHOGVisualizer::CImageRGB8ToMat(m_inputImageRGB);
-    //imwrite( "./butta.jpg", m );
-    /*RGB8* data = m_inputImageRGB.Buffer();
-    for (int i=0;i<m_width*m_height;i++) {
-    	data[i].R = 0;
-    	data[i].G = 0;
-    	data[i].B = 0;
-	}*/
+    if (m_showInputHOG || m_showDetected) {
+		Mat m = CHOGVisualizer::CImageRGB8ToMat(m_inputImageRGB);
 
-	std::vector<float> descriptorsValues;
-	std::vector<cv::Point> locations;
-	//resize(m, m, Size(512,256) );
-	Mat img;
-	resize(m, m, Size(512,256) ); //la dimensione su cui calcolo le feature HOG
-	cvtColor(m, img, COLOR_BGR2GRAY);
-	img.convertTo(img,CV_8U); //converto in scala di grigi perche' openCV vuole scala di grigi (di solito si usano tutti i canali e si prende il gradiente maggiore)
-	//imwrite( "./butta.jpg", img );
-	//cv::gpu::HOGDescriptor d(Size(512,256), Size(16,16), Size(8,8),Size(8,8), 9);
-	HOGDescriptor d(Size(512,256), Size(16,16), Size(8,8),Size(8,8), 9);
-	d.compute(img, descriptorsValues, Size(8,8), Size(0,0), locations);
-	Mat viz = CHOGVisualizer::GetHogDescriptorVisu(m,descriptorsValues,Size(512,256));
-	viz.convertTo(viz,CV_16UC3);
+		std::vector<float> descriptorsValues;
+		std::vector<cv::Point> locations;
+		//resize(m, m, Size(512,256) );
+		Mat img;
+		resize(m, m, Size(512,256) ); //la dimensione su cui calcolo le feature HOG
+		cvtColor(m, img, COLOR_BGR2GRAY);
+		img.convertTo(img,CV_8U); //converto in scala di grigi perche' openCV vuole scala di grigi (di solito si usano tutti i canali e si prende il gradiente maggiore)
+		//imwrite( "./butta.jpg", img );
+		//cv::gpu::HOGDescriptor d(Size(512,256), Size(16,16), Size(8,8),Size(8,8), 9);
+		HOGDescriptor d(Size(512,256), Size(16,16), Size(8,8),Size(8,8), 9);
 
-	resize(viz,viz,Size(m_inputImageRGB.W(),m_inputImageRGB.H()));
-	//resize(img,img,Size(m_inputImageRGB.W(),m_inputImageRGB.H()));
-	//imwrite( "./butta2.jpg", viz );
-	CHOGVisualizer::MatToCImageRGB8(viz,m_inputImageRGB);
+		m_cvChronometer.Start();
+		d.compute(img, descriptorsValues, Size(8,8), Size(0,0), locations);
+		m_cvChronometer.Stop();
 
-	if(m_showDetected)
-	{
+		Mat viz = CHOGVisualizer::GetHogDescriptorVisu(m,descriptorsValues,Size(512,256));
+		viz.convertTo(viz,CV_16UC3);
 
-		std::vector<String> filenames;
-		filenames.push_back("/home/alox/Downloads/person.xml");
-		LatentSvmDetector detector(filenames);
-		if( detector.empty() )
+		resize(viz,viz,Size(m_inputImageRGB.W(),m_inputImageRGB.H()));
+		//resize(img,img,Size(m_inputImageRGB.W(),m_inputImageRGB.H()));
+		//imwrite( "./butta2.jpg", viz );
+		CHOGVisualizer::MatToCImageRGB8(viz,m_inputImageRGB);
+		if(m_showDetected)
 		{
-			cout << "Models cann't be loaded" << endl;
-			exit(-1);
-		}
-		vector<LatentSvmDetector::ObjectDetection> detections;
-		cout << "Detecting..." << endl;
-		detector.detect( m, detections, 0.2f, 8);
 
-		for( size_t i = 0; i < detections.size(); i++ )
-		{
-			const LatentSvmDetector::ObjectDetection& od = detections[i];
-			cout << "confidence:" << od.score << endl;
-			if (od.score > 0.1f) rectangle( m, od.rect, Scalar(255,0,255*od.score), 2 );
+			std::vector<String> filenames;
+			filenames.push_back("/home/alox/Downloads/person.xml");
+			LatentSvmDetector detector(filenames);
+			if( detector.empty() )
+			{
+				cout << "Models cann't be loaded" << endl;
+				exit(-1);
+			}
+			vector<LatentSvmDetector::ObjectDetection> detections;
+			cout << "Detecting..." << endl;
+			detector.detect( m, detections, 0.2f, 8);
+
+			for( size_t i = 0; i < detections.size(); i++ )
+			{
+				const LatentSvmDetector::ObjectDetection& od = detections[i];
+				cout << "confidence:" << od.score << endl;
+				if (od.score > 0.1f) rectangle( m, od.rect, Scalar(255,0,255*od.score), 2 );
+			}
+			resize(m,m,Size(m_inputImageRGB.W(),m_inputImageRGB.H()));
+			CHOGVisualizer::MatToCImageRGB8(m,m_detectedImage);
 		}
-		resize(m,m,Size(m_inputImageRGB.W(),m_inputImageRGB.H()));
-		CHOGVisualizer::MatToCImageRGB8(m,m_detectedImage);
-	}
+    }
 
 	//-m models/person_final2007.txt -i ./result/ -r ./result/result.txt -t=-0.1 004963.jpg
 	//-m /home/alox/Tesi/workspace/Dummy/src/ffld/models/person_final2007.txt -i / -r  -t=-0.1 /home/alox/Tesi/ffld/pedoni.jpg
@@ -262,22 +334,44 @@ void CDummy::On_Execute()
 	char arg4[] = "/home/alox/Tesi/workspace/Dummy/src/ffld/result/";
 	char arg5[] = "-r";
 	char arg6[] = "/home/alox/Tesi/workspace/Dummy/src/ffld/result/result.txt";
-	char arg7[] = "-t=-0.0";
+	char arg7[] = "-t=-0.1";
 	//char arg8[] = "/home/alox/Tesi/ffld/pedoni.jpg";
 	char arg8[] = "./butta.jpg";
 	char* argv[] = { &arg0[0], &arg1[0], &arg2[0], &arg3[0], &arg4[0], &arg5[0], &arg6[0], &arg7[0], &arg8[0], NULL };
 	FFLD::JPEGImage immmg();
 	int argc = sizeof(argv) / sizeof(char*) - 1;
 	//main_ffld(argc,argv,m_srcImageRGB);
-	dpmDetect("/home/alox/Tesi/workspace/Dummy/src/ffld/models/person_final2007.txt",m_srcImageRGB);
+	SearchRange r;
+	r.setSearchRange(image->W(),image->H(),m_pCam,m_inputImageMono, m_W0, m_W1);
+
+	vector<Detection> detections;
+	ffld.dpmDetect("/home/alox/Tesi/workspace/Dummy/src/ffld/models/person_final2007.txt",m_srcImageRGB, m_threshold,r,detections);
+
+	//print detections to file using KITTI format for evaluation
+	ofstream myfile;
+	char filename[100];
+	sprintf(filename, "/home/alox/Tesi/detections/%06d.txt",frameNumber);
+	myfile.open(filename);
+
+	for (int i = 0; i < detections.size(); ++i) {
+		bool plausible = r.isPlausibleSize(detections[i].bottom(),detections[i].width());
+		if(plausible) {
+		myfile << "Pedestrian -1 -1 -10 "
+				<< detections[i].left() << " "
+				<< detections[i].top() << " "
+				<< detections[i].right() << " "
+				<< detections[i].bottom() << " "
+				<< "-1 -1 -1 -1000 -1000 -1000 -10 " << (plausible ? detections[i].score : (detections[i].score - 1))
+				<< endl;
+		}
+	}
+	myfile.close();
 
 	//Mat detectionResult = imread("/home/alox/Tesi/workspace/Dummy/src/ffld/result/butta.jpg");
 	//detectionResult.convertTo(detectionResult,CV_16UC3);
 	//CHOGVisualizer::MatToCImageRGB8(detectionResult,m_inputImageMono);
 	m_inputImageMono = m_srcImageRGB;
-
-	SearchRange r;
-	r.setSearchRange(image->W(),image->H(),m_pCam,m_inputImageMono);
+	r.draw(m_inputImageMono);
 
     // chiamiamo la funzione di disegno
     Output();
@@ -311,7 +405,7 @@ void CDummy::Output()
         if (m_showCircle)
         {
             m_pInputMonoWindow->SetColor(255, 255, 0);
-            m_pInputMonoWindow->DrawCircle(m_value, m_value, m_radius, false);
+            m_pInputMonoWindow->DrawCircle(m_value, m_value, m_threshold, false);
         }
 
         if (m_showText)

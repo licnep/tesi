@@ -157,9 +157,10 @@ void Mixture::convolve(const HOGPyramid & pyramid,
 	
 	// Transform the filters if needed
 #pragma omp critical
-	if (filterCache_.empty())
+	if (filterCache_.empty()) {
 		cacheFilters();
-	
+	}
+
 	while (!cached_);
 	
 	// Create a patchwork
@@ -195,7 +196,7 @@ void Mixture::convolve(const HOGPyramid & pyramid,
 		
 		for (size_t j = 0; j < tmp.size(); ++j)
 			tmp[j].swap(convolutions[offsets[i] + j]);
-		
+
 		models_[i].convolve(pyramid, tmp, scores[i], positions ? &(*positions)[i] : 0);
 	}
 }

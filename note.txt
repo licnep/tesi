@@ -33,6 +33,16 @@ conversione octave:
 load ./models/person_final2007.mat
 convertmodel(model,"./models/person_final2007.txt")
 
+30hz dpm:
+http://vision.cs.illinois.edu/ftvq/
+
+OPTICAL FLOW:
+
+https://www.youtube.com/results?search_query=realtime+optical+flow
+
+http://perso.ensta-paristech.fr/~garrigues/video_extruder.html
+
+
 ==========================================
 Alox:
 
@@ -41,7 +51,7 @@ il training anche di oggetti diversi sarebbe utile, per esempio, gambe di cavall
 Applicazione struttura occhio umano. A parte la fovea, il resto dell'occhio vede soprattutto in bianco e nero (e' anche piu' sensibile a basse luminosita'), ed ha una frequenza temporale maggiore, e maggiore sensibilita' al movimento, 
 poi la fovea va a guardare nel dettaglio con risoluzione maggiore e colori
 
-Anche informazione profondita' e' importante posso stimare la dimensione, un umano non puo' essere alto 5 metri :P
+Anche informazione profondita' e' importante posso stimare la dimensione, un umano non puo' essere alto 5 metri
 
 Problema di scelta della dimensione della finestra, va risolto. 
 

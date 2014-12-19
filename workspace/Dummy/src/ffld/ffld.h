@@ -34,11 +34,47 @@
 #include <Data/CImage/CImage.h>
 #include <Data/CImage/Images/CImageRGB8.h>
 
+#include <SearchRange.h>
+
 using namespace FFLD;
 using namespace std;
 
-//draws the detected people in the rectangle
-int dpmDetect(std::string model_path, cimage::CImageRGB8 & srcImage);
+static vl::chrono::CChronometer ffldChronometer;
+
+struct Detection : public FFLD::Rectangle
+{
+	HOGPyramid::Scalar score;
+	int l;
+	int x;
+	int y;
+
+	Detection() : score(0), l(0), x(0), y(0)
+	{
+	}
+
+	Detection(HOGPyramid::Scalar score, int l, int x, int y, FFLD::Rectangle bndbox) :
+	FFLD::Rectangle(bndbox), score(score), l(l), x(x), y(y)
+	{
+	}
+
+	bool operator<(const Detection & detection) const
+	{
+		return score > detection.score;
+	}
+};
+
+
+class CFfld {
+public:
+	//loads the model
+	int init(std::string model_path);
+
+	//draws the detected people in the rectangle
+	int dpmDetect(std::string model_path, cimage::CImageRGB8 & srcImage, double threshold, SearchRange r,vector<Detection> &detections);
+private:
+	Mixture mMixture;
+};
+
 
 // Test a mixture model (compute a ROC curve)
 int main_ffld(int argc, char * argv[], cimage::CImageRGB8 &srcImage);

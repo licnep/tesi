@@ -25,6 +25,7 @@
 #include "Intersector.h"
 #include "Mixture.h"
 #include "Scene.h"
+#include "SearchRange.h"
 
 #include <algorithm>
 #include <fstream>
@@ -76,28 +77,6 @@ inline int stop()
 
 using namespace FFLD;
 using namespace std;
-
-struct Detection : public FFLD::Rectangle
-{
-	HOGPyramid::Scalar score;
-	int l;
-	int x;
-	int y;
-	
-	Detection() : score(0), l(0), x(0), y(0)
-	{
-	}
-	
-	Detection(HOGPyramid::Scalar score, int l, int x, int y, FFLD::Rectangle bndbox) :
-	FFLD::Rectangle(bndbox), score(score), l(l), x(x), y(y)
-	{
-	}
-	
-	bool operator<(const Detection & detection) const
-	{
-		return score > detection.score;
-	}
-};
 
 // SimpleOpt array of valid options
 enum
@@ -246,7 +225,7 @@ void drawR(JPEGImage & image, const FFLD::Rectangle & rect, uint8_t r, uint8_t g
 
 void detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, int height, const HOGPyramid & pyramid,
 			double threshold, double overlap, const string image, ostream & out,
-			const string & images, vector<Detection> & detections)
+			const string & images, vector<Detection> & detections, SearchRange range = SearchRange())
 {
 	// Compute the scores
 	vector<HOGPyramid::Matrix> scores;
@@ -263,13 +242,16 @@ void detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, in
 	
 	//std::cout << "MIXTURE.MODELS SIZE = " << mixture.models().size() << std::endl; //6 models
 
-	for (int i = 0; i < sizes.size(); ++i)
+	for (int i = 0; i < sizes.size(); ++i) {
 		sizes[i] = mixture.models()[i].rootSize();
+		cout << sizes[i].first << "x" << sizes[i].second << endl;
+	}
 	
 	// For each scale
 	for (int i = pyramid.interval(); i < scores.size(); ++i) {
 		// Scale = 8 / 2^(1 - i / interval)
 		const double scale = pow(2.0, static_cast<double>(i) / pyramid.interval() + 2.0);
+		cout << "SCALE " << scale << endl;
 		
 		const int rows = scores[i].rows();
 		const int cols = scores[i].cols();
@@ -361,31 +343,23 @@ void detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, in
 
 			}
 			
-			// Draw the root last
-			drawR(im, detections[j], 255, 0, 0, 2);
-			math::Rect2i r(detections[j].left(),detections[j].top(),detections[j].right(),detections[j].bottom());
-			draw::Opaque<cimage::RGB8> brush(srcImage,cimage::RGB8(255,0,0));
-			draw::Rectangle(brush,r);
+			if (range.isPlausibleSize(detections[j].bottom(),detections[j].width()) ) {
+				// Draw the root last
+				drawR(im, detections[j], 255, 0, 0, 2);
+				math::Rect2i r(detections[j].left(),detections[j].top(),detections[j].right(),detections[j].bottom());
+				draw::Opaque<cimage::RGB8> brush(srcImage,cimage::RGB8(255,0,0));
+				draw::Rectangle(brush,r);
+			}
 		}
 		
 		//im.save(images + '/' + id + ".jpg");
-		cimage::Save("/home/alox/buttaScalata.jpg",srcImage);
+		//cimage::Save("/home/alox/buttaScalata.jpg",srcImage);
 	}
 }
 
-int dpmDetect(std::string model_path,cimage::CImageRGB8 & srcImage) {
-	// Default parameters
+//Load the model, transform it and cache it
+int CFfld::init(std::string model_path) {
 	string model = model_path;
-	Object::Name name = Object::PERSON;
-	string results;
-	string images = "asdNotEmpty";
-	int nbNegativeScenes = -1;
-	int padding = 12;
-	int interval = 10;
-	double threshold = 0.0;
-	double overlap = 0.5;
-
-	JPEGImage butta;
 
 	// Try to open the mixture
 	ifstream in(model.c_str(), ios::binary);
@@ -396,19 +370,61 @@ int dpmDetect(std::string model_path,cimage::CImageRGB8 & srcImage) {
 		return -1;
 	}
 
-	Mixture mixture;
-	in >> mixture;
+	//Mixture mixture;
+	in >> mMixture;
 
-	if (mixture.empty()) {
+	if (mMixture.empty()) {
 		showUsage();
 		cerr << "\nInvalid model file " << model << endl;
 		return -1;
 	}
 
+
+	start();
+
+	//mMixture.cacheFilters();
+
+	cout << "Transformed the filters in " << stop() << " ms" << endl;
+
+}
+
+int CFfld::dpmDetect(std::string model_path,cimage::CImageRGB8 & srcImage, double threshold, SearchRange r, vector<Detection> &detections) {
+
+	// Default parameters
+	string model = model_path;
+	Object::Name name = Object::PERSON;
+	string results;
+	string images = "asdNotEmpty";
+	int nbNegativeScenes = -1;
+	int padding = 12;
+	int interval = 1; //10;
+	//double threshold = -0.5;//0.0; -0.5 abbastanza bene
+	double overlap = 0.5;
+
+	//JPEGImage butta;
+	/*
+	// Try to open the mixture
+	ifstream in(model.c_str(), ios::binary);
+
+	if (!in.is_open()) {
+		showUsage();
+		cerr << "\nInvalid model file " << model << endl;
+		return -1;
+	}
+
+	//Mixture mixture;
+	in >> mMixture;
+
+	if (mMixture.empty()) {
+		showUsage();
+		cerr << "\nInvalid model file " << model << endl;
+		return -1;
+	}*/
+
 	// Compute the HOG features
 	start();
 
-	HOGPyramid pyramid(srcImage, padding, padding, interval);
+	HOGPyramid pyramid(srcImage, r, padding, padding, interval);
 
 	if (pyramid.empty()) {
 		showUsage();
@@ -431,17 +447,17 @@ int dpmDetect(std::string model_path,cimage::CImageRGB8 & srcImage) {
 
 	start();
 
-	mixture.cacheFilters();
+	//mMixture.cacheFilters();
 
 	cout << "Transformed the filters in " << stop() << " ms" << endl;
 
 	// Compute the detections
 	start();
 
-	vector<Detection> detections;
+	//vector<Detection> detections;
 
 	//detect(mixture, image.width(), image.height(), pyramid, threshold, overlap, file, out,images, detections);
-	detect(srcImage,mixture, srcImage.W(), srcImage.H(), pyramid, threshold, overlap, "filenameBUTTA", std::cout ,images, detections);
+	detect(srcImage,mMixture, srcImage.W(), srcImage.H(), pyramid, threshold, overlap, "filenameBUTTA", std::cout ,images, detections, r);
 
 	cout << "Computed the convolutions and distance transforms in " << stop() << " ms" << endl;
 
@@ -624,7 +640,7 @@ int main_ffld(int argc, char * argv[], cimage::CImageRGB8 & srcImage)
 		// Compute the HOG features
 		start();
 		
-		HOGPyramid pyramid(srcImage, padding, padding, interval);
+		HOGPyramid pyramid(srcImage, SearchRange(), padding, padding, interval);
 		
 		if (pyramid.empty()) {
 			showUsage();
@@ -757,7 +773,7 @@ int main_ffld(int argc, char * argv[], cimage::CImageRGB8 & srcImage)
 #pragma omp parallel for private(i)
 		for (i = 0; i < scenes.size(); ++i) {
 			JPEGImage image(scenes[i].filename());
-			HOGPyramid pyramid(srcImage, padding, padding, interval);
+			HOGPyramid pyramid(srcImage, SearchRange(), padding, padding, interval);
 			
 			// Compute the detections
 			vector<Detection> detections;

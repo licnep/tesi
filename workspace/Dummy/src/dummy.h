@@ -28,6 +28,7 @@
 #include <UI/Panel/Panel.h>
 
 #include <opencv2/opencv.hpp>
+#include "ffld/ffld.h"
 
 #include <string>
 #include <vector>
@@ -73,6 +74,9 @@ class CDummy : public CApplication
 
         dev::CCamera * m_pCam;
 	Synchronizer_Basic m_synchro;
+
+		vl::chrono::CChronometer m_cvChronometer;
+		CFfld ffld;
         
         unsigned int m_width, m_height;
 
@@ -80,7 +84,7 @@ class CDummy : public CApplication
         ui::win::CWindow* m_pInputHOGWindow;
         ui::win::CWindow* m_pDetectedWindow;
 
-        float m_radius;
+        float m_threshold, m_W0, m_W1;
         int m_value;
 
         bool m_showInputMono;

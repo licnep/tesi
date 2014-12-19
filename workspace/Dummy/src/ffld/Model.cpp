@@ -114,7 +114,10 @@ void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matri
 					 vector<HOGPyramid::Matrix> & scores,
 					 vector<vector<Positions> > * positions) const
 {
-	std::cout << "Model::Convolve" << std::endl;
+	std::cout << "Model::Convolve::DIMENSIONE MODELLO:" << std::endl;
+	std::cout << "width: " << this->rootSize().first << "  height: " << this->rootSize().second << std::endl;
+	//std::cout << "Model::Convolve::DIMENSIONE PARTI:" << std::endl; //sempre 6x6
+	//std::cout << "width: " << this->partSize().first << "  height: " << this->partSize().second << std::endl;
 
 	// Invalid parameters
 	if (empty() || pyramid.empty() || (convolutions.size() != parts_.size()))
@@ -138,7 +141,8 @@ void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matri
 	
 	// Temporary data needed by the distance transforms
 	vector<Scalar> tmp(pyramid.levels()[0].size());
-	
+
+
 	// For each part
 	for (int i = 0; i < nbParts; ++i) {
 		// For each part level (the root is interval higher in the pyramid)
@@ -162,7 +166,7 @@ void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matri
 				}
 			}
 		}
-	}
+	}/**/
 	
 	scores.swap(convolutions[0]);
 	
