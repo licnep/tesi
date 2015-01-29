@@ -98,6 +98,9 @@ public:
 	/// Returns the number of levels per octave in the pyramid.
 	int interval() const;
 	
+	/// Returns the offsets
+	inline std::vector<std::pair<int,int> > offsets() {return offsets_;}
+
 	/// Returns the pyramid levels.
 	/// @note Scales are given by the following formula: 2^(1 - @c index / @c interval).
 	const std::vector<Level> & levels() const;
@@ -151,7 +154,7 @@ private:
 	// Part Based Models" by Felzenszwalb, Girshick, McAllester and Ramanan, PAMI10
 	// cellSize should be either 4 or 8
 	static void Hog(const cimage::CImageRGB8 & srcImage, Level & level, int padx, int pady,
-					int cellSize = 8);
+					int cellSize = 8, int minRow = 0, int maxRow = 0);
 #else
 	// Felzenszwalb version (not as accurate, provided for compatibility only)
 	static void Hog(const uint8_t * bits, int width, int height, int depth, Level & level,
@@ -174,6 +177,10 @@ private:
 	int pady_;
 	int interval_;
 	std::vector<Level> levels_;
+	//for some levels (the highest resolution one) we dont use the entire image, but only a subset of rows near the horizon
+	//where small pedestrians could actually be present.
+	//this vector contains, for each level, the first and last row (0,0 if nothing has been cut)
+	std::vector<std::pair<int,int> > offsets_;
 };
 }
 

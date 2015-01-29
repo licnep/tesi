@@ -467,6 +467,222 @@ ffld/ffld.cpp.s:
 	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.s
 .PHONY : ffld/ffld.cpp.s
 
+latentsvm/lsvmc_featurepyramid.o: latentsvm/lsvmc_featurepyramid.cpp.o
+.PHONY : latentsvm/lsvmc_featurepyramid.o
+
+# target to build an object file
+latentsvm/lsvmc_featurepyramid.cpp.o:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.o
+.PHONY : latentsvm/lsvmc_featurepyramid.cpp.o
+
+latentsvm/lsvmc_featurepyramid.i: latentsvm/lsvmc_featurepyramid.cpp.i
+.PHONY : latentsvm/lsvmc_featurepyramid.i
+
+# target to preprocess a source file
+latentsvm/lsvmc_featurepyramid.cpp.i:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.i
+.PHONY : latentsvm/lsvmc_featurepyramid.cpp.i
+
+latentsvm/lsvmc_featurepyramid.s: latentsvm/lsvmc_featurepyramid.cpp.s
+.PHONY : latentsvm/lsvmc_featurepyramid.s
+
+# target to generate assembly for a file
+latentsvm/lsvmc_featurepyramid.cpp.s:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.s
+.PHONY : latentsvm/lsvmc_featurepyramid.cpp.s
+
+latentsvm/lsvmc_function.o: latentsvm/lsvmc_function.cpp.o
+.PHONY : latentsvm/lsvmc_function.o
+
+# target to build an object file
+latentsvm/lsvmc_function.cpp.o:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.o
+.PHONY : latentsvm/lsvmc_function.cpp.o
+
+latentsvm/lsvmc_function.i: latentsvm/lsvmc_function.cpp.i
+.PHONY : latentsvm/lsvmc_function.i
+
+# target to preprocess a source file
+latentsvm/lsvmc_function.cpp.i:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.i
+.PHONY : latentsvm/lsvmc_function.cpp.i
+
+latentsvm/lsvmc_function.s: latentsvm/lsvmc_function.cpp.s
+.PHONY : latentsvm/lsvmc_function.s
+
+# target to generate assembly for a file
+latentsvm/lsvmc_function.cpp.s:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.s
+.PHONY : latentsvm/lsvmc_function.cpp.s
+
+latentsvm/lsvmc_latentsvm.o: latentsvm/lsvmc_latentsvm.cpp.o
+.PHONY : latentsvm/lsvmc_latentsvm.o
+
+# target to build an object file
+latentsvm/lsvmc_latentsvm.cpp.o:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.o
+.PHONY : latentsvm/lsvmc_latentsvm.cpp.o
+
+latentsvm/lsvmc_latentsvm.i: latentsvm/lsvmc_latentsvm.cpp.i
+.PHONY : latentsvm/lsvmc_latentsvm.i
+
+# target to preprocess a source file
+latentsvm/lsvmc_latentsvm.cpp.i:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.i
+.PHONY : latentsvm/lsvmc_latentsvm.cpp.i
+
+latentsvm/lsvmc_latentsvm.s: latentsvm/lsvmc_latentsvm.cpp.s
+.PHONY : latentsvm/lsvmc_latentsvm.s
+
+# target to generate assembly for a file
+latentsvm/lsvmc_latentsvm.cpp.s:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.s
+.PHONY : latentsvm/lsvmc_latentsvm.cpp.s
+
+latentsvm/lsvmc_latentsvmdetector.o: latentsvm/lsvmc_latentsvmdetector.cpp.o
+.PHONY : latentsvm/lsvmc_latentsvmdetector.o
+
+# target to build an object file
+latentsvm/lsvmc_latentsvmdetector.cpp.o:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.o
+.PHONY : latentsvm/lsvmc_latentsvmdetector.cpp.o
+
+latentsvm/lsvmc_latentsvmdetector.i: latentsvm/lsvmc_latentsvmdetector.cpp.i
+.PHONY : latentsvm/lsvmc_latentsvmdetector.i
+
+# target to preprocess a source file
+latentsvm/lsvmc_latentsvmdetector.cpp.i:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.i
+.PHONY : latentsvm/lsvmc_latentsvmdetector.cpp.i
+
+latentsvm/lsvmc_latentsvmdetector.s: latentsvm/lsvmc_latentsvmdetector.cpp.s
+.PHONY : latentsvm/lsvmc_latentsvmdetector.s
+
+# target to generate assembly for a file
+latentsvm/lsvmc_latentsvmdetector.cpp.s:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.s
+.PHONY : latentsvm/lsvmc_latentsvmdetector.cpp.s
+
+latentsvm/lsvmc_matching.o: latentsvm/lsvmc_matching.cpp.o
+.PHONY : latentsvm/lsvmc_matching.o
+
+# target to build an object file
+latentsvm/lsvmc_matching.cpp.o:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.o
+.PHONY : latentsvm/lsvmc_matching.cpp.o
+
+latentsvm/lsvmc_matching.i: latentsvm/lsvmc_matching.cpp.i
+.PHONY : latentsvm/lsvmc_matching.i
+
+# target to preprocess a source file
+latentsvm/lsvmc_matching.cpp.i:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.i
+.PHONY : latentsvm/lsvmc_matching.cpp.i
+
+latentsvm/lsvmc_matching.s: latentsvm/lsvmc_matching.cpp.s
+.PHONY : latentsvm/lsvmc_matching.s
+
+# target to generate assembly for a file
+latentsvm/lsvmc_matching.cpp.s:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.s
+.PHONY : latentsvm/lsvmc_matching.cpp.s
+
+latentsvm/lsvmc_parser.o: latentsvm/lsvmc_parser.cpp.o
+.PHONY : latentsvm/lsvmc_parser.o
+
+# target to build an object file
+latentsvm/lsvmc_parser.cpp.o:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.o
+.PHONY : latentsvm/lsvmc_parser.cpp.o
+
+latentsvm/lsvmc_parser.i: latentsvm/lsvmc_parser.cpp.i
+.PHONY : latentsvm/lsvmc_parser.i
+
+# target to preprocess a source file
+latentsvm/lsvmc_parser.cpp.i:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.i
+.PHONY : latentsvm/lsvmc_parser.cpp.i
+
+latentsvm/lsvmc_parser.s: latentsvm/lsvmc_parser.cpp.s
+.PHONY : latentsvm/lsvmc_parser.s
+
+# target to generate assembly for a file
+latentsvm/lsvmc_parser.cpp.s:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.s
+.PHONY : latentsvm/lsvmc_parser.cpp.s
+
+latentsvm/lsvmc_resizeimg.o: latentsvm/lsvmc_resizeimg.cpp.o
+.PHONY : latentsvm/lsvmc_resizeimg.o
+
+# target to build an object file
+latentsvm/lsvmc_resizeimg.cpp.o:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.o
+.PHONY : latentsvm/lsvmc_resizeimg.cpp.o
+
+latentsvm/lsvmc_resizeimg.i: latentsvm/lsvmc_resizeimg.cpp.i
+.PHONY : latentsvm/lsvmc_resizeimg.i
+
+# target to preprocess a source file
+latentsvm/lsvmc_resizeimg.cpp.i:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.i
+.PHONY : latentsvm/lsvmc_resizeimg.cpp.i
+
+latentsvm/lsvmc_resizeimg.s: latentsvm/lsvmc_resizeimg.cpp.s
+.PHONY : latentsvm/lsvmc_resizeimg.s
+
+# target to generate assembly for a file
+latentsvm/lsvmc_resizeimg.cpp.s:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.s
+.PHONY : latentsvm/lsvmc_resizeimg.cpp.s
+
+latentsvm/lsvmc_routine.o: latentsvm/lsvmc_routine.cpp.o
+.PHONY : latentsvm/lsvmc_routine.o
+
+# target to build an object file
+latentsvm/lsvmc_routine.cpp.o:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.o
+.PHONY : latentsvm/lsvmc_routine.cpp.o
+
+latentsvm/lsvmc_routine.i: latentsvm/lsvmc_routine.cpp.i
+.PHONY : latentsvm/lsvmc_routine.i
+
+# target to preprocess a source file
+latentsvm/lsvmc_routine.cpp.i:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.i
+.PHONY : latentsvm/lsvmc_routine.cpp.i
+
+latentsvm/lsvmc_routine.s: latentsvm/lsvmc_routine.cpp.s
+.PHONY : latentsvm/lsvmc_routine.s
+
+# target to generate assembly for a file
+latentsvm/lsvmc_routine.cpp.s:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.s
+.PHONY : latentsvm/lsvmc_routine.cpp.s
+
+latentsvm/precomp.o: latentsvm/precomp.cpp.o
+.PHONY : latentsvm/precomp.o
+
+# target to build an object file
+latentsvm/precomp.cpp.o:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.o
+.PHONY : latentsvm/precomp.cpp.o
+
+latentsvm/precomp.i: latentsvm/precomp.cpp.i
+.PHONY : latentsvm/precomp.i
+
+# target to preprocess a source file
+latentsvm/precomp.cpp.i:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.i
+.PHONY : latentsvm/precomp.cpp.i
+
+latentsvm/precomp.s: latentsvm/precomp.cpp.s
+.PHONY : latentsvm/precomp.s
+
+# target to generate assembly for a file
+latentsvm/precomp.cpp.s:
+	cd /home/alox/Tesi/workspace/Dummy-build && $(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.s
+.PHONY : latentsvm/precomp.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -518,6 +734,33 @@ help:
 	@echo "... ffld/ffld.o"
 	@echo "... ffld/ffld.i"
 	@echo "... ffld/ffld.s"
+	@echo "... latentsvm/lsvmc_featurepyramid.o"
+	@echo "... latentsvm/lsvmc_featurepyramid.i"
+	@echo "... latentsvm/lsvmc_featurepyramid.s"
+	@echo "... latentsvm/lsvmc_function.o"
+	@echo "... latentsvm/lsvmc_function.i"
+	@echo "... latentsvm/lsvmc_function.s"
+	@echo "... latentsvm/lsvmc_latentsvm.o"
+	@echo "... latentsvm/lsvmc_latentsvm.i"
+	@echo "... latentsvm/lsvmc_latentsvm.s"
+	@echo "... latentsvm/lsvmc_latentsvmdetector.o"
+	@echo "... latentsvm/lsvmc_latentsvmdetector.i"
+	@echo "... latentsvm/lsvmc_latentsvmdetector.s"
+	@echo "... latentsvm/lsvmc_matching.o"
+	@echo "... latentsvm/lsvmc_matching.i"
+	@echo "... latentsvm/lsvmc_matching.s"
+	@echo "... latentsvm/lsvmc_parser.o"
+	@echo "... latentsvm/lsvmc_parser.i"
+	@echo "... latentsvm/lsvmc_parser.s"
+	@echo "... latentsvm/lsvmc_resizeimg.o"
+	@echo "... latentsvm/lsvmc_resizeimg.i"
+	@echo "... latentsvm/lsvmc_resizeimg.s"
+	@echo "... latentsvm/lsvmc_routine.o"
+	@echo "... latentsvm/lsvmc_routine.i"
+	@echo "... latentsvm/lsvmc_routine.s"
+	@echo "... latentsvm/precomp.o"
+	@echo "... latentsvm/precomp.i"
+	@echo "... latentsvm/precomp.s"
 .PHONY : help
 
 

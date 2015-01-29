@@ -33,6 +33,7 @@
 //for debug only:
 #include <boost/lexical_cast.hpp>
 #include <Data/Math/Rects.h>
+#include <Data/CImage/Images/CImageMono8.h>
 #include <Processing/Vision/CImage/Draw/Brushes.h>
 #include <Processing/Vision/CImage/Draw/Box.h>
 #include <Processing/Vision/CImage/Draw/Line.h>
@@ -66,11 +67,14 @@ pady_(0), interval_(0)
 {
 	ffldChronometer.Start();
 
-	int nSkyPixels = srcImage.H() * 0.3; //only keep the lower 70% of the image
+	int nSkyPixels = srcImage.H() * 0.3 //only keep the lower 70% of the image
 	cimage::CImageRGB8 croppedImage(srcImage.W(),srcImage.H() - nSkyPixels);
 	/*cimage::Crop(srcImage,croppedImg,0,nSkyPixels,srcImage.W()-1,srcImage.H() - 1,true);
 	string percorso = "/home/alox/cropped.jpg";
 	cimage::Save(percorso,croppedImg);*/
+
+	std::cout << "SKYPIXELS = " << nSkyPixels << std::endl;
+	//std::cout << "SKYPIXELS range = " << range.getSkyHeight() << std::endl;
 
 	int cols = srcImage.W();
 	cimage::RGB8* srcBuffer = srcImage.Buffer();
@@ -98,6 +102,7 @@ pady_(0), interval_(0)
 	pady_ = pady;
 	interval_ = interval;
 	levels_.resize(maxScale + 1);
+	offsets_.resize(maxScale + 1);
 	
 	std::cout << "LEVELS: " << maxScale+1 << std::endl;
 
@@ -117,7 +122,23 @@ pady_(0), interval_(0)
 
 		// First octave at twice the image resolution
 #ifndef FFLD_HOGPYRAMID_FELZENSZWALB_FEATURES
-		Hog(scaledImg, levels_[i], padx, pady, 4);
+		//was: Hog(scaledImg, levels_[i], padx, pady, 4);
+		std::pair<int,int> minMax_ = range.getUsefulLineRange(8*4/scale); //hog cell size (one level above)=8, filter base size=4
+		//cout << scale << " -- " << srcImage.H() <<" AAAAAAAAAAA:::" <<  minMax_.first << " BBBBBBBBB::" << minMax_.second << endl;
+		Hog(scaledImg, levels_[i], padx, pady, 4, (minMax_.first-nSkyPixels)*scale, (minMax_.second-nSkyPixels)*scale);
+		offsets_[i].first = minMax_.first;
+		offsets_[i].second = minMax_.second;
+
+		/**solo per debug elimina----------
+		cimage::CImageMono8 hogVis(levels_[i].cols(),levels_[i].rows());
+		for (int r=0;r<levels_[i].rows();r++) {
+			for (int c=0;c<levels_[i].cols();c++) {
+				hogVis.Buffer()[r*levels_[i].cols()+c] = levels_[i](r,c)(1)*255;
+			}
+		}
+		string percz = "/home/alox/buttaHog"+ boost::lexical_cast<std::string>(i) + ".jpg";
+		cimage::Save(percz,hogVis);
+		//*/
 
 		// Second octave at the original resolution
 		if (i + interval <= maxScale) {
@@ -125,17 +146,18 @@ pady_(0), interval_(0)
 		}
 
 		/**solo per debug elimina-------------
+		//filtro e' 4x11
 		draw::Opaque<cimage::RGB8> brush(scaledImg,cimage::RGB8(255,0,0));
 		draw::Rectangle(brush,math::Rect2i(2,2,8*4,8*11));
-		std::cout <<"SCALA:"<< scale << "STO cercando Grosso: " << 8*6/scale << std::endl;
+		std::cout <<"SCALA:"<< scale << "STO cercando Grosso: " << 8*4/scale << std::endl;
 		std::pair<int,int> minMax = range.getUsefulLineRange(8*4/scale); //4 e' la larghezza della base in feature di hog, che corrispondono a 8 pixel. Diviso per la scala perche' se riduco l'immagine a meta' sto cercando qualcosa il doppio piu' grande
 		std::cout << "MIN:" << minMax.first << " MAX:" << minMax.second << std::endl; //linee nell'immagine a risoluzione originale, vanno scalate
-		draw::Line(brush,0,minMax.first*scale,scaledImg.W(),minMax.first*scale);
-		draw::Line(brush,0,minMax.second*scale,scaledImg.W(),minMax.second*scale);
-		string percorso = "/home/alox/buttaScalata"+ boost::lexical_cast<std::string>(i) + ".jpg";
+		draw::Line(brush,0,(minMax.first-nSkyPixels)*scale,scaledImg.W(),(minMax.first-nSkyPixels)*scale);
+		draw::Line(brush,0,(minMax.second-nSkyPixels)*scale,scaledImg.W(),(minMax.second-nSkyPixels)*scale);
+		string percorso = "/home/alox/buttaScalata"+ boost::lexical_cast<std::string>(i+interval) + ".jpg";
 		cimage::Save(percorso,scaledImg);
-		
-		cimage::Convert(srcImage,scaledImg,cimage::BILINEAR_INTERPOLATION);
+		/*
+		cimage::Convert(croppedImage,scaledImg,cimage::BILINEAR_INTERPOLATION);
 		draw::Opaque<cimage::RGB8> brushi(scaledImg,cimage::RGB8(255,0,0));
 		draw::Rectangle(brushi,math::Rect2i(2,2,4*4,4*11));
 		std::pair<int,int> minMax2 = range.getUsefulLineRange(4*6/scale);
@@ -158,7 +180,7 @@ pady_(0), interval_(0)
 			std::pair<int,int> minMax = range.getUsefulLineRange(8*4/scale); //6 e' la larghezza della base in feature di hog, che corrispondono a 8 pixel. Diviso per la scala perche' se riduco l'immagine a meta' sto cercando qualcosa il doppio piu' grande
 			draw::Line(brush2,0,minMax.first*scale,scaledImg2.W(),minMax.first*scale);
 			draw::Line(brush2,0,minMax.second*scale,scaledImg2.W(),minMax.second*scale);
-			string percorso = "/home/alox/buttaScalata_"+ boost::lexical_cast<std::string>(j) + "." + boost::lexical_cast<std::string>(i) +".jpg";
+			string percorso = "/home/alox/buttaScalata"+ boost::lexical_cast<std::string>(i + j * interval) +".jpg";
 			cimage::Save(percorso,scaledImg2);
 			/**/
 		}
@@ -198,6 +220,11 @@ pady_(0), interval_(0)
 #endif
 	ffldChronometer.Stop();
 	cout << ffldChronometer << endl;
+
+	for (int i=0;i<maxScale;i++) {
+		std::cout << "OFFSET min=" << offsets_[i].first << std::endl;
+	}
+
 }
 
 int HOGPyramid::padx() const
@@ -367,7 +394,7 @@ template <class Matrix, int CellSize>
 }
 
 void HOGPyramid::Hog(const cimage::CImageRGB8 & srcImage, Level & level, int padx, int pady,
-					 int cellSize)
+					 int cellSize, int minRow, int maxRow)
 {
 	// Table of all the possible tangents (1MB)
 	static Scalar ATAN2_TABLE[512][512] = {{0}};
@@ -396,9 +423,12 @@ void HOGPyramid::Hog(const cimage::CImageRGB8 & srcImage, Level & level, int pad
 	
 	// Get all the image members
 	const int width = srcImage.W(); //image.width();
-	const int height = srcImage.H(); //image.height();
+	int height = srcImage.H(); //image.height();
 	const int depth = srcImage.chs(); //image.depth(); //
 	
+	if (minRow!=0) height-=minRow;
+	if (maxRow!=0) height-=srcImage.H()-maxRow;
+
 	// Make sure the image is big enough
 	assert(width >= cellSize / 2);
 	assert(height >= cellSize / 2);
@@ -413,8 +443,9 @@ void HOGPyramid::Hog(const cimage::CImageRGB8 & srcImage, Level & level, int pad
 	
 	const cimage::RGB8* srcBuffer = srcImage.Buffer();
 
-	for (int y = 0; y < height; ++y) {
-		const int yp = min(y + 1, height - 1);
+	//for (int y = 0; y < height; ++y) {
+	for (int y = minRow; y < minRow+height; ++y) {
+		const int yp = min(y + 1, (minRow+height) - 1);
 		const int ym = max(y - 1, 0);
 		
 		//const uint8_t * linep = reinterpret_cast<const uint8_t *>(image.scanLine(yp));
@@ -460,11 +491,11 @@ void HOGPyramid::Hog(const cimage::CImageRGB8 & srcImage, Level & level, int pad
 			const Scalar alpha = theta - theta0;
 			
 			if (cellSize == 8)
-				detail::interpolate<Level, 8>(x + padx * cellSize, y + pady * cellSize,
+				detail::interpolate<Level, 8>(x + padx * cellSize, (y-minRow) + pady * cellSize,
 												theta0, theta1, magnitude * (1 - alpha),
 												magnitude * alpha, level);
 			else // cellSize == 4
-				detail::interpolate<Level, 4>(x + padx * cellSize, y + pady * cellSize,
+				detail::interpolate<Level, 4>(x + padx * cellSize, (y-minRow) + pady * cellSize,
 												theta0, theta1, magnitude * (1 - alpha),
 												magnitude * alpha, level);
 		}

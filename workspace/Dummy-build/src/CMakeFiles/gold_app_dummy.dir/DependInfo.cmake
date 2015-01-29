@@ -16,6 +16,15 @@ SET(CMAKE_DEPENDS_CHECK_CXX
   "/home/alox/Tesi/workspace/Dummy/src/ffld/Scene.cpp" "/home/alox/Tesi/workspace/Dummy-build/src/CMakeFiles/gold_app_dummy.dir/ffld/Scene.cpp.o"
   "/home/alox/Tesi/workspace/Dummy/src/ffld/SearchRange.cpp" "/home/alox/Tesi/workspace/Dummy-build/src/CMakeFiles/gold_app_dummy.dir/ffld/SearchRange.cpp.o"
   "/home/alox/Tesi/workspace/Dummy/src/ffld/ffld.cpp" "/home/alox/Tesi/workspace/Dummy-build/src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.o"
+  "/home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_featurepyramid.cpp" "/home/alox/Tesi/workspace/Dummy-build/src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.o"
+  "/home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_function.cpp" "/home/alox/Tesi/workspace/Dummy-build/src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.o"
+  "/home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_latentsvm.cpp" "/home/alox/Tesi/workspace/Dummy-build/src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.o"
+  "/home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_latentsvmdetector.cpp" "/home/alox/Tesi/workspace/Dummy-build/src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.o"
+  "/home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_matching.cpp" "/home/alox/Tesi/workspace/Dummy-build/src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.o"
+  "/home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_parser.cpp" "/home/alox/Tesi/workspace/Dummy-build/src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.o"
+  "/home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_resizeimg.cpp" "/home/alox/Tesi/workspace/Dummy-build/src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.o"
+  "/home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_routine.cpp" "/home/alox/Tesi/workspace/Dummy-build/src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.o"
+  "/home/alox/Tesi/workspace/Dummy/src/latentsvm/precomp.cpp" "/home/alox/Tesi/workspace/Dummy-build/src/CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 

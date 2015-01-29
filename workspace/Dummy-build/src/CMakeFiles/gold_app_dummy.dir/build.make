@@ -331,6 +331,213 @@ src/CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o.provides: src/CMakeFiles/go
 
 src/CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o.provides.build: src/CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o
 
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.o: src/CMakeFiles/gold_app_dummy.dir/flags.make
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.o: /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_function.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/alox/Tesi/workspace/Dummy-build/CMakeFiles $(CMAKE_PROGRESS_13)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.o"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.o -c /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_function.cpp
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.i"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_function.cpp > CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.i
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.s"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_function.cpp -o CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.s
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.o.requires:
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.o.requires
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.o.provides: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.o.provides.build
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.o.provides
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.o.provides.build: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.o
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.o: src/CMakeFiles/gold_app_dummy.dir/flags.make
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.o: /home/alox/Tesi/workspace/Dummy/src/latentsvm/precomp.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/alox/Tesi/workspace/Dummy-build/CMakeFiles $(CMAKE_PROGRESS_14)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.o"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.o -c /home/alox/Tesi/workspace/Dummy/src/latentsvm/precomp.cpp
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.i"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/alox/Tesi/workspace/Dummy/src/latentsvm/precomp.cpp > CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.i
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.s"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/alox/Tesi/workspace/Dummy/src/latentsvm/precomp.cpp -o CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.s
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.o.requires:
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.o.requires
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.o.provides: src/CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.o.provides.build
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.o.provides
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.o.provides.build: src/CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.o
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.o: src/CMakeFiles/gold_app_dummy.dir/flags.make
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.o: /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_featurepyramid.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/alox/Tesi/workspace/Dummy-build/CMakeFiles $(CMAKE_PROGRESS_15)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.o"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.o -c /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_featurepyramid.cpp
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.i"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_featurepyramid.cpp > CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.i
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.s"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_featurepyramid.cpp -o CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.s
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.o.requires:
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.o.requires
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.o.provides: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.o.provides.build
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.o.provides
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.o.provides.build: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.o
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.o: src/CMakeFiles/gold_app_dummy.dir/flags.make
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.o: /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_latentsvmdetector.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/alox/Tesi/workspace/Dummy-build/CMakeFiles $(CMAKE_PROGRESS_16)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.o"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.o -c /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_latentsvmdetector.cpp
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.i"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_latentsvmdetector.cpp > CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.i
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.s"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_latentsvmdetector.cpp -o CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.s
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.o.requires:
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.o.requires
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.o.provides: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.o.provides.build
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.o.provides
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.o.provides.build: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.o
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.o: src/CMakeFiles/gold_app_dummy.dir/flags.make
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.o: /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_parser.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/alox/Tesi/workspace/Dummy-build/CMakeFiles $(CMAKE_PROGRESS_17)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.o"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.o -c /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_parser.cpp
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.i"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_parser.cpp > CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.i
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.s"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_parser.cpp -o CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.s
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.o.requires:
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.o.requires
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.o.provides: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.o.provides.build
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.o.provides
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.o.provides.build: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.o
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.o: src/CMakeFiles/gold_app_dummy.dir/flags.make
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.o: /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_matching.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/alox/Tesi/workspace/Dummy-build/CMakeFiles $(CMAKE_PROGRESS_18)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.o"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.o -c /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_matching.cpp
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.i"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_matching.cpp > CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.i
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.s"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_matching.cpp -o CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.s
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.o.requires:
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.o.requires
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.o.provides: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.o.provides.build
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.o.provides
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.o.provides.build: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.o
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.o: src/CMakeFiles/gold_app_dummy.dir/flags.make
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.o: /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_latentsvm.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/alox/Tesi/workspace/Dummy-build/CMakeFiles $(CMAKE_PROGRESS_19)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.o"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.o -c /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_latentsvm.cpp
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.i"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_latentsvm.cpp > CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.i
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.s"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_latentsvm.cpp -o CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.s
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.o.requires:
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.o.requires
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.o.provides: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.o.provides.build
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.o.provides
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.o.provides.build: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.o
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.o: src/CMakeFiles/gold_app_dummy.dir/flags.make
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.o: /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_routine.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/alox/Tesi/workspace/Dummy-build/CMakeFiles $(CMAKE_PROGRESS_20)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.o"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.o -c /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_routine.cpp
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.i"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_routine.cpp > CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.i
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.s"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_routine.cpp -o CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.s
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.o.requires:
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.o.requires
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.o.provides: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.o.provides.build
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.o.provides
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.o.provides.build: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.o
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.o: src/CMakeFiles/gold_app_dummy.dir/flags.make
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.o: /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_resizeimg.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/alox/Tesi/workspace/Dummy-build/CMakeFiles $(CMAKE_PROGRESS_21)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.o"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.o -c /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_resizeimg.cpp
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.i"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_resizeimg.cpp > CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.i
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.s"
+	cd /home/alox/Tesi/workspace/Dummy-build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_resizeimg.cpp -o CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.s
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.o.requires:
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.o.requires
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.o.provides: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/gold_app_dummy.dir/build.make src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.o.provides.build
+.PHONY : src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.o.provides
+
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.o.provides.build: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.o
+
 # Object files for target gold_app_dummy
 gold_app_dummy_OBJECTS = \
 "CMakeFiles/gold_app_dummy.dir/dummy.cpp.o" \
@@ -344,7 +551,16 @@ gold_app_dummy_OBJECTS = \
 "CMakeFiles/gold_app_dummy.dir/ffld/JPEGImage.cpp.o" \
 "CMakeFiles/gold_app_dummy.dir/ffld/SearchRange.cpp.o" \
 "CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.o" \
-"CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o"
+"CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o" \
+"CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.o" \
+"CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.o" \
+"CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.o" \
+"CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.o" \
+"CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.o" \
+"CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.o" \
+"CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.o" \
+"CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.o" \
+"CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.o"
 
 # External object files for target gold_app_dummy
 gold_app_dummy_EXTERNAL_OBJECTS =
@@ -361,6 +577,15 @@ gold_app_dummy_EXTERNAL_OBJECTS =
 /home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/ffld/SearchRange.cpp.o
 /home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.o
 /home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.o
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.o
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.o
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.o
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.o
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.o
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.o
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.o
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.o
 /home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/build.make
 /home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /usr/lib/x86_64-linux-gnu/libfftw3f.so
 /home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /usr/lib/x86_64-linux-gnu/libjpeg.so
@@ -391,6 +616,18 @@ gold_app_dummy_EXTERNAL_OBJECTS =
 /home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /usr/lib/x86_64-linux-gnu/libboost_signals.so
 /home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /usr/lib/x86_64-linux-gnu/libboost_system.so
 /home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /usr/lib/x86_64-linux-gnu/libboost_thread.so
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /usr/local/lib/libopencv_calib3d.so
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /usr/lib/x86_64-linux-gnu/libopencv_contrib.so
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /usr/local/lib/libopencv_core.so
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /usr/local/lib/libopencv_features2d.so
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /usr/local/lib/libopencv_flann.so
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /usr/lib/x86_64-linux-gnu/libopencv_gpu.so
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /usr/local/lib/libopencv_highgui.so
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /usr/local/lib/libopencv_imgproc.so
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /usr/lib/x86_64-linux-gnu/libopencv_legacy.so
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /usr/local/lib/libopencv_ml.so
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /usr/local/lib/libopencv_objdetect.so
+/home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: /usr/local/lib/libopencv_video.so
 /home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so: src/CMakeFiles/gold_app_dummy.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX shared library /home/alox/.config/gold-4.6.0/plugins/libgold_app_dummy.so"
 	cd /home/alox/Tesi/workspace/Dummy-build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gold_app_dummy.dir/link.txt --verbose=$(VERBOSE)
@@ -411,6 +648,15 @@ src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/ff
 src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/ffld/SearchRange.cpp.o.requires
 src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.o.requires
 src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/ffld/Mixture.cpp.o.requires
+src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.o.requires
+src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.o.requires
+src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.o.requires
+src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.o.requires
+src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.o.requires
+src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.o.requires
+src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.o.requires
+src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.o.requires
+src/CMakeFiles/gold_app_dummy.dir/requires: src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.o.requires
 .PHONY : src/CMakeFiles/gold_app_dummy.dir/requires
 
 src/CMakeFiles/gold_app_dummy.dir/clean:

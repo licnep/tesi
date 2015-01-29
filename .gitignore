@@ -4,3 +4,9 @@ workspace/HedgeFund
 workspace/.metadata
 *~
 gold-4.6/.svn
+detections/
+dtbb/
+ffld/
+gpumatrix/
+gpumatrixold/
+

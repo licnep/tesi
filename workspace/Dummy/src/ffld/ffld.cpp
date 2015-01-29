@@ -404,6 +404,16 @@ int CFfld::dpmDetect(std::string model_path,cimage::CImageRGB8 & srcImage, doubl
 	//double threshold = -0.5;//0.0; -0.5 abbastanza bene
 	double overlap = 0.5;
 
+
+	//find the tallest model in the mixture (useful for the search range)
+	std::vector<FFLD::Model> models = mMixture.models();
+	int maxH = 0;
+	for (int i=0; i<models.size(); i++) {
+		std::cout<< "HEIGHHHHHHHHHHT::" << models[i].rootSize().first << std::endl;
+		if (models[i].rootSize().first > maxH) maxH = models[i].rootSize().first;
+	}
+	r.setMaxModelHeight(maxH*8); //8 is the size of the hog cell in pixels
+
 	//JPEGImage butta;
 	/*
 	// Try to open the mixture

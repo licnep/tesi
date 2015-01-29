@@ -1,3 +1,10 @@
+[[[[
+per i da 0 a interval popola con le scale esponenziali (da 1 a 1/2), a risoluzione doppia
+
+da interval a 2interval sono a risoluzione normale e poi ancora dimezzate finche' si puo' 
+
+dato un livello, se faccio livello+interval ottengo quello a risoluzione dimezzata
+]]]]]
 
 frames w ppl: 422, 4963
 

@@ -9,6 +9,7 @@
 
 
 void SearchRange::setSearchRange(int width, int height, dev::CCamera *camera,cimage::CImageRGB8 & debugImage, float w0 = 0.2f, float w1 = 1.0f) {
+
 	//std::string range_algo = INIFile()->Value<std::string>("RANGE MODE", "LINES"); // LINES, STATIC or SIZE
 
 	int max_width = width/2;  //INIFile()->Value<int>("MAX WIDTH", width/2);
@@ -42,6 +43,10 @@ void SearchRange::setSearchRange(int width, int height, dev::CCamera *camera,cim
 
 }
 
+void SearchRange::setMaxModelHeight(int h) {
+	m_maxModelHeight = h;
+}
+
 void SearchRange::draw(cimage::CImageRGB8 & debugImage) {
 	cimage::RGB8* dstBuffer = debugImage.Buffer();
 	int width = debugImage.W();
@@ -73,6 +78,8 @@ std::pair<int,int> SearchRange::getUsefulLineRange(int width) {
 	}
 	//top = top - (width*2); //assumo altezza del pedone doppia della base, piu' o meno e' cosi' ma posso usare il modello per maggior precisione (6*11 o 4*11)
 	//if (top < 0) top=0;
+	top -= m_maxModelHeight;
+	if (top < 0) top=0;
 	return std::pair<int,int>(top,bottom);
 }
 
@@ -83,8 +90,6 @@ void SearchRange::Size(std::vector<std::pair<int,int> > & ranges, const dev::Cam
     InversePerspectiveMapping ipm(cameraParams);
 
     double u0 = cameraParams.u0;
-
-    std::cout << "U0: " << u0 << std::endl;
 
     // INITIALIZE RANGE
     for(unsigned int i=0; i<height; ++i)

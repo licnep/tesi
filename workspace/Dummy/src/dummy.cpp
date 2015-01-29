@@ -46,6 +46,9 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/objdetect/objdetect.hpp>
+#include <opencv2/latentsvm.hpp>
+//#include "../../../../Downloads/opencv-3.0.0-alpha/opencv_contrib/modules/latentsvm/src/_lsvmc_latentsvm.h"
+#include "latentsvm/cascadeDetector.h"
 #include "HOGVisualizer.h"
 #include "ffld/ffld.h"
 #include "ffld/JPEGImage.h"
@@ -67,6 +70,8 @@ using namespace ui::win;
 using namespace cv;
 //using namespace cv::ml;
 using namespace std;
+
+#define OPENCV3 true
 
 class CMyPanelListener : public ui::detail::PanelListener {
 public:
@@ -286,12 +291,14 @@ void CDummy::On_Execute()
 		img.convertTo(img,CV_8U); //converto in scala di grigi perche' openCV vuole scala di grigi (di solito si usano tutti i canali e si prende il gradiente maggiore)
 		//imwrite( "./butta.jpg", img );
 		//cv::gpu::HOGDescriptor d(Size(512,256), Size(16,16), Size(8,8),Size(8,8), 9);
+
+//#ifndef OPENCV3
 		HOGDescriptor d(Size(512,256), Size(16,16), Size(8,8),Size(8,8), 9);
 
-		m_cvChronometer.Start();
+		//m_cvChronometer.Start();
 		d.compute(img, descriptorsValues, Size(8,8), Size(0,0), locations);
-		m_cvChronometer.Stop();
-
+		//m_cvChronometer.Stop();
+//#endif
 		Mat viz = CHOGVisualizer::GetHogDescriptorVisu(m,descriptorsValues,Size(512,256));
 		viz.convertTo(viz,CV_16UC3);
 
@@ -301,8 +308,11 @@ void CDummy::On_Execute()
 		CHOGVisualizer::MatToCImageRGB8(viz,m_inputImageRGB);
 		if(m_showDetected)
 		{
+			m_cvChronometer.Start();
 
-			std::vector<String> filenames;
+			std::vector<std::string> filenames;
+
+#ifndef OPENCV3
 			filenames.push_back("/home/alox/Downloads/person.xml");
 			LatentSvmDetector detector(filenames);
 			if( detector.empty() )
@@ -322,8 +332,29 @@ void CDummy::On_Execute()
 			}
 			resize(m,m,Size(m_inputImageRGB.W(),m_inputImageRGB.H()));
 			CHOGVisualizer::MatToCImageRGB8(m,m_detectedImage);
+#else
+			//cv::Ptr<lsvm::LSVMDetector> detector1 = lsvm::LSVMDetector::create(std::vector<std::string>(1,"/home/alox/Tesi/workspace/Dummy/src/latentsvm/testdata/latentsvm/models_VOC2007_cascade/person.xml"));
+			filenames.push_back("/home/alox/Tesi/workspace/Dummy/src/latentsvm/testdata/latentsvm/models_VOC2007_cascade/person.xml");
+
+			cv::lsvm::LSVMDetectorImpl detector(filenames);
+			//vector<LatentSvmDetector::ObjectDetection> detections;
+			vector<cv::lsvm::LSVMDetector::ObjectDetection> detections;
+			cout << "Detecting..." << endl;
+			detector.detect( m, detections, 0.5f);
+			for( size_t i = 0; i < detections.size(); i++ )
+			{
+				const cv::lsvm::LSVMDetector::ObjectDetection& od = detections[i];
+				cout << "confidence:" << od.score << endl;
+				if (od.score > 0.1f) rectangle( m, od.rect, Scalar(255,0,255*od.score), 2 );
+				rectangle( m, od.rect, Scalar(255,0,255*od.score), 2 );
+			}
+			resize(m,m,Size(m_inputImageRGB.W(),m_inputImageRGB.H()));
+			CHOGVisualizer::MatToCImageRGB8(m,m_detectedImage);
+
+#endif
 		}
-    }
+		m_cvChronometer.Stop();
+    }/**/
 
 	//-m models/person_final2007.txt -i ./result/ -r ./result/result.txt -t=-0.1 004963.jpg
 	//-m /home/alox/Tesi/workspace/Dummy/src/ffld/models/person_final2007.txt -i / -r  -t=-0.1 /home/alox/Tesi/ffld/pedoni.jpg

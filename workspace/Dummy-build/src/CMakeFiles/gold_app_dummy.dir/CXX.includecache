@@ -766,6 +766,40 @@ iostream
 
 /home/alox/Tesi/workspace/Dummy/src/ffld/Eigen/src/plugins/MatrixCwiseUnaryOps.h
 
+/home/alox/Tesi/workspace/Dummy/src/ffld/HOGPyramid.cpp
+HOGPyramid.h
+/home/alox/Tesi/workspace/Dummy/src/ffld/HOGPyramid.h
+algorithm
+-
+cassert
+-
+cmath
+-
+limits
+-
+Processing/Vision/CImage/BasicOperations/BasicOperations.h
+-
+Processing/Vision/CImage/Conversions/CImageConversions.h
+-
+Data/CImage/IO/CImageIO.h
+-
+ffld.h
+/home/alox/Tesi/workspace/Dummy/src/ffld/ffld.h
+string
+-
+boost/lexical_cast.hpp
+-
+Data/Math/Rects.h
+-
+Data/CImage/Images/CImageMono8.h
+-
+Processing/Vision/CImage/Draw/Brushes.h
+-
+Processing/Vision/CImage/Draw/Box.h
+-
+Processing/Vision/CImage/Draw/Line.h
+-
+
 /home/alox/Tesi/workspace/Dummy/src/ffld/HOGPyramid.h
 JPEGImage.h
 /home/alox/Tesi/workspace/Dummy/src/ffld/JPEGImage.h
@@ -856,42 +890,6 @@ crtdbg.h
 assert.h
 -
 
-/home/alox/Tesi/workspace/Dummy/src/ffld/ffld.cpp
-ffld.h
-/home/alox/Tesi/workspace/Dummy/src/ffld/ffld.h
-SimpleOpt.h
-/home/alox/Tesi/workspace/Dummy/src/ffld/SimpleOpt.h
-Intersector.h
-/home/alox/Tesi/workspace/Dummy/src/ffld/Intersector.h
-Mixture.h
-/home/alox/Tesi/workspace/Dummy/src/ffld/Mixture.h
-Scene.h
-/home/alox/Tesi/workspace/Dummy/src/ffld/Scene.h
-SearchRange.h
-/home/alox/Tesi/workspace/Dummy/src/ffld/SearchRange.h
-algorithm
--
-fstream
--
-iomanip
--
-iostream
--
-sys/time.h
--
-Data/Math/Rects.h
--
-Processing/Vision/CImage/Draw/Brushes.h
--
-Processing/Vision/CImage/Draw/Box.h
--
-Data/CImage/IO/CImageIO.h
--
-time.h
--
-windows.h
--
-
 /home/alox/Tesi/workspace/Dummy/src/ffld/ffld.h
 ffld_export.h
 /home/alox/Tesi/workspace/Dummy/src/ffld/ffld_export.h
@@ -976,6 +974,20 @@ boost/shared_ptr.hpp
 boost/property_tree/ptree.hpp
 -
 
+/opt/gold-4.6/include/gold-4.6.0/Data/CImage/CImageFlag.h
+iomanip
+-
+map
+-
+iosfwd
+-
+set
+-
+stdint.h
+-
+Data/gold_data_export.h
+-
+
 /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Definitions.h
 Data/gold_data_export.h
 -
@@ -1010,6 +1022,12 @@ Data/CImage/CImage.h
 Data/Base/FormatsEnumerator.h
 -
 Data/gold_data_export.h
+-
+
+/opt/gold-4.6/include/gold-4.6.0/Data/CImage/Images/CImageMono8.h
+Data/CImage/TImage.h
+-
+Data/CImage/Pixels/Mono8.h
 -
 
 /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Images/CImageRGB8.h
@@ -1060,6 +1078,10 @@ Data/CImage/Pixels/Bayer.h
 stdint.h
 -
 Data/gold_data_export.h
+-
+
+/opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/Mono8.h
+stdint.h
 -
 
 /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/Mono8o127.h
@@ -1384,6 +1406,24 @@ boost/chrono.hpp
 
 /opt/gold-4.6/include/gold-4.6.0/Libs/Time/gold_time_export.h
 
+/opt/gold-4.6/include/gold-4.6.0/Processing/Vision/CImage/BasicOperations/BasicOperations.h
+Data/CImage/TImage.h
+-
+Data/CImage/CImageFlag.h
+-
+Processing/Vision/CImage/gold_proc_cimage_export.h
+-
+
+/opt/gold-4.6/include/gold-4.6.0/Processing/Vision/CImage/Conversions/CImageConversions.h
+Data/CImage/CImage.h
+-
+Data/CImage/TImage.h
+-
+Data/CImage/CImageFlag.h
+-
+Processing/Vision/CImage/gold_proc_cimage_export.h
+-
+
 /opt/gold-4.6/include/gold-4.6.0/Processing/Vision/CImage/Draw/Box.h
 Data/Math/Rects.h
 -
@@ -1391,6 +1431,14 @@ Data/Math/Points.h
 -
 
 /opt/gold-4.6/include/gold-4.6.0/Processing/Vision/CImage/Draw/Brushes.h
+
+/opt/gold-4.6/include/gold-4.6.0/Processing/Vision/CImage/Draw/Line.h
+cmath
+-
+Data/Math/Points.h
+-
+
+/opt/gold-4.6/include/gold-4.6.0/Processing/Vision/CImage/gold_proc_cimage_export.h
 
 /opt/gold-4.6/include/gold-4.6.0/Processing/Vision/PerspectiveMapping/HomographicMatrix.h
 vector

@@ -204,6 +204,51 @@
 			<location>/home/alox/Tesi/workspace/Dummy/src/ffld/Mixture.cpp</location>
 		</link>
 		<link>
+			<name>[Targets]/[lib] gold_app_dummy/Source Files/lsvmc_function.cpp</name>
+			<type>1</type>
+			<location>/home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_function.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] gold_app_dummy/Source Files/precomp.cpp</name>
+			<type>1</type>
+			<location>/home/alox/Tesi/workspace/Dummy/src/latentsvm/precomp.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] gold_app_dummy/Source Files/lsvmc_featurepyramid.cpp</name>
+			<type>1</type>
+			<location>/home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_featurepyramid.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] gold_app_dummy/Source Files/lsvmc_latentsvmdetector.cpp</name>
+			<type>1</type>
+			<location>/home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_latentsvmdetector.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] gold_app_dummy/Source Files/lsvmc_parser.cpp</name>
+			<type>1</type>
+			<location>/home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_parser.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] gold_app_dummy/Source Files/lsvmc_matching.cpp</name>
+			<type>1</type>
+			<location>/home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_matching.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] gold_app_dummy/Source Files/lsvmc_latentsvm.cpp</name>
+			<type>1</type>
+			<location>/home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_latentsvm.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] gold_app_dummy/Source Files/lsvmc_routine.cpp</name>
+			<type>1</type>
+			<location>/home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_routine.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] gold_app_dummy/Source Files/lsvmc_resizeimg.cpp</name>
+			<type>1</type>
+			<location>/home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_resizeimg.cpp</location>
+		</link>
+		<link>
 			<name>[Targets]/[lib] gold_app_dummy/Header Files</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>

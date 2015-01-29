@@ -11,12 +11,12 @@ include_directories(
     ${OpenCV_INCLUDE_DIR}
     ${OpenCV_INCLUDE_DIRS} #for 2.4
     ${EIGEN_INCLUDE_DIR}
-    
 )
 file(GLOB ffld_sources "ffld/*.cpp")
+file(GLOB latentsvm_sources "latentsvm/*.cpp")
 
 # elenco dei file da compilare
-add_library(gold_app_dummy dummy.cpp HOGVisualizer.cpp ffld/ffld.cpp ${ffld_sources})
+add_library(gold_app_dummy dummy.cpp HOGVisualizer.cpp ffld/ffld.cpp ${ffld_sources} ${latentsvm_sources})
 
 #add_subdirectory(ffld)
 
@@ -119,9 +119,9 @@ target_link_libraries( gold_app_dummy
     ${Boost_SYSTEM_LIBRARY}
     ${Boost_THREAD_LIBRARY}
     ###FFLD
-    #${OpenCV_LIBRARIES}
-    ${OpenCV_LIBS} #for 2.4
-    -lopencv_core -lopencv_highgui -lopencv_imgproc -lopencv_objdetect #-lopencv_imgcodecs
+    ${OpenCV_LIBRARIES}
+    #${OpenCV_LIBS} #for 2.4
+    -lopencv_core -lopencv_highgui -lopencv_imgproc -lopencv_objdetect -lopencv_contrib #-lopencv_imgcodecs
 )
 
 #message ("AAAopenCVdir=${OpenCV_LIBS},includeDir=${OpenCV_INCLUDE_DIRS}")

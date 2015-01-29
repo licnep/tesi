@@ -177,7 +177,7 @@ void Patchwork::convolve(const vector<Filter> & filters,
 		for (int j = 0; j < nbFilters; ++j)
 			for (int k = 0; k < nbPlanes; ++k)
 				sums[j][k](i) = filters[j].first(i).cwiseProduct(planes_[k](i)).sum();
-	
+
 	// Transform back the results and store them in convolutions
 	convolutions.resize(nbFilters);
 	
@@ -202,7 +202,7 @@ void Patchwork::convolve(const vector<Filter> & filters,
 		fftw_execute_dft_c2r(Inverse_, reinterpret_cast<fftw_complex *>(sums[k][l].data()),
 							 output.data());
 #endif
-		
+		//padding
 		for (int j = 0; j < nbLevels; ++j) {
 			butta++;
 			const int rows = rectangles_[j].first.height() + pady_ - filters[k].second.first + 1;

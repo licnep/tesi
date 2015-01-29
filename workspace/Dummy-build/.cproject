@@ -641,6 +641,195 @@
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 </target>
+<target name="[obj] latentsvm/lsvmc_featurepyramid.cpp.o" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/lsvmc_featurepyramid.cpp.o</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[pre] latentsvm/lsvmc_featurepyramid.cpp.i" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/lsvmc_featurepyramid.cpp.i</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[to asm] latentsvm/lsvmc_featurepyramid.cpp.s" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/lsvmc_featurepyramid.cpp.s</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[obj] latentsvm/lsvmc_function.cpp.o" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/lsvmc_function.cpp.o</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[pre] latentsvm/lsvmc_function.cpp.i" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/lsvmc_function.cpp.i</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[to asm] latentsvm/lsvmc_function.cpp.s" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/lsvmc_function.cpp.s</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[obj] latentsvm/lsvmc_latentsvm.cpp.o" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/lsvmc_latentsvm.cpp.o</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[pre] latentsvm/lsvmc_latentsvm.cpp.i" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/lsvmc_latentsvm.cpp.i</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[to asm] latentsvm/lsvmc_latentsvm.cpp.s" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/lsvmc_latentsvm.cpp.s</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[obj] latentsvm/lsvmc_latentsvmdetector.cpp.o" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/lsvmc_latentsvmdetector.cpp.o</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[pre] latentsvm/lsvmc_latentsvmdetector.cpp.i" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/lsvmc_latentsvmdetector.cpp.i</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[to asm] latentsvm/lsvmc_latentsvmdetector.cpp.s" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/lsvmc_latentsvmdetector.cpp.s</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[obj] latentsvm/lsvmc_matching.cpp.o" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/lsvmc_matching.cpp.o</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[pre] latentsvm/lsvmc_matching.cpp.i" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/lsvmc_matching.cpp.i</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[to asm] latentsvm/lsvmc_matching.cpp.s" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/lsvmc_matching.cpp.s</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[obj] latentsvm/lsvmc_parser.cpp.o" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/lsvmc_parser.cpp.o</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[pre] latentsvm/lsvmc_parser.cpp.i" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/lsvmc_parser.cpp.i</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[to asm] latentsvm/lsvmc_parser.cpp.s" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/lsvmc_parser.cpp.s</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[obj] latentsvm/lsvmc_resizeimg.cpp.o" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/lsvmc_resizeimg.cpp.o</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[pre] latentsvm/lsvmc_resizeimg.cpp.i" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/lsvmc_resizeimg.cpp.i</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[to asm] latentsvm/lsvmc_resizeimg.cpp.s" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/lsvmc_resizeimg.cpp.s</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[obj] latentsvm/lsvmc_routine.cpp.o" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/lsvmc_routine.cpp.o</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[pre] latentsvm/lsvmc_routine.cpp.i" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/lsvmc_routine.cpp.i</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[to asm] latentsvm/lsvmc_routine.cpp.s" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/lsvmc_routine.cpp.s</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[obj] latentsvm/precomp.cpp.o" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/precomp.cpp.o</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[pre] latentsvm/precomp.cpp.i" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/precomp.cpp.i</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[to asm] latentsvm/precomp.cpp.s" path="src" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/make</buildCommand>
+<buildArguments>-j17</buildArguments>
+<buildTarget>latentsvm/precomp.cpp.s</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
 </buildTargets>
 </storageModule>
 <storageModule moduleId="scannerConfiguration">

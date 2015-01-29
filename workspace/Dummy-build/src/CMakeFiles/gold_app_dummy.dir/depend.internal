@@ -210,6 +210,14 @@ src/CMakeFiles/gold_app_dummy.dir/dummy.cpp.o
  /home/alox/Tesi/workspace/Dummy/src/ffld/SimpleOpt.h
  /home/alox/Tesi/workspace/Dummy/src/ffld/ffld.h
  /home/alox/Tesi/workspace/Dummy/src/ffld/ffld_export.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/./_lsvmc_error.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/./_lsvmc_latentsvm.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/./_lsvmc_matching.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/./_lsvmc_parser.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/./_lsvmc_routine.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/./_lsvmc_types.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/./precomp.hpp
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/cascadeDetector.h
  /opt/gold-4.6/include/gold-4.6.0/Config/CImageConfig.h
  /opt/gold-4.6/include/gold-4.6.0/Data/Base/CCameraParams.h
  /opt/gold-4.6/include/gold-4.6.0/Data/Base/SensorParams.h
@@ -327,33 +335,54 @@ src/CMakeFiles/gold_app_dummy.dir/dummy.cpp.o
  /opt/gold-4.6/include/gold-4.6.0/UI/Panel/detail/Serializers.h
  /opt/gold-4.6/include/gold-4.6.0/UI/Panel/detail/WidgetCore.h
  /opt/gold-4.6/include/gold-4.6.0/UI/gold_ui_export.h
- /usr/local/include/opencv2/calib3d/calib3d.hpp
- /usr/local/include/opencv2/contrib/contrib.hpp
- /usr/local/include/opencv2/contrib/openfabmap.hpp
- /usr/local/include/opencv2/contrib/retina.hpp
+ /usr/local/include/opencv2/calib3d.hpp
+ /usr/local/include/opencv2/core.hpp
+ /usr/local/include/opencv2/core/affine.hpp
+ /usr/local/include/opencv2/core/base.hpp
+ /usr/local/include/opencv2/core/bufferpool.hpp
  /usr/local/include/opencv2/core/core.hpp
  /usr/local/include/opencv2/core/core_c.h
+ /usr/local/include/opencv2/core/cvdef.h
+ /usr/local/include/opencv2/core/cvstd.hpp
+ /usr/local/include/opencv2/core/cvstd.inl.hpp
  /usr/local/include/opencv2/core/mat.hpp
+ /usr/local/include/opencv2/core/mat.inl.hpp
+ /usr/local/include/opencv2/core/matx.hpp
  /usr/local/include/opencv2/core/operations.hpp
+ /usr/local/include/opencv2/core/optim.hpp
+ /usr/local/include/opencv2/core/persistence.hpp
+ /usr/local/include/opencv2/core/ptr.inl.hpp
+ /usr/local/include/opencv2/core/traits.hpp
+ /usr/local/include/opencv2/core/types.hpp
  /usr/local/include/opencv2/core/types_c.h
+ /usr/local/include/opencv2/core/utility.hpp
  /usr/local/include/opencv2/core/version.hpp
- /usr/local/include/opencv2/features2d/features2d.hpp
+ /usr/local/include/opencv2/features2d.hpp
  /usr/local/include/opencv2/flann/config.h
  /usr/local/include/opencv2/flann/defines.h
  /usr/local/include/opencv2/flann/miniflann.hpp
+ /usr/local/include/opencv2/highgui.hpp
  /usr/local/include/opencv2/highgui/highgui.hpp
  /usr/local/include/opencv2/highgui/highgui_c.h
+ /usr/local/include/opencv2/imgcodecs.hpp
+ /usr/local/include/opencv2/imgcodecs/imgcodecs_c.h
+ /usr/local/include/opencv2/imgproc.hpp
  /usr/local/include/opencv2/imgproc/imgproc.hpp
  /usr/local/include/opencv2/imgproc/imgproc_c.h
  /usr/local/include/opencv2/imgproc/types_c.h
- /usr/local/include/opencv2/ml/ml.hpp
+ /usr/local/include/opencv2/latentsvm.hpp
+ /usr/local/include/opencv2/ml.hpp
+ /usr/local/include/opencv2/objdetect.hpp
+ /usr/local/include/opencv2/objdetect/detection_based_tracker.hpp
  /usr/local/include/opencv2/objdetect/objdetect.hpp
  /usr/local/include/opencv2/opencv.hpp
- /usr/local/include/opencv2/photo/photo.hpp
- /usr/local/include/opencv2/photo/photo_c.h
+ /usr/local/include/opencv2/opencv_modules.hpp
+ /usr/local/include/opencv2/photo.hpp
+ /usr/local/include/opencv2/video.hpp
  /usr/local/include/opencv2/video/background_segm.hpp
  /usr/local/include/opencv2/video/tracking.hpp
- /usr/local/include/opencv2/video/video.hpp
+ /usr/local/include/opencv2/videoio.hpp
+ /usr/local/include/opencv2/videoio/videoio_c.h
 src/CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.o
  /home/alox/Tesi/workspace/Dummy/src/ffld/Eigen/Core
  /home/alox/Tesi/workspace/Dummy/src/ffld/Eigen/Eigen2Support
@@ -540,9 +569,11 @@ src/CMakeFiles/gold_app_dummy.dir/ffld/HOGPyramid.cpp.o
  /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Exceptions.h
  /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Geometry.h
  /opt/gold-4.6/include/gold-4.6.0/Data/CImage/IO/CImageIO.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Images/CImageMono8.h
  /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Images/CImageRGB8.h
  /opt/gold-4.6/include/gold-4.6.0/Data/CImage/PixelTraits/PixelTraits.h
  /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/Bayer.h
+ /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/Mono8.h
  /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/Mono8o127.h
  /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/RGB8.h
  /opt/gold-4.6/include/gold-4.6.0/Data/CImage/Pixels/TBGRA.h
@@ -1625,3 +1656,305 @@ src/CMakeFiles/gold_app_dummy.dir/ffld/ffld.cpp.o
  /opt/gold-4.6/include/gold-4.6.0/UI/Panel/detail/Serializers.h
  /opt/gold-4.6/include/gold-4.6.0/UI/Panel/detail/WidgetCore.h
  /opt/gold-4.6/include/gold-4.6.0/UI/gold_ui_export.h
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_featurepyramid.cpp.o
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_error.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_latentsvm.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_resizeimg.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_routine.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_types.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_featurepyramid.cpp
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/precomp.hpp
+ /usr/local/include/opencv2/core.hpp
+ /usr/local/include/opencv2/core/base.hpp
+ /usr/local/include/opencv2/core/bufferpool.hpp
+ /usr/local/include/opencv2/core/core_c.h
+ /usr/local/include/opencv2/core/cvdef.h
+ /usr/local/include/opencv2/core/cvstd.hpp
+ /usr/local/include/opencv2/core/cvstd.inl.hpp
+ /usr/local/include/opencv2/core/mat.hpp
+ /usr/local/include/opencv2/core/mat.inl.hpp
+ /usr/local/include/opencv2/core/matx.hpp
+ /usr/local/include/opencv2/core/operations.hpp
+ /usr/local/include/opencv2/core/optim.hpp
+ /usr/local/include/opencv2/core/persistence.hpp
+ /usr/local/include/opencv2/core/ptr.inl.hpp
+ /usr/local/include/opencv2/core/traits.hpp
+ /usr/local/include/opencv2/core/types.hpp
+ /usr/local/include/opencv2/core/types_c.h
+ /usr/local/include/opencv2/core/utility.hpp
+ /usr/local/include/opencv2/core/version.hpp
+ /usr/local/include/opencv2/highgui/highgui_c.h
+ /usr/local/include/opencv2/imgcodecs/imgcodecs_c.h
+ /usr/local/include/opencv2/imgproc.hpp
+ /usr/local/include/opencv2/imgproc/imgproc_c.h
+ /usr/local/include/opencv2/imgproc/types_c.h
+ /usr/local/include/opencv2/latentsvm.hpp
+ /usr/local/include/opencv2/opencv_modules.hpp
+ /usr/local/include/opencv2/videoio/videoio_c.h
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_function.cpp.o
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_function.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_types.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_function.cpp
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/precomp.hpp
+ /usr/local/include/opencv2/core.hpp
+ /usr/local/include/opencv2/core/base.hpp
+ /usr/local/include/opencv2/core/bufferpool.hpp
+ /usr/local/include/opencv2/core/core_c.h
+ /usr/local/include/opencv2/core/cvdef.h
+ /usr/local/include/opencv2/core/cvstd.hpp
+ /usr/local/include/opencv2/core/cvstd.inl.hpp
+ /usr/local/include/opencv2/core/mat.hpp
+ /usr/local/include/opencv2/core/mat.inl.hpp
+ /usr/local/include/opencv2/core/matx.hpp
+ /usr/local/include/opencv2/core/operations.hpp
+ /usr/local/include/opencv2/core/optim.hpp
+ /usr/local/include/opencv2/core/persistence.hpp
+ /usr/local/include/opencv2/core/ptr.inl.hpp
+ /usr/local/include/opencv2/core/traits.hpp
+ /usr/local/include/opencv2/core/types.hpp
+ /usr/local/include/opencv2/core/types_c.h
+ /usr/local/include/opencv2/core/utility.hpp
+ /usr/local/include/opencv2/core/version.hpp
+ /usr/local/include/opencv2/highgui/highgui_c.h
+ /usr/local/include/opencv2/imgcodecs/imgcodecs_c.h
+ /usr/local/include/opencv2/imgproc.hpp
+ /usr/local/include/opencv2/imgproc/imgproc_c.h
+ /usr/local/include/opencv2/imgproc/types_c.h
+ /usr/local/include/opencv2/latentsvm.hpp
+ /usr/local/include/opencv2/opencv_modules.hpp
+ /usr/local/include/opencv2/videoio/videoio_c.h
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvm.cpp.o
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_error.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_function.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_latentsvm.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_matching.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_routine.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_types.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_latentsvm.cpp
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/precomp.hpp
+ /usr/local/include/opencv2/core.hpp
+ /usr/local/include/opencv2/core/base.hpp
+ /usr/local/include/opencv2/core/bufferpool.hpp
+ /usr/local/include/opencv2/core/core_c.h
+ /usr/local/include/opencv2/core/cvdef.h
+ /usr/local/include/opencv2/core/cvstd.hpp
+ /usr/local/include/opencv2/core/cvstd.inl.hpp
+ /usr/local/include/opencv2/core/mat.hpp
+ /usr/local/include/opencv2/core/mat.inl.hpp
+ /usr/local/include/opencv2/core/matx.hpp
+ /usr/local/include/opencv2/core/operations.hpp
+ /usr/local/include/opencv2/core/optim.hpp
+ /usr/local/include/opencv2/core/persistence.hpp
+ /usr/local/include/opencv2/core/ptr.inl.hpp
+ /usr/local/include/opencv2/core/traits.hpp
+ /usr/local/include/opencv2/core/types.hpp
+ /usr/local/include/opencv2/core/types_c.h
+ /usr/local/include/opencv2/core/utility.hpp
+ /usr/local/include/opencv2/core/version.hpp
+ /usr/local/include/opencv2/highgui/highgui_c.h
+ /usr/local/include/opencv2/imgcodecs/imgcodecs_c.h
+ /usr/local/include/opencv2/imgproc.hpp
+ /usr/local/include/opencv2/imgproc/imgproc_c.h
+ /usr/local/include/opencv2/imgproc/types_c.h
+ /usr/local/include/opencv2/latentsvm.hpp
+ /usr/local/include/opencv2/opencv_modules.hpp
+ /usr/local/include/opencv2/videoio/videoio_c.h
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_latentsvmdetector.cpp.o
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_error.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_latentsvm.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_matching.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_parser.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_routine.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_types.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_latentsvmdetector.cpp
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/precomp.hpp
+ /usr/local/include/opencv2/core.hpp
+ /usr/local/include/opencv2/core/base.hpp
+ /usr/local/include/opencv2/core/bufferpool.hpp
+ /usr/local/include/opencv2/core/core_c.h
+ /usr/local/include/opencv2/core/cvdef.h
+ /usr/local/include/opencv2/core/cvstd.hpp
+ /usr/local/include/opencv2/core/cvstd.inl.hpp
+ /usr/local/include/opencv2/core/mat.hpp
+ /usr/local/include/opencv2/core/mat.inl.hpp
+ /usr/local/include/opencv2/core/matx.hpp
+ /usr/local/include/opencv2/core/operations.hpp
+ /usr/local/include/opencv2/core/optim.hpp
+ /usr/local/include/opencv2/core/persistence.hpp
+ /usr/local/include/opencv2/core/ptr.inl.hpp
+ /usr/local/include/opencv2/core/traits.hpp
+ /usr/local/include/opencv2/core/types.hpp
+ /usr/local/include/opencv2/core/types_c.h
+ /usr/local/include/opencv2/core/utility.hpp
+ /usr/local/include/opencv2/core/version.hpp
+ /usr/local/include/opencv2/highgui/highgui_c.h
+ /usr/local/include/opencv2/imgcodecs/imgcodecs_c.h
+ /usr/local/include/opencv2/imgproc.hpp
+ /usr/local/include/opencv2/imgproc/imgproc_c.h
+ /usr/local/include/opencv2/imgproc/types_c.h
+ /usr/local/include/opencv2/latentsvm.hpp
+ /usr/local/include/opencv2/opencv_modules.hpp
+ /usr/local/include/opencv2/videoio/videoio_c.h
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_matching.cpp.o
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_error.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_latentsvm.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_matching.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_routine.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_types.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_matching.cpp
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/precomp.hpp
+ /usr/local/include/opencv2/core.hpp
+ /usr/local/include/opencv2/core/base.hpp
+ /usr/local/include/opencv2/core/bufferpool.hpp
+ /usr/local/include/opencv2/core/core_c.h
+ /usr/local/include/opencv2/core/cvdef.h
+ /usr/local/include/opencv2/core/cvstd.hpp
+ /usr/local/include/opencv2/core/cvstd.inl.hpp
+ /usr/local/include/opencv2/core/mat.hpp
+ /usr/local/include/opencv2/core/mat.inl.hpp
+ /usr/local/include/opencv2/core/matx.hpp
+ /usr/local/include/opencv2/core/operations.hpp
+ /usr/local/include/opencv2/core/optim.hpp
+ /usr/local/include/opencv2/core/persistence.hpp
+ /usr/local/include/opencv2/core/ptr.inl.hpp
+ /usr/local/include/opencv2/core/traits.hpp
+ /usr/local/include/opencv2/core/types.hpp
+ /usr/local/include/opencv2/core/types_c.h
+ /usr/local/include/opencv2/core/utility.hpp
+ /usr/local/include/opencv2/core/version.hpp
+ /usr/local/include/opencv2/highgui/highgui_c.h
+ /usr/local/include/opencv2/imgcodecs/imgcodecs_c.h
+ /usr/local/include/opencv2/imgproc.hpp
+ /usr/local/include/opencv2/imgproc/imgproc_c.h
+ /usr/local/include/opencv2/imgproc/types_c.h
+ /usr/local/include/opencv2/latentsvm.hpp
+ /usr/local/include/opencv2/opencv_modules.hpp
+ /usr/local/include/opencv2/videoio/videoio_c.h
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_parser.cpp.o
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_error.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_parser.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_types.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_parser.cpp
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/precomp.hpp
+ /usr/local/include/opencv2/core.hpp
+ /usr/local/include/opencv2/core/base.hpp
+ /usr/local/include/opencv2/core/bufferpool.hpp
+ /usr/local/include/opencv2/core/core_c.h
+ /usr/local/include/opencv2/core/cvdef.h
+ /usr/local/include/opencv2/core/cvstd.hpp
+ /usr/local/include/opencv2/core/cvstd.inl.hpp
+ /usr/local/include/opencv2/core/mat.hpp
+ /usr/local/include/opencv2/core/mat.inl.hpp
+ /usr/local/include/opencv2/core/matx.hpp
+ /usr/local/include/opencv2/core/operations.hpp
+ /usr/local/include/opencv2/core/optim.hpp
+ /usr/local/include/opencv2/core/persistence.hpp
+ /usr/local/include/opencv2/core/ptr.inl.hpp
+ /usr/local/include/opencv2/core/traits.hpp
+ /usr/local/include/opencv2/core/types.hpp
+ /usr/local/include/opencv2/core/types_c.h
+ /usr/local/include/opencv2/core/utility.hpp
+ /usr/local/include/opencv2/core/version.hpp
+ /usr/local/include/opencv2/highgui/highgui_c.h
+ /usr/local/include/opencv2/imgcodecs/imgcodecs_c.h
+ /usr/local/include/opencv2/imgproc.hpp
+ /usr/local/include/opencv2/imgproc/imgproc_c.h
+ /usr/local/include/opencv2/imgproc/types_c.h
+ /usr/local/include/opencv2/latentsvm.hpp
+ /usr/local/include/opencv2/opencv_modules.hpp
+ /usr/local/include/opencv2/videoio/videoio_c.h
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_resizeimg.cpp.o
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_resizeimg.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_types.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_resizeimg.cpp
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/precomp.hpp
+ /usr/local/include/opencv2/core.hpp
+ /usr/local/include/opencv2/core/base.hpp
+ /usr/local/include/opencv2/core/bufferpool.hpp
+ /usr/local/include/opencv2/core/core_c.h
+ /usr/local/include/opencv2/core/cvdef.h
+ /usr/local/include/opencv2/core/cvstd.hpp
+ /usr/local/include/opencv2/core/cvstd.inl.hpp
+ /usr/local/include/opencv2/core/mat.hpp
+ /usr/local/include/opencv2/core/mat.inl.hpp
+ /usr/local/include/opencv2/core/matx.hpp
+ /usr/local/include/opencv2/core/operations.hpp
+ /usr/local/include/opencv2/core/optim.hpp
+ /usr/local/include/opencv2/core/persistence.hpp
+ /usr/local/include/opencv2/core/ptr.inl.hpp
+ /usr/local/include/opencv2/core/traits.hpp
+ /usr/local/include/opencv2/core/types.hpp
+ /usr/local/include/opencv2/core/types_c.h
+ /usr/local/include/opencv2/core/utility.hpp
+ /usr/local/include/opencv2/core/version.hpp
+ /usr/local/include/opencv2/highgui/highgui_c.h
+ /usr/local/include/opencv2/imgcodecs/imgcodecs_c.h
+ /usr/local/include/opencv2/imgproc.hpp
+ /usr/local/include/opencv2/imgproc/imgproc_c.h
+ /usr/local/include/opencv2/imgproc/types_c.h
+ /usr/local/include/opencv2/latentsvm.hpp
+ /usr/local/include/opencv2/opencv_modules.hpp
+ /usr/local/include/opencv2/videoio/videoio_c.h
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/lsvmc_routine.cpp.o
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_error.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_routine.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/_lsvmc_types.h
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/lsvmc_routine.cpp
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/precomp.hpp
+ /usr/local/include/opencv2/core.hpp
+ /usr/local/include/opencv2/core/base.hpp
+ /usr/local/include/opencv2/core/bufferpool.hpp
+ /usr/local/include/opencv2/core/core_c.h
+ /usr/local/include/opencv2/core/cvdef.h
+ /usr/local/include/opencv2/core/cvstd.hpp
+ /usr/local/include/opencv2/core/cvstd.inl.hpp
+ /usr/local/include/opencv2/core/mat.hpp
+ /usr/local/include/opencv2/core/mat.inl.hpp
+ /usr/local/include/opencv2/core/matx.hpp
+ /usr/local/include/opencv2/core/operations.hpp
+ /usr/local/include/opencv2/core/optim.hpp
+ /usr/local/include/opencv2/core/persistence.hpp
+ /usr/local/include/opencv2/core/ptr.inl.hpp
+ /usr/local/include/opencv2/core/traits.hpp
+ /usr/local/include/opencv2/core/types.hpp
+ /usr/local/include/opencv2/core/types_c.h
+ /usr/local/include/opencv2/core/utility.hpp
+ /usr/local/include/opencv2/core/version.hpp
+ /usr/local/include/opencv2/highgui/highgui_c.h
+ /usr/local/include/opencv2/imgcodecs/imgcodecs_c.h
+ /usr/local/include/opencv2/imgproc.hpp
+ /usr/local/include/opencv2/imgproc/imgproc_c.h
+ /usr/local/include/opencv2/imgproc/types_c.h
+ /usr/local/include/opencv2/latentsvm.hpp
+ /usr/local/include/opencv2/opencv_modules.hpp
+ /usr/local/include/opencv2/videoio/videoio_c.h
+src/CMakeFiles/gold_app_dummy.dir/latentsvm/precomp.cpp.o
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/precomp.cpp
+ /home/alox/Tesi/workspace/Dummy/src/latentsvm/precomp.hpp
+ /usr/local/include/opencv2/core.hpp
+ /usr/local/include/opencv2/core/base.hpp
+ /usr/local/include/opencv2/core/bufferpool.hpp
+ /usr/local/include/opencv2/core/core_c.h
+ /usr/local/include/opencv2/core/cvdef.h
+ /usr/local/include/opencv2/core/cvstd.hpp
+ /usr/local/include/opencv2/core/cvstd.inl.hpp
+ /usr/local/include/opencv2/core/mat.hpp
+ /usr/local/include/opencv2/core/mat.inl.hpp
+ /usr/local/include/opencv2/core/matx.hpp
+ /usr/local/include/opencv2/core/operations.hpp
+ /usr/local/include/opencv2/core/optim.hpp
+ /usr/local/include/opencv2/core/persistence.hpp
+ /usr/local/include/opencv2/core/ptr.inl.hpp
+ /usr/local/include/opencv2/core/traits.hpp
+ /usr/local/include/opencv2/core/types.hpp
+ /usr/local/include/opencv2/core/types_c.h
+ /usr/local/include/opencv2/core/utility.hpp
+ /usr/local/include/opencv2/core/version.hpp
+ /usr/local/include/opencv2/highgui/highgui_c.h
+ /usr/local/include/opencv2/imgcodecs/imgcodecs_c.h
+ /usr/local/include/opencv2/imgproc.hpp
+ /usr/local/include/opencv2/imgproc/imgproc_c.h
+ /usr/local/include/opencv2/imgproc/types_c.h
+ /usr/local/include/opencv2/latentsvm.hpp
+ /usr/local/include/opencv2/opencv_modules.hpp
+ /usr/local/include/opencv2/videoio/videoio_c.h

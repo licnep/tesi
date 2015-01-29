@@ -9,11 +9,15 @@
 #include <boost/graph/graph_concepts.hpp>
 #include <Data/CImage/Images/CImageRGB8.h>
 
-
 class SearchRange {
 public:
 	std::vector<std::pair<int,int> > m_ranges;
+	int m_maxModelHeight;
+
 	void setSearchRange(int width, int height, dev::CCamera *camera, cimage::CImageRGB8 & debugImage, float w0 = 0.2f, float w1 = 1.0f);
+	int getSkyHeight();
+	void setMaxModelHeight(int h);
+	//void setMixture(FFLD::Mixture &mixture);
 	void SearchRange::draw(cimage::CImageRGB8 & debugImage);
 	bool SearchRange::isPlausibleSize(int lineFromTop, int width);
 	std::pair<int,int> getUsefulLineRange(int width);

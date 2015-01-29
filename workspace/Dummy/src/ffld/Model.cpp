@@ -129,6 +129,7 @@ void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matri
 	const int padx = pyramid.padx();
 	const int pady = pyramid.pady();
 	const int interval = pyramid.interval();
+	const std::vector<std::pair<int,int> > offsets = pyramid.offsets();
 	const int nbLevels = pyramid.levels().size();
 	
 	// Resize the positions
@@ -147,6 +148,7 @@ void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matri
 	for (int i = 0; i < nbParts; ++i) {
 		// For each part level (the root is interval higher in the pyramid)
 		for (int j = 0; j < nbLevels - interval; ++j) {
+			//A for each level except the smallest ones (only used for root filters), calculate the part optimal positions and deformation costs given any root position
 			DT2D(convolutions[i + 1][j], parts_[i + 1], &tmp[0],
 				 positions ? &(*positions)[i][j] : 0);
 			
@@ -155,7 +157,8 @@ void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matri
 				for (int x = 0; x < convolutions[0][j + interval].cols(); ++x) {
 					// The position of the root one octave below
 					const int x2 = x * 2 - padx;
-					const int y2 = y * 2 - pady;
+					//const int y2 = y * 2 - pady;
+					const int y2 = y * 2 - pady - (offsets[j].first-111)/8;
 					
 					// Nearest-neighbor interpolation
 					if ((x2 >= 0) && (y2 >= 0) && (x2 < convolutions[i + 1][j].cols()) &&
@@ -262,7 +265,7 @@ void Model::DT2D(HOGPyramid::Matrix & matrix, const Model::Part & part, Scalar *
 	
 	if (positions)
 		positions->resize(rows, cols);
-	
+
 	// Temporary vectors
 	vector<Scalar> z(max(rows, cols) + 1);
 	vector<int> v(max(rows, cols) + 1);
