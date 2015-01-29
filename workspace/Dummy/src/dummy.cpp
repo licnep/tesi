@@ -227,8 +227,6 @@ void CDummy::On_Initialization()
 	dev::CProfiler & profiler  = static_cast<dev::CProfiler&>(Dev()["Profiler"]);
 	m_cvChronometer = vl::chrono::CChronometer("openCV",vl::chrono::CChronometer::REAL_TIME_CLOCK);
 	profiler.Connect(m_cvChronometer);
-	vl::chrono::CChronometer ffldChronometer = vl::chrono::CChronometer("ffldHOG",vl::chrono::CChronometer::REAL_TIME_CLOCK);
-	profiler.Connect(ffldChronometer);
 
 	//inizializzo ffld (carica il modello)
 	ffld.init("/home/alox/Tesi/workspace/Dummy/src/ffld/models/person_final2007.txt");

@@ -23,6 +23,7 @@ void SearchRange::setSearchRange(int width, int height, dev::CCamera *camera,cim
 
 	//w0 = 0.2;   //INIFile()->Value<double>("W0");
 	//w1 = 1.0; //INIFile()->Value<double>("W1");
+	if (w0 >= w1) w0 = w1-0.1;
 	z0 = 0.0;   //INIFile()->Value<double>("Z0");
 	z1 = 0.0; //INIFile()->Value<double>("Z1");
 
@@ -145,5 +146,10 @@ void SearchRange::Size(std::vector<std::pair<int,int> > & ranges, const dev::Cam
         } // <i
 
     } // <w
+
+    //(x,y,z) -> (u,v)
+    //math::Point2d p = pm.PixelFromWorld(10,1,1);
+    //math::Point2d p = pm.PixelFromWorld(cameraParams.x + 10,cameraParams.y + 1, 1.0d);
+    //std::cout << "ppppppppppppppppppppppppppppppppppppppppppppppppppoint2d: " << p << std::endl;
 
 }

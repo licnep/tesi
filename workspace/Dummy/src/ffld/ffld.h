@@ -39,8 +39,6 @@
 using namespace FFLD;
 using namespace std;
 
-static vl::chrono::CChronometer ffldChronometer;
-
 struct Detection : public FFLD::Rectangle
 {
 	HOGPyramid::Scalar score;

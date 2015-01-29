@@ -65,9 +65,7 @@ pady_(0), interval_(0)
 HOGPyramid::HOGPyramid(cimage::CImageRGB8 & srcImage, SearchRange range, int padx, int pady, int interval) : padx_(0),
 pady_(0), interval_(0)
 {
-	ffldChronometer.Start();
-
-	int nSkyPixels = srcImage.H() * 0.3 //only keep the lower 70% of the image
+	int nSkyPixels = srcImage.H() * 0.3; //only keep the lower 70% of the image
 	cimage::CImageRGB8 croppedImage(srcImage.W(),srcImage.H() - nSkyPixels);
 	/*cimage::Crop(srcImage,croppedImg,0,nSkyPixels,srcImage.W()-1,srcImage.H() - 1,true);
 	string percorso = "/home/alox/cropped.jpg";
@@ -218,8 +216,6 @@ pady_(0), interval_(0)
 		levels_[i].swap(tmp);
 	}
 #endif
-	ffldChronometer.Stop();
-	cout << ffldChronometer << endl;
 
 	for (int i=0;i<maxScale;i++) {
 		std::cout << "OFFSET min=" << offsets_[i].first << std::endl;
@@ -426,6 +422,8 @@ void HOGPyramid::Hog(const cimage::CImageRGB8 & srcImage, Level & level, int pad
 	int height = srcImage.H(); //image.height();
 	const int depth = srcImage.chs(); //image.depth(); //
 	
+	maxRow = min(maxRow,height);
+	minRow = min(minRow,0);
 	if (minRow!=0) height-=minRow;
 	if (maxRow!=0) height-=srcImage.H()-maxRow;
 
