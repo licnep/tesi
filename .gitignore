@@ -6,10 +6,12 @@ workspace/.metadata
 gold-4.6/.svn
 detections/
 dtbb/
-ffld/
+./ffld/
 gpumatrix/
 gpumatrixold/
 wisdom.fftw
 drawing.svg
 pyramid.svg
 voc-release4.01/
+*.o
+*.so

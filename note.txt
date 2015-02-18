@@ -6,7 +6,7 @@ da interval a 2interval sono a risoluzione normale e poi ancora dimezzate finche
 dato un livello, se faccio livello+interval ottengo quello a risoluzione dimezzata
 ]]]]]
 
-frames w ppl: 422, 4963
+frames w ppl: 422, 4963, 892
 
 Questi hanno implementato il tutto in matlab:
 http://www.cs.berkeley.edu/~rbg/latent/index.html

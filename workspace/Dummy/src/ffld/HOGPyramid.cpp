@@ -37,6 +37,7 @@
 #include <Processing/Vision/CImage/Draw/Brushes.h>
 #include <Processing/Vision/CImage/Draw/Box.h>
 #include <Processing/Vision/CImage/Draw/Line.h>
+#include "CImageResize.h"
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
@@ -65,7 +66,7 @@ pady_(0), interval_(0)
 HOGPyramid::HOGPyramid(cimage::CImageRGB8 & srcImage, SearchRange range, int padx, int pady, int interval) : padx_(0),
 pady_(0), interval_(0)
 {
-	int nSkyPixels = srcImage.H() * 0.3; //only keep the lower 70% of the image
+	int nSkyPixels = srcImage.H() * 0.0; //only keep the lower 70% of the image
 	cimage::CImageRGB8 croppedImage(srcImage.W(),srcImage.H() - nSkyPixels);
 	/*cimage::Crop(srcImage,croppedImg,0,nSkyPixels,srcImage.W()-1,srcImage.H() - 1,true);
 	string percorso = "/home/alox/cropped.jpg";
@@ -109,11 +110,12 @@ pady_(0), interval_(0)
 	for (i = 0; i < interval; ++i) {
 		double scale = pow(2.0, static_cast<double>(-i) / interval);
 		
-		cimage::CImageRGB8 scaledImg(croppedImage.W() * scale + 0.5,croppedImage.H() * scale + 0.5);
+		//aaaaaaaaaaaaacimage::CImageRGB8 scaledImg(croppedImage.W() * scale + 0.5,croppedImage.H() * scale + 0.5);
 		/////cimage::Resample(srcImage,scaledImg,cimage::BILINEAR_INTERPOLATION);
-		cimage::Convert(croppedImage,scaledImg,cimage::BILINEAR_INTERPOLATION);
+		//aaaaaaaaaaaaacimage::Convert(croppedImage,scaledImg,cimage::BILINEAR_INTERPOLATION);
 		//char percorso[100]; std::sprintf(percorso, "/home/alox/buttaScalata%d.jpg",i);
 
+		cimage::CImageRGB8 scaledImg = CImageResize(croppedImage, croppedImage.W() * scale + 0.5,croppedImage.H() * scale + 0.5);
 
 		//TODO:: remove next line
 		//JPEGImage scaled = image.resize(image.width() * scale + 0.5, image.height() * scale + 0.5);
@@ -168,9 +170,10 @@ pady_(0), interval_(0)
 		// Remaining octaves
 		for (int j = 2; i + j * interval <= maxScale; ++j) {
 			scale *= 0.5;
-			cimage::CImageRGB8 scaledImg2(croppedImage.W() * scale + 0.5, croppedImage.H() * scale + 0.5);
+			//aaaaaaaaaaaaacimage::CImageRGB8 scaledImg2(croppedImage.W() * scale + 0.5, croppedImage.H() * scale + 0.5);
 			//cimage::Resample(srcImage,scaledImg,cimage::BILINEAR_INTERPOLATION);
-			cimage::Convert(croppedImage,scaledImg2,cimage::BILINEAR_INTERPOLATION);
+			//aaaaaaaaaaaaacimage::Convert(croppedImage,scaledImg2,cimage::BILINEAR_INTERPOLATION);
+			cimage::CImageRGB8 scaledImg2 = CImageResize(croppedImage, croppedImage.W() * scale + 0.5, croppedImage.H() * scale + 0.5);
 			Hog(scaledImg2, levels_[i + j * interval], padx, pady, 8);
 			/*solo per debug, elimina:
 			draw::Opaque<cimage::RGB8> brush2(scaledImg2,cimage::RGB8(255,0,0));

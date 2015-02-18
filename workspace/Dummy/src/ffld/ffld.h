@@ -25,6 +25,7 @@
 #include "Intersector.h"
 #include "Mixture.h"
 #include "Scene.h"
+#include "Globals.h"
 
 #include <algorithm>
 #include <fstream>

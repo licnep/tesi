@@ -22,6 +22,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <Data/CImage/IO/CImageIO.h>
 
 using namespace Eigen;
 using namespace FFLD;
@@ -110,6 +111,28 @@ Model Model::flip() const
 	return model;
 }
 
+void savePlane(string percorso, HOGPyramid::Matrix plane) {
+	int cols = plane.cols();
+	int rows = plane.rows();
+	cimage::CImageRGB8 img(cols,rows);
+	cimage::RGB8* dstBuffer = img.Buffer();
+	float max = 0, min = 255;
+	for (int i=0; i<cols;i++) {
+		for (int j=0; j<rows;j++) {
+			float val = plane(j, i);
+			dstBuffer[j*cols+i].R = 0;dstBuffer[j*cols+i].B = 0;
+			if (val>0&&val<4)
+				dstBuffer[j*cols+i].G = 255*(val/4.0f);
+			else if (val>=4)
+				dstBuffer[j*cols+i].G = 255;
+			else
+				dstBuffer[j*cols+i].G = 0;
+		}
+	}
+	cimage::Save(percorso,img);
+
+}
+
 void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matrix> > & convolutions,
 					 vector<HOGPyramid::Matrix> & scores,
 					 vector<vector<Positions> > * positions) const
@@ -143,6 +166,10 @@ void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matri
 	// Temporary data needed by the distance transforms
 	vector<Scalar> tmp(pyramid.levels()[0].size());
 
+	/*for (int j = 0; j < nbLevels - interval; ++j) {
+		string percorso = "/home/alox/ROOTlevel"+ boost::lexical_cast<std::string>(j) + ".png";
+		savePlane(percorso,convolutions[0][j+interval]);
+	}*/
 
 	// For each part
 	for (int i = 0; i < nbParts; ++i) {
@@ -151,14 +178,17 @@ void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matri
 			//A for each level except the smallest ones (only used for root filters), calculate the part optimal positions and deformation costs given any root position
 			DT2D(convolutions[i + 1][j], parts_[i + 1], &tmp[0],
 				 positions ? &(*positions)[i][j] : 0);
-			
+			//string percorso = "/home/alox/partIlevel"+ boost::lexical_cast<std::string>(j) + ".png";
+			//savePlane(percorso,convolutions[0][j+interval]);
+
 			// Add the distance transforms of the part one octave below
 			for (int y = 0; y < convolutions[0][j + interval].rows(); ++y) {
 				for (int x = 0; x < convolutions[0][j + interval].cols(); ++x) {
 					// The position of the root one octave below
 					const int x2 = x * 2 - padx;
 					//const int y2 = y * 2 - pady;
-					const int y2 = y * 2 - pady - (offsets[j].first-111)/8;
+					int skyPixels = 0; //111;
+					const int y2 = y * 2 - pady - (offsets[j].first-skyPixels)/8;
 					
 					// Nearest-neighbor interpolation
 					if ((x2 >= 0) && (y2 >= 0) && (x2 < convolutions[i + 1][j].cols()) &&
@@ -170,7 +200,11 @@ void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matri
 			}
 		}
 	}/**/
-	
+	for (int j = interval; j < nbLevels; ++j) {
+		string percorso = "/home/alox/partIlevel"+ boost::lexical_cast<std::string>(j) + ".png";
+		//savePlane(percorso,convolutions[0][j]);
+	}
+
 	scores.swap(convolutions[0]);
 	
 	// Add the bias if necessary

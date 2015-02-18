@@ -78,6 +78,10 @@ inline int stop()
 using namespace FFLD;
 using namespace std;
 
+//Globals initialization
+
+int Globals::PYRAMID_INTERVAL = 4;
+
 // SimpleOpt array of valid options
 enum
 {
@@ -279,7 +283,7 @@ void detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, in
 						bndbox.setY(max(bndbox.y(), 0));
 						bndbox.setWidth(min(bndbox.width(), width - bndbox.x()));
 						bndbox.setHeight(min(bndbox.height(), height - bndbox.y()));
-						int nSkyPixels = srcImage.H() * 0.3;
+						int nSkyPixels = srcImage.H() * 0.0;
 						bndbox.setY(bndbox.top()+nSkyPixels);
 						
 						if (!bndbox.empty())
@@ -337,7 +341,7 @@ void detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, in
 											 mixture.models()[argmax].partSize().second * scale + 0.5,
 											 mixture.models()[argmax].partSize().second * scale + 0.5);
 				
-				int nSkyPixels = srcImage.H() * 0.3;
+				int nSkyPixels = srcImage.H() * 0.0;
 				bndbox.setY(bndbox.top()+nSkyPixels);
 				drawR(im, bndbox, 0, 0, 255, 2);
 				math::Rect2i r(bndbox.left(),bndbox.top(),bndbox.right(),bndbox.bottom());
@@ -368,7 +372,6 @@ int CFfld::init(std::string model_path) {
 	ifstream in(model.c_str(), ios::binary);
 
 	if (!in.is_open()) {
-		showUsage();
 		cerr << "\nInvalid model file " << model << endl;
 		return -1;
 	}
@@ -377,7 +380,6 @@ int CFfld::init(std::string model_path) {
 	in >> mMixture;
 
 	if (mMixture.empty()) {
-		showUsage();
 		cerr << "\nInvalid model file " << model << endl;
 		return -1;
 	}
@@ -400,10 +402,12 @@ int CFfld::dpmDetect(std::string model_path,cimage::CImageRGB8 & srcImage, doubl
 	string images = "asdNotEmpty";
 	int nbNegativeScenes = -1;
 	int padding = 12;
-	int interval = 2; //10;
 	//double threshold = -0.5;//0.0; -0.5 abbastanza bene
+	int interval = Globals::PYRAMID_INTERVAL; //10;
 	double overlap = 0.5;
+	//threshold = -10;interval = 10;
 
+	cout << "dpmINTERVAALLLLLLLLLLL::" << Globals::PYRAMID_INTERVAL << endl;
 
 	//find the tallest model in the mixture (useful for the search range)
 	std::vector<FFLD::Model> models = mMixture.models();
@@ -447,7 +451,7 @@ int CFfld::dpmDetect(std::string model_path,cimage::CImageRGB8 & srcImage, doubl
 
 	cout << "Computed HOG features in " << stop() << " ms" << endl;
 
-	// Initialize the Patchwork class
+	// Initialize the Patchwork class  TODO:: this should be done only once at startup
 	start();
 
 	if (!Patchwork::Init((pyramid.levels()[0].rows() - padding + 15) & ~15,

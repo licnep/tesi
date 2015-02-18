@@ -149,9 +149,15 @@ void CDummy::On_Initialization()
     Value<bool> showDetected(&m_showDetected);
     config.Bind(showDetected, "SHOW DETECTED", false);
     
-    ui::var::Range<float> threshold(&m_threshold, -2.0f, 0.5f, 0.1f);
+    Value<string> modelPath(&m_modelPath);
+    config.Bind(modelPath, "MODEL PATH", "/home/alox/Tesi/ffld/models/kitti1000.txt");
+
+    ui::var::Range<float> threshold(&m_threshold, -3.0f, 5.0f, 0.1f);
     config.Bind(threshold, "THRESHOLD", -0.4f);
     
+    ui::var::Range<int> interval(&m_interval, 1, 10, 1);
+    config.Bind(interval, "PYRAMID INTERVAL", 4);
+
     ui::var::Range<float> sliderW0(&m_W0, 0.0f, 2.0f, 0.01f);
     config.Bind(sliderW0, "W0", 0.2f);
 
@@ -197,6 +203,7 @@ void CDummy::On_Initialization()
                 (
                     VSizer()
                     (
+						Slider(interval, "Pyramid interval"),
                         thresholdSlider, //Slider(threshold, "Threshold"),
 						Slider(sliderW0, "W0"),
 						Slider(sliderW1, "W1"),
@@ -229,7 +236,7 @@ void CDummy::On_Initialization()
 	profiler.Connect(m_cvChronometer);
 
 	//inizializzo ffld (carica il modello)
-	ffld.init("/home/alox/Tesi/workspace/Dummy/src/ffld/models/person_final2007.txt");
+	ffld.init(m_modelPath);
 }
 
 void CDummy::On_ShutDown()
@@ -374,7 +381,10 @@ void CDummy::On_Execute()
 	r.setSearchRange(image->W(),image->H(),m_pCam,m_inputImageMono, m_W0, m_W1);
 
 	vector<Detection> detections;
-	ffld.dpmDetect("/home/alox/Tesi/workspace/Dummy/src/ffld/models/person_final2007.txt",m_srcImageRGB, m_threshold,r,detections);
+	//"/home/alox/Tesi/workspace/Dummy/src/ffld/models/person_final2007.txt"
+	FFLD::Globals::PYRAMID_INTERVAL = m_interval;
+	cout << "THRESHOLDDDDDDDDDDDD ::::::::" << m_threshold << endl;
+	ffld.dpmDetect(m_modelPath,m_srcImageRGB, m_threshold,r,detections);
 
 	//print detections to file using KITTI format for evaluation
 	ofstream myfile;

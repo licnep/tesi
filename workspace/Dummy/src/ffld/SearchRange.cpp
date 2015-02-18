@@ -61,6 +61,7 @@ void SearchRange::draw(cimage::CImageRGB8 & debugImage) {
 }
 
 bool SearchRange::isPlausibleSize(int lineFromTop, int width) {
+	return true;
 	if ( width > m_ranges[lineFromTop].second || width < m_ranges[lineFromTop].first ) return false;
 	return true;
 }
@@ -70,6 +71,8 @@ bool SearchRange::isPlausibleSize(int lineFromTop, int width) {
 
 //TODO: this should be cached unless the parameters w0 and w1 are changed
 std::pair<int,int> SearchRange::getUsefulLineRange(int width) {
+	return std::pair<int,int>(0,m_ranges.size());
+
 	int top=m_ranges.size(),bottom=0; //initialize to inverse value (max to min and min to max)
 	for (int i=0;i<m_ranges.size();i++) {
 		if (isPlausibleSize(i,width)) {

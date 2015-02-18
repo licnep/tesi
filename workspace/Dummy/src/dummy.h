@@ -85,6 +85,7 @@ class CDummy : public CApplication
         ui::win::CWindow* m_pDetectedWindow;
 
         float m_threshold, m_W0, m_W1;
+        int m_interval;
         int m_value;
 
         bool m_showInputMono;
@@ -95,6 +96,8 @@ class CDummy : public CApplication
         bool m_showText;
         bool m_showTimer;
         int m_selectedFeature;
+
+        string m_modelPath;
 };
 
 #endif
