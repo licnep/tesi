@@ -169,7 +169,7 @@ void Mixture::convolve(const HOGPyramid & pyramid,
 	// Convolve the patchwork with the filters
 	vector<vector<HOGPyramid::Matrix> > convolutions(filterCache_.size());
 	patchwork.convolve(filterCache_, convolutions);
-	
+
 	// In case of error
 	if (convolutions.empty()) {
 		scores.clear();
@@ -179,7 +179,7 @@ void Mixture::convolve(const HOGPyramid & pyramid,
 		
 		return;
 	}
-	
+
 	// Save the offsets of each model in the filter list
 	vector<int> offsets(nbModels);
 	

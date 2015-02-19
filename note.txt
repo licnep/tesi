@@ -6,6 +6,9 @@ da interval a 2interval sono a risoluzione normale e poi ancora dimezzate finche
 dato un livello, se faccio livello+interval ottengo quello a risoluzione dimezzata
 ]]]]]
 
+frame 76, threshold 2.8 buono per far vedere cosa cabia usando pyramid interval maggiore (bbox piu' precisi)
+frame 43 c'e' un bug relativo all'offset
+
 frames w ppl: 422, 4963, 892
 
 Questi hanno implementato il tutto in matlab:

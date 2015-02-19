@@ -61,7 +61,6 @@ void SearchRange::draw(cimage::CImageRGB8 & debugImage) {
 }
 
 bool SearchRange::isPlausibleSize(int lineFromTop, int width) {
-	return true;
 	if ( width > m_ranges[lineFromTop].second || width < m_ranges[lineFromTop].first ) return false;
 	return true;
 }
@@ -70,8 +69,11 @@ bool SearchRange::isPlausibleSize(int lineFromTop, int width) {
 //la coppia e': min(taglio alla posizione piu' alta possibile per una testa) e max (posizione piu' bassa possibile per i piedi)
 
 //TODO: this should be cached unless the parameters w0 and w1 are changed
-std::pair<int,int> SearchRange::getUsefulLineRange(int width) {
-	return std::pair<int,int>(0,m_ranges.size());
+std::pair<int,int> SearchRange::getUsefulLineRange(float scale) {
+	//return std::pair<int,int>(0,m_ranges.size()-1);
+	//return std::pair<int,int>(100,m_ranges.size()-190);
+	int width = 8*4/scale; //hog cell size (one level above)=8, filter base size=4
+	//width = 8*4;
 
 	int top=m_ranges.size(),bottom=0; //initialize to inverse value (max to min and min to max)
 	for (int i=0;i<m_ranges.size();i++) {
@@ -84,6 +86,9 @@ std::pair<int,int> SearchRange::getUsefulLineRange(int width) {
 	//if (top < 0) top=0;
 	top -= m_maxModelHeight;
 	if (top < 0) top=0;
+	std::cout << "TOOOOOOOOOOOOOOOOOOOOOOOOOP:" << top << std::endl;
+	//sempre multiplo di 4, per difetto
+	//top = top - (top%4);
 	return std::pair<int,int>(top,bottom);
 }
 

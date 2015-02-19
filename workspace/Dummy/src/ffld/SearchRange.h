@@ -20,7 +20,7 @@ public:
 	//void setMixture(FFLD::Mixture &mixture);
 	void SearchRange::draw(cimage::CImageRGB8 & debugImage);
 	bool SearchRange::isPlausibleSize(int lineFromTop, int width);
-	std::pair<int,int> getUsefulLineRange(int width);
+	std::pair<int,int> getUsefulLineRange(float scale);
 
 private:
 	void Size(std::vector<std::pair<int,int> > & ranges, const dev::CameraParams & cameraParams, double w0, double w1, double z0, double z1, int min_width, int max_width, double max_distance, unsigned int height, double border);

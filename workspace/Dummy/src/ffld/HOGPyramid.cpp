@@ -63,14 +63,28 @@ pady_(0), interval_(0)
 	levels_ = levels;
 }
 
+void HOGPyramid::saveLevel(string percorso, Level level) {
+	int cols = level.cols();
+	int rows = level.rows();
+	cimage::CImageRGB8 img(cols,rows);
+	cimage::RGB8* dstBuffer = img.Buffer();
+	float max = 0, min = 255;
+	for (int i=0; i<cols;i++) {
+		for (int j=0; j<rows;j++) {
+			float val = level(j, i)(0)*255;
+			dstBuffer[j*cols+i] = cimage::RGB8(val);
+		}
+	}
+	cimage::Save(percorso,img);
+}
+
 HOGPyramid::HOGPyramid(cimage::CImageRGB8 & srcImage, SearchRange range, int padx, int pady, int interval) : padx_(0),
 pady_(0), interval_(0)
 {
+
 	int nSkyPixels = srcImage.H() * 0.0; //only keep the lower 70% of the image
+	/*
 	cimage::CImageRGB8 croppedImage(srcImage.W(),srcImage.H() - nSkyPixels);
-	/*cimage::Crop(srcImage,croppedImg,0,nSkyPixels,srcImage.W()-1,srcImage.H() - 1,true);
-	string percorso = "/home/alox/cropped.jpg";
-	cimage::Save(percorso,croppedImg);*/
 
 	std::cout << "SKYPIXELS = " << nSkyPixels << std::endl;
 	//std::cout << "SKYPIXELS range = " << range.getSkyHeight() << std::endl;
@@ -85,13 +99,14 @@ pady_(0), interval_(0)
 	}
 	string percorso = "/home/alox/cropped.jpg";
 	cimage::Save(percorso,croppedImage);
+*/
 
 	if ( (padx < 1) || (pady < 1) || (interval < 1))
 		return;
 	
 	// Copmute the number of scales such that the smallest size of the last level is 5
 	//const int maxScale = ceil(log(min(image.width(), image.height()) / 40.0) / log(2.0)) * interval;
-	const int maxScale = ceil(log(min(croppedImage.W(), croppedImage.H()) / 40.0) / log(2.0)) * interval;
+	const int maxScale = ceil(log(min(srcImage.W(), srcImage.H()) / 40.0) / log(2.0)) * interval;
 	
 	// Cannot compute the pyramid on images too small
 	if (maxScale < interval)
@@ -105,17 +120,42 @@ pady_(0), interval_(0)
 	
 	std::cout << "LEVELS: " << maxScale+1 << std::endl;
 
+	//cimage scaling cant be done in parallel because cimage uses Boost pool to allocate buffers which is not thread-safe
+	cimage::CImageRGB8 scaledImages[maxScale+1];
+	for (int i=0;i<interval; ++i) {
+		double scale = pow(2.0, static_cast<double>(-i) / interval);
+#pragma omp critical
+		scaledImages[i] = CImageResize(srcImage, srcImage.W() * scale + 0.5,srcImage.H() * scale + 0.5);
+		//calculate the offset, we need information for the root filter at this level, and the part filter one octave above
+		std::pair<int,int> minMaxRoot_ = range.getUsefulLineRange(scale);
+		std::pair<int,int> minMaxParts_ = range.getUsefulLineRange(scale/2);
+		offsets_[i+interval].first = min(minMaxRoot_.first, minMaxParts_.first)  * scale;
+		offsets_[i+interval].second = min(minMaxRoot_.second, minMaxParts_.second)  * scale;
+
+		for (int j = 2; i + j * interval <= maxScale; ++j) {
+			scale *= 0.5;
+#pragma omp critical
+			scaledImages[i + j * interval] = CImageResize(srcImage, srcImage.W() * scale + 0.5,srcImage.H() * scale + 0.5);
+
+			//calculate the offset, we need information for the root filter at this level, and the part filter one octave above
+			minMaxRoot_ = range.getUsefulLineRange(scale);
+			minMaxParts_ = range.getUsefulLineRange(scale/2);
+			offsets_[i + j * interval].first = min(minMaxRoot_.first, minMaxParts_.first)  * scale;
+			offsets_[i + j * interval].second = min(minMaxRoot_.second, minMaxParts_.second)  * scale;
+		}
+	}
+
 	int i;
 #pragma omp parallel for private(i)
 	for (i = 0; i < interval; ++i) {
 		double scale = pow(2.0, static_cast<double>(-i) / interval);
 		
-		//aaaaaaaaaaaaacimage::CImageRGB8 scaledImg(croppedImage.W() * scale + 0.5,croppedImage.H() * scale + 0.5);
+		//aaaaaaaaaaaaacimage::CImageRGB8 scaledImg(croppedImage.W() * scale + 0.5,srcImage.H() * scale + 0.5);
 		/////cimage::Resample(srcImage,scaledImg,cimage::BILINEAR_INTERPOLATION);
 		//aaaaaaaaaaaaacimage::Convert(croppedImage,scaledImg,cimage::BILINEAR_INTERPOLATION);
 		//char percorso[100]; std::sprintf(percorso, "/home/alox/buttaScalata%d.jpg",i);
 
-		cimage::CImageRGB8 scaledImg = CImageResize(croppedImage, croppedImage.W() * scale + 0.5,croppedImage.H() * scale + 0.5);
+		//cimage::CImageRGB8 scaledImg = CImageResize(srcImage, srcImage.W() * scale + 0.5,srcImage.H() * scale + 0.5);
 
 		//TODO:: remove next line
 		//JPEGImage scaled = image.resize(image.width() * scale + 0.5, image.height() * scale + 0.5);
@@ -123,11 +163,11 @@ pady_(0), interval_(0)
 		// First octave at twice the image resolution
 #ifndef FFLD_HOGPYRAMID_FELZENSZWALB_FEATURES
 		//was: Hog(scaledImg, levels_[i], padx, pady, 4);
-		std::pair<int,int> minMax_ = range.getUsefulLineRange(8*4/scale); //hog cell size (one level above)=8, filter base size=4
-		//cout << scale << " -- " << srcImage.H() <<" AAAAAAAAAAA:::" <<  minMax_.first << " BBBBBBBBB::" << minMax_.second << endl;
-		Hog(scaledImg, levels_[i], padx, pady, 4, (minMax_.first-nSkyPixels)*scale, (minMax_.second-nSkyPixels)*scale);
-		offsets_[i].first = minMax_.first;
-		offsets_[i].second = minMax_.second;
+		std::pair<int,int> minMax_ = range.getUsefulLineRange(scale);
+		cout << scale << " -- " << srcImage.H() <<" AAAAAAAAAAA:::" <<  minMax_.first << " BBBBBBBBB::" << minMax_.second << endl;
+		Hog(scaledImages[i], levels_[i], padx, pady, 4, (minMax_.first-nSkyPixels)*scale, (minMax_.second-nSkyPixels)*scale);
+		offsets_[i].first = minMax_.first*scale;
+		offsets_[i].second = minMax_.second*scale;
 
 		/**solo per debug elimina----------
 		cimage::CImageMono8 hogVis(levels_[i].cols(),levels_[i].rows());
@@ -142,7 +182,8 @@ pady_(0), interval_(0)
 
 		// Second octave at the original resolution
 		if (i + interval <= maxScale) {
-			Hog(scaledImg, levels_[i + interval], padx, pady, 8);
+			Hog(scaledImages[i], levels_[i + interval], padx, pady, 8);
+			//Hog(scaledImages[i], levels_[i + interval], padx, pady, 8, offsets_[i+interval].first, offsets_[i+interval].second);
 		}
 
 		/**solo per debug elimina-------------
@@ -170,11 +211,12 @@ pady_(0), interval_(0)
 		// Remaining octaves
 		for (int j = 2; i + j * interval <= maxScale; ++j) {
 			scale *= 0.5;
-			//aaaaaaaaaaaaacimage::CImageRGB8 scaledImg2(croppedImage.W() * scale + 0.5, croppedImage.H() * scale + 0.5);
+			//aaaaaaaaaaaaacimage::CImageRGB8 scaledImg2(croppedImage.W() * scale + 0.5, srcImage.H() * scale + 0.5);
 			//cimage::Resample(srcImage,scaledImg,cimage::BILINEAR_INTERPOLATION);
 			//aaaaaaaaaaaaacimage::Convert(croppedImage,scaledImg2,cimage::BILINEAR_INTERPOLATION);
-			cimage::CImageRGB8 scaledImg2 = CImageResize(croppedImage, croppedImage.W() * scale + 0.5, croppedImage.H() * scale + 0.5);
-			Hog(scaledImg2, levels_[i + j * interval], padx, pady, 8);
+
+			//cimage::CImageRGB8 scaledImg2 = CImageResize(srcImage, srcImage.W() * scale + 0.5, srcImage.H() * scale + 0.5);
+			Hog(scaledImages[i + j * interval], levels_[i + j * interval], padx, pady, 8);
 			/*solo per debug, elimina:
 			draw::Opaque<cimage::RGB8> brush2(scaledImg2,cimage::RGB8(255,0,0));
 			draw::Rectangle(brush2,math::Rect2i(2,2,8*4,8*11));
@@ -222,6 +264,8 @@ pady_(0), interval_(0)
 
 	for (int i=0;i<maxScale;i++) {
 		std::cout << "OFFSET min=" << offsets_[i].first << std::endl;
+		string percorso = "/home/alox/hogLevel"+ boost::lexical_cast<std::string>(i) + ".png";
+		saveLevel(percorso,static_cast<HOGPyramid::Level>(levels_[i]) );
 	}
 
 }
@@ -426,7 +470,7 @@ void HOGPyramid::Hog(const cimage::CImageRGB8 & srcImage, Level & level, int pad
 	const int depth = srcImage.chs(); //image.depth(); //
 	
 	maxRow = min(maxRow,height);
-	minRow = min(minRow,0);
+	minRow = max(minRow,0);
 	if (minRow!=0) height-=minRow;
 	if (maxRow!=0) height-=srcImage.H()-maxRow;
 

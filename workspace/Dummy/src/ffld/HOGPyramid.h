@@ -98,7 +98,7 @@ public:
 	/// Returns the number of levels per octave in the pyramid.
 	int interval() const;
 	
-	/// Returns the offsets
+	/// Returns the vector of vertical offsets (min,max) for levels that do not correspond to the entire image
 	inline std::vector<std::pair<int,int> > offsets() {return offsets_;}
 
 	/// Returns the pyramid levels.
@@ -147,6 +147,9 @@ public:
 	/// Returns the flipped version (horizontally) of a filter.
 	static HOGPyramid::Level Flip(const HOGPyramid::Level & filter);
 	
+	/// Save a pyramid level to file
+	static void saveLevel(std::string percorso, Level level);
+
 private:
 #ifndef FFLD_HOGPYRAMID_FELZENSZWALB_FEATURES
 	// Efficiently computes Histogram of Oriented Gradient (HOG) features
@@ -181,6 +184,7 @@ private:
 	//where small pedestrians could actually be present.
 	//this vector contains, for each level, the first and last row (0,0 if nothing has been cut)
 	std::vector<std::pair<int,int> > offsets_;
+
 };
 }
 

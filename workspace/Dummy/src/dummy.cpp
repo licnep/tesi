@@ -93,6 +93,7 @@ public:
 	void On_Value_Changed(ui::detail::widget_guid_t guid, const ui::detail::WidgetCore& widget) {
 		cout << "Value changed! =" << endl;
 		try {
+//#pragma omp critical(execute)
 			mDummy->On_Execute();
 		} catch (...) {
 			cout << "EXCEPTION! load a frame before changing params" << endl;
@@ -241,6 +242,7 @@ void CDummy::On_Initialization()
 
 void CDummy::On_ShutDown()
 {
+	remove("wisdowm.fftw");
     delete m_pInputMonoWindow;
     delete m_pInputHOGWindow;
     delete m_pDetectedWindow;

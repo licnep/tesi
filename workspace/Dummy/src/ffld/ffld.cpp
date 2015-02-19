@@ -275,6 +275,7 @@ void detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, in
 						((y == rows - 1) || (x == cols - 1) || (score > scores[i](y + 1, x + 1)))) {
 						FFLD::Rectangle bndbox((x - pyramid.padx()) * scale + 0.5,
 											   (y - pyramid.pady()) * scale + 0.5,
+						//		   	   	   	   (y - pyramid.pady()+pyramid.offsets()[i].first) * scale + 0.5,
 											   sizes[argmaxes[i](y, x)].second * scale + 0.5,
 											   sizes[argmaxes[i](y, x)].first * scale + 0.5);
 						
@@ -286,7 +287,7 @@ void detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, in
 						int nSkyPixels = srcImage.H() * 0.0;
 						bndbox.setY(bndbox.top()+nSkyPixels);
 						
-						if (!bndbox.empty())
+						if (!bndbox.empty()) //&& i<pyramid.interval()*2) //TODO: remove second part only for testing offsets
 							detections.push_back(Detection(score, i, x, y, bndbox));
 					}
 				}
@@ -312,6 +313,11 @@ void detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, in
 	if (lastSlash != string::npos)
 		id = id.substr(lastSlash + 1);
 	
+	vector< pair <int, int> > v = pyramid.offsets();
+	for (int i=0; i< v.size(); i++) {
+		cout << "Offset " << i << "\t:" << v[i].first << endl;
+	}
+
 	if (out) {
 #pragma omp critical
 		for (int i = 0; i < detections.size(); ++i)
@@ -325,38 +331,50 @@ void detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, in
 		
 		for (int j = 0; j < detections.size(); ++j) {
 			// The position of the root one octave below
+			cout << "DETECTION LAYER LLLLLLLLLLLLLLLL===" << detections[j].l << endl;
 			const int argmax = argmaxes[detections[j].l](detections[j].y, detections[j].x);
 			const int x2 = detections[j].x * 2 - pyramid.padx();
-			const int y2 = detections[j].y * 2 - pyramid.pady();
+			//const int y2 = detections[j].y * 2 - pyramid.pady();
 			const int l = detections[j].l - pyramid.interval();
+			const int y2 = detections[j].y * 2 - pyramid.pady() - (pyramid.offsets()[l].first)/4;
 			
 			// Scale = 8 / 2^(1 - j / interval)
 			const double scale = pow(2.0, static_cast<double>(l) / pyramid.interval() + 2.0);
 			
 			for (int k = 0; k < positions[argmax].size(); ++k) {
+				cout << "aaaaaaaaaaaaaa" << y2 << endl;
+				cout << "size: " << positions[argmax][k][l].size() << endl;
+
 				const FFLD::Rectangle bndbox((positions[argmax][k][l](y2, x2)(0) - pyramid.padx()) *
 											 scale + 0.5,
-											 (positions[argmax][k][l](y2, x2)(1) - pyramid.pady()) *
+											 //(positions[argmax][k][l](y2, x2)(1) - pyramid.pady()) *
+											 (positions[argmax][k][l](y2, x2)(1) - pyramid.pady() + (pyramid.offsets()[l].first)/4) *
 											 scale + 0.5,
 											 mixture.models()[argmax].partSize().second * scale + 0.5,
 											 mixture.models()[argmax].partSize().second * scale + 0.5);
 				
 				int nSkyPixels = srcImage.H() * 0.0;
 				bndbox.setY(bndbox.top()+nSkyPixels);
-				drawR(im, bndbox, 0, 0, 255, 2);
+				//drawR(im, bndbox, 0, 0, 255, 2);
 				math::Rect2i r(bndbox.left(),bndbox.top(),bndbox.right(),bndbox.bottom());
-				draw::Opaque<cimage::RGB8> brush(srcImage,cimage::RGB8(0,0,255));
-				draw::Rectangle(brush,r);
+#pragma omp critical
+				{
+					draw::Opaque<cimage::RGB8> brush(srcImage,cimage::RGB8(0,0,255));
+					draw::Rectangle(brush,r);
+				}
 
 			}
 			
-			if (range.isPlausibleSize(detections[j].bottom(),detections[j].width()) ) {
+			//if (range.isPlausibleSize(detections[j].bottom(),detections[j].width()) ) {
 				// Draw the root last
-				drawR(im, detections[j], 255, 0, 0, 2);
+				//drawR(im, detections[j], 255, 0, 0, 2);
 				math::Rect2i r(detections[j].left(),detections[j].top(),detections[j].right(),detections[j].bottom());
-				draw::Opaque<cimage::RGB8> brush(srcImage,cimage::RGB8(255,0,0));
-				draw::Rectangle(brush,r);
-			}
+#pragma omp critical
+				{
+					draw::Opaque<cimage::RGB8> brush(srcImage,cimage::RGB8(255,0,0));
+					draw::Rectangle(brush,r);
+				}
+			//}
 		}
 		
 		//im.save(images + '/' + id + ".jpg");
@@ -401,7 +419,7 @@ int CFfld::dpmDetect(std::string model_path,cimage::CImageRGB8 & srcImage, doubl
 	string results;
 	string images = "asdNotEmpty";
 	int nbNegativeScenes = -1;
-	int padding = 12;
+	int padding = 12; //12 was default
 	//double threshold = -0.5;//0.0; -0.5 abbastanza bene
 	int interval = Globals::PYRAMID_INTERVAL; //10;
 	double overlap = 0.5;
@@ -454,7 +472,16 @@ int CFfld::dpmDetect(std::string model_path,cimage::CImageRGB8 & srcImage, doubl
 	// Initialize the Patchwork class  TODO:: this should be done only once at startup
 	start();
 
-	if (!Patchwork::Init((pyramid.levels()[0].rows() - padding + 15) & ~15,
+	//find the tallest pyramid plane
+	int maxRows = 0;
+	for (int i=0; i< pyramid.levels().size();i++) {
+		if (pyramid.levels()[i].rows()>maxRows)
+			maxRows = pyramid.levels()[i].rows();
+	}
+	maxRows = (maxRows - padding + 15) & ~15;
+	int oldMaxRows = Patchwork::MaxRows();
+
+	if (!Patchwork::Init(maxRows,
 						 (pyramid.levels()[0].cols() - padding + 15) & ~15)) {
 		cerr << "\nCould not initialize the Patchwork class" << endl;
 		return -1;
@@ -463,8 +490,10 @@ int CFfld::dpmDetect(std::string model_path,cimage::CImageRGB8 & srcImage, doubl
 	cout << "Initialized FFTW in " << stop() << " ms" << endl;
 
 	start();
-
-	//mMixture.cacheFilters();
+	if (oldMaxRows!=maxRows) {
+		cout << "Plane size changed, re-caching filters" << endl;
+		mMixture.cacheFilters();
+	}
 
 	cout << "Transformed the filters in " << stop() << " ms" << endl;
 

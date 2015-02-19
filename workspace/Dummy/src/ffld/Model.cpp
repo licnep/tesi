@@ -130,7 +130,6 @@ void savePlane(string percorso, HOGPyramid::Matrix plane) {
 		}
 	}
 	cimage::Save(percorso,img);
-
 }
 
 void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matrix> > & convolutions,
@@ -145,7 +144,7 @@ void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matri
 	// Invalid parameters
 	if (empty() || pyramid.empty() || (convolutions.size() != parts_.size()))
 		return;
-	
+
 	// All the constants relative to the model and the pyramid
 	const int nbFilters = parts_.size();
 	const int nbParts = nbFilters - 1;
@@ -188,22 +187,24 @@ void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matri
 					const int x2 = x * 2 - padx;
 					//const int y2 = y * 2 - pady;
 					int skyPixels = 0; //111;
-					const int y2 = y * 2 - pady - (offsets[j].first-skyPixels)/8;
+					const int y2 = y * 2 - pady - (offsets[j].first-skyPixels)/4;
 					
 					// Nearest-neighbor interpolation
 					if ((x2 >= 0) && (y2 >= 0) && (x2 < convolutions[i + 1][j].cols()) &&
 						(y2 < convolutions[i + 1][j].rows()))
 						convolutions[0][j + interval](y, x) += convolutions[i + 1][j](y2, x2);
 					else
-						convolutions[0][j + interval](y, x) =-numeric_limits<Scalar>::infinity();
+						convolutions[0][j + interval](y, x) =- numeric_limits<Scalar>::infinity();
 				}
 			}
 		}
 	}/**/
+	/*
+#pragma omp critical
 	for (int j = interval; j < nbLevels; ++j) {
 		string percorso = "/home/alox/partIlevel"+ boost::lexical_cast<std::string>(j) + ".png";
-		//savePlane(percorso,convolutions[0][j]);
-	}
+		savePlane(percorso,convolutions[0][j]);
+	}*/
 
 	scores.swap(convolutions[0]);
 	

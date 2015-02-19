@@ -45,6 +45,40 @@ Patchwork::Patchwork() : padx_(0), pady_(0), interval_(0)
 {
 }
 
+#include <Data/CImage/IO/CImageIO.h>
+
+void savePlane(string percorso, Patchwork::Plane level) {
+	int cols = level.cols();
+	int rows = level.rows();
+	cimage::CImageRGB8 img(cols,rows);
+	cimage::RGB8* dstBuffer = img.Buffer();
+	float max = 0, min = 255;
+	for (int i=0; i<cols;i++) {
+		for (int j=0; j<rows;j++) {
+			std::complex<float> f = level(j, i)(0);
+			float val = f.imag()*255;
+			dstBuffer[j*cols+i] = cimage::RGB8(val);
+		}
+	}
+	cimage::Save(percorso,img);
+}
+
+void saveMatrix(string percorso, HOGPyramid::Matrix &level) {
+	int cols = level.cols();
+	int rows = level.rows();
+	cimage::CImageRGB8 img(cols,rows);
+	cimage::RGB8* dstBuffer = img.Buffer();
+	float max = 0, min = 255;
+	for (int i=0; i<cols;i++) {
+		for (int j=0; j<rows;j++) {
+			//std::complex<float> f = level(j, i)(0);
+			float val = level(j, i)*255/3;
+			dstBuffer[j*cols+i] = cimage::RGB8(val);
+		}
+	}
+	cimage::Save(percorso,img);
+}
+
 Patchwork::Patchwork(const HOGPyramid & pyramid) : padx_(pyramid.padx()), pady_(pyramid.pady()),
 interval_(pyramid.interval())
 {
@@ -60,11 +94,11 @@ interval_(pyramid.interval())
 	
 	// Build the patchwork planes
 	const int nbPlanes = BLF(rectangles_);
-	
+
 	// Constructs an empty patchwork in case of error
 	if (nbPlanes <= 0)
 		return;
-	
+
 	planes_.resize(nbPlanes);
 	
 	for (int i = 0; i < nbPlanes; ++i) {
@@ -91,6 +125,12 @@ interval_(pyramid.interval())
 											  rectangles_[i].first.width());
 	}
 	
+
+	for (int i = 0; i < nbPlanes; ++i) {
+		string percorso = "/home/alox/patchworkPlane"+ boost::lexical_cast<std::string>(i) + ".png";
+		savePlane(percorso,planes_[i]);
+	}
+
 	// Transform the planes
 	int i;
 #pragma omp parallel for private(i)
@@ -131,13 +171,13 @@ void Patchwork::convolve(const vector<Filter> & filters,
 	std::cout << "FILTERS size: " << nbFilters << std::endl;
 	const int nbPlanes = planes_.size();
 	const int nbLevels = rectangles_.size();
-	
+
 	// Early return if the patchwork or the filters are empty
 	if (empty() || !nbFilters) {
 		convolutions.clear();
 		return;
 	}
-	
+
 	// Pointwise multiply the transformed filters with the patchwork's planes
 	// The performace measurements reported in the paper were done without reallocating the sums
 	// each time by making them static
@@ -161,7 +201,7 @@ void Patchwork::convolve(const vector<Filter> & filters,
 #else
 						 MaxRows_ * HalfCols_);
 #endif
-	
+
 	std::cout << "maxRows:" << MaxRows_ << std::endl;
 
 	int i;
@@ -232,6 +272,13 @@ void Patchwork::convolve(const vector<Filter> & filters,
 		}
 	}
 	std::cout << "butta:" << butta << std::endl;
+
+	//scelgo filtro 3 arbitrariamente
+	/*for (int i=0;i<nbPlanes;i++) {
+		string percorso = "/home/alox/convolutions"+ boost::lexical_cast<std::string>(i) + ".png";
+		saveMatrix(percorso,convolutions[1][i]);
+	}*/
+
 }
 
 bool Patchwork::Init(int maxRows, int maxCols)
@@ -399,14 +446,14 @@ int Patchwork::BLF(vector<pair<Rectangle, int> > & rectangles)
 	// Order the rectangles by decreasing area. If a rectangle is bigger than MaxRows x MaxCols
 	// return -1
 	vector<int> ordering(rectangles.size());
-	
+
 	for (int i = 0; i < rectangles.size(); ++i) {
 		if ((rectangles[i].first.width() > MaxCols_) || (rectangles[i].first.height() > MaxRows_))
 			return -1;
 		
 		ordering[i] = i;
 	}
-	
+
 	sort(ordering.begin(), ordering.end(), detail::AreaComparator(rectangles));
 	
 	// Index of the plane containing each rectangle
