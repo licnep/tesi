@@ -132,6 +132,10 @@ void savePlane(string percorso, HOGPyramid::Matrix plane) {
 	cimage::Save(percorso,img);
 }
 
+void Model::printToFile(std::string filename) {
+	HOGPyramid::saveLevel(filename,parts_[0].filter,15.0f);
+}
+
 void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matrix> > & convolutions,
 					 vector<HOGPyramid::Matrix> & scores,
 					 vector<vector<Positions> > * positions) const
@@ -187,7 +191,9 @@ void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matri
 					const int x2 = x * 2 - padx;
 					//const int y2 = y * 2 - pady;
 					int skyPixels = 0; //111;
-					const int y2 = y * 2 - pady - (offsets[j].first-skyPixels)/4;
+					//const int y2 = y * 2 - pady - (offsets[j].first-skyPixels)/4;
+
+					const int y2 = pyramid.getPositionOctaveBelow( y, j+interval );
 					
 					// Nearest-neighbor interpolation
 					if ((x2 >= 0) && (y2 >= 0) && (x2 < convolutions[i + 1][j].cols()) &&

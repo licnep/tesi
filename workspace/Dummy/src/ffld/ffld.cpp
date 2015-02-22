@@ -240,7 +240,7 @@ void detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, in
 		mixture.convolve(pyramid, scores, argmaxes, &positions);
 	else
 		mixture.convolve(pyramid, scores, argmaxes);
-	
+
 	// Cache the size of the models
 	vector<pair<int, int> > sizes(mixture.models().size());
 	
@@ -274,8 +274,8 @@ void detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, in
 						((y == rows - 1) || (score > scores[i](y + 1, x))) &&
 						((y == rows - 1) || (x == cols - 1) || (score > scores[i](y + 1, x + 1)))) {
 						FFLD::Rectangle bndbox((x - pyramid.padx()) * scale + 0.5,
-											   (y - pyramid.pady()) * scale + 0.5,
-						//		   	   	   	   (y - pyramid.pady()+pyramid.offsets()[i].first) * scale + 0.5,
+											   //(y - pyramid.pady()) * scale + 0.5,
+								   	   	   	   (y - pyramid.pady()+pyramid.offsets()[i].first/8) * scale + 0.5,
 											   sizes[argmaxes[i](y, x)].second * scale + 0.5,
 											   sizes[argmaxes[i](y, x)].first * scale + 0.5);
 						
@@ -284,10 +284,9 @@ void detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, in
 						bndbox.setY(max(bndbox.y(), 0));
 						bndbox.setWidth(min(bndbox.width(), width - bndbox.x()));
 						bndbox.setHeight(min(bndbox.height(), height - bndbox.y()));
-						int nSkyPixels = srcImage.H() * 0.0;
-						bndbox.setY(bndbox.top()+nSkyPixels);
+						//int nSkyPixels = srcImage.H() * 0.0;
 						
-						if (!bndbox.empty()) //&& i<pyramid.interval()*2) //TODO: remove second part only for testing offsets
+						if (!bndbox.empty()) // && i>pyramid.interval()*2) //TODO: remove second part only for testing offsets
 							detections.push_back(Detection(score, i, x, y, bndbox));
 					}
 				}
@@ -325,7 +324,7 @@ void detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, in
 				<< (detections[i].top() + 1) << ' ' << (detections[i].right() + 1) << ' '
 				<< (detections[i].bottom() + 1) << endl;
 	}
-	
+
 	if (!images.empty()) {
 		JPEGImage im(image);
 		
@@ -336,7 +335,8 @@ void detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, in
 			const int x2 = detections[j].x * 2 - pyramid.padx();
 			//const int y2 = detections[j].y * 2 - pyramid.pady();
 			const int l = detections[j].l - pyramid.interval();
-			const int y2 = detections[j].y * 2 - pyramid.pady() - (pyramid.offsets()[l].first)/4;
+			//const int y2 = detections[j].y * 2 - pyramid.pady() - (pyramid.offsets()[l].first)/4;
+			const int y2 = pyramid.getPositionOctaveBelow(detections[j].y,detections[j].l);
 			
 			// Scale = 8 / 2^(1 - j / interval)
 			const double scale = pow(2.0, static_cast<double>(l) / pyramid.interval() + 2.0);
@@ -344,24 +344,31 @@ void detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, in
 			for (int k = 0; k < positions[argmax].size(); ++k) {
 				cout << "aaaaaaaaaaaaaa" << y2 << endl;
 				cout << "size: " << positions[argmax][k][l].size() << endl;
+				int yOffset = (l< pyramid.interval()) ? (pyramid.offsets()[l].first)/4 : (pyramid.offsets()[l].first)/8;
 
 				const FFLD::Rectangle bndbox((positions[argmax][k][l](y2, x2)(0) - pyramid.padx()) *
 											 scale + 0.5,
 											 //(positions[argmax][k][l](y2, x2)(1) - pyramid.pady()) *
-											 (positions[argmax][k][l](y2, x2)(1) - pyramid.pady() + (pyramid.offsets()[l].first)/4) *
+											 (positions[argmax][k][l](y2, x2)(1) - pyramid.pady() + yOffset) *
 											 scale + 0.5,
 											 mixture.models()[argmax].partSize().second * scale + 0.5,
 											 mixture.models()[argmax].partSize().second * scale + 0.5);
-				
-				int nSkyPixels = srcImage.H() * 0.0;
-				bndbox.setY(bndbox.top()+nSkyPixels);
-				//drawR(im, bndbox, 0, 0, 255, 2);
+
+				// Truncate the object //TODO capire perche' tenendole entro 8 dal bordo non crasha
+				bndbox.setX(max(bndbox.x(), 8));
+				bndbox.setY(max(bndbox.y(), 8));
+				bndbox.setWidth(min(bndbox.width(), width -8 - bndbox.x()));
+				bndbox.setHeight(min(bndbox.height(), height -8 - bndbox.y()));
+
+				//bndbox.setX(2);bndbox.setY(2);
+				//bndbox.setWidth(10);bndbox.setHeight(10);
+
 				math::Rect2i r(bndbox.left(),bndbox.top(),bndbox.right(),bndbox.bottom());
-#pragma omp critical
-				{
+//#pragma omp critical
+//				{
 					draw::Opaque<cimage::RGB8> brush(srcImage,cimage::RGB8(0,0,255));
 					draw::Rectangle(brush,r);
-				}
+//				}
 
 			}
 			
@@ -369,11 +376,11 @@ void detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, in
 				// Draw the root last
 				//drawR(im, detections[j], 255, 0, 0, 2);
 				math::Rect2i r(detections[j].left(),detections[j].top(),detections[j].right(),detections[j].bottom());
-#pragma omp critical
-				{
+//#pragma omp critical
+//				{
 					draw::Opaque<cimage::RGB8> brush(srcImage,cimage::RGB8(255,0,0));
 					draw::Rectangle(brush,r);
-				}
+//				}
 			//}
 		}
 		
@@ -419,19 +426,19 @@ int CFfld::dpmDetect(std::string model_path,cimage::CImageRGB8 & srcImage, doubl
 	string results;
 	string images = "asdNotEmpty";
 	int nbNegativeScenes = -1;
-	int padding = 12; //12 was default
+	int padding = 6; //12 was default
 	//double threshold = -0.5;//0.0; -0.5 abbastanza bene
 	int interval = Globals::PYRAMID_INTERVAL; //10;
 	double overlap = 0.5;
-	//threshold = -10;interval = 10;
+	//threshold = -10;//interval = 10;
 
-	cout << "dpmINTERVAALLLLLLLLLLL::" << Globals::PYRAMID_INTERVAL << endl;
+	//cout << "dpmINTERVAALLLLLLLLLLL::" << Globals::PYRAMID_INTERVAL << endl;
 
 	//find the tallest model in the mixture (useful for the search range)
 	std::vector<FFLD::Model> models = mMixture.models();
 	int maxH = 0;
 	for (int i=0; i<models.size(); i++) {
-		std::cout<< "HEIGHHHHHHHHHHT::" << models[i].rootSize().first << std::endl;
+		//std::cout<< "HEIGHHHHHHHHHHT::" << models[i].rootSize().first << std::endl;
 		if (models[i].rootSize().first > maxH) maxH = models[i].rootSize().first;
 	}
 	r.setMaxModelHeight(maxH*8); //8 is the size of the hog cell in pixels

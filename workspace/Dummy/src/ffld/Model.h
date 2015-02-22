@@ -89,6 +89,8 @@ public:
 	/// implement Fourier accelerated convolutions).
 	friend class Mixture;
 	
+	void printToFile(std::string filename);
+
 private:
 	/// The part structure stores all the information about a part (or the root).
 	struct Part

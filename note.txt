@@ -6,6 +6,17 @@ da interval a 2interval sono a risoluzione normale e poi ancora dimezzate finche
 dato un livello, se faccio livello+interval ottengo quello a risoluzione dimezzata
 ]]]]]
 
+TODO:
+
+- I search ranges dovrebbero essere applicati PRIMA di fare maxima suppression. Questo e' MOLTO importante. altrimenti se c'e' detection grande e piccola (e la piccola e' giusta), piccola viene inglobata da grande in non maxima suppression, per poi essere eliminata dai search ranges!
+
+- verificare quali sono i positives che manchiamo (come?) Carichiamo i label, possiamo visualizzarli, e in teoria il meglio sarebbe anche verificare l'overlap (non impossibile dovrei gia' avere il codice necessario).
+
+- overlap deve diventare un parametro
+
+- tante cose da parametrizzare (come quelle per il debugging) 
+
+
 frame 76, threshold 2.8 buono per far vedere cosa cabia usando pyramid interval maggiore (bbox piu' precisi)
 frame 43 c'e' un bug relativo all'offset
 

@@ -63,10 +63,10 @@ pady_(0), interval_(0)
 	levels_ = levels;
 }
 
-void HOGPyramid::saveLevel(string percorso, Level level) {
+void HOGPyramid::saveLevel(string percorso, Level level, float multiplier) {
 	int cols = level.cols();
 	int rows = level.rows();
-	cimage::CImageRGB8 img(cols,rows);
+	/*cimage::CImageRGB8 img(cols,rows);
 	cimage::RGB8* dstBuffer = img.Buffer();
 	float max = 0, min = 255;
 	for (int i=0; i<cols;i++) {
@@ -75,13 +75,63 @@ void HOGPyramid::saveLevel(string percorso, Level level) {
 			dstBuffer[j*cols+i] = cimage::RGB8(val);
 		}
 	}
-	cimage::Save(percorso,img);
+	cimage::Save(percorso,img);*/
+	int cSize=16;
+	//cimage::CImageRGB8 img(cols*cSize,rows*cSize);
+	cimage::CImageRGB8 *img = new cimage::CImageRGB8(cols*cSize,rows*cSize);
+	int gradientBinSize=9;
+	// dividing 180° into 9 bins, how large (in rad) is one bin?
+	float radRangeForOneBin = 3.14/(float)gradientBinSize;
+	for (int i=0; i<cols;i++) {
+		for (int j=0; j<rows;j++) {
+			int drawX = i * cSize;
+			int drawY = j * cSize;
+			int mx = drawX + cSize/2;
+			int my = drawY + cSize/2;
+			for (int bin=0; bin<gradientBinSize; bin++)
+				{
+					float currentGradStrength = level(j, i)(bin);//gradientStrengths[celly][cellx][bin];
+
+					// no line to draw?
+					if (currentGradStrength==0)
+						continue;
+
+					float currRad = bin * radRangeForOneBin + radRangeForOneBin/2;
+
+					float dirVecX = -sin( currRad );
+					float dirVecY = cos( currRad );
+					float maxVecLen = cSize/2; //cellSize.width/2;
+					float scale = multiplier*3.0f;//30.0f;//viz_factor; // just a visual_imagealization scale,
+											  // to see the lines better
+
+					// compute line coordinates
+					float x1 = mx - dirVecX * currentGradStrength * maxVecLen * scale;
+					float y1 = my - dirVecY * currentGradStrength * maxVecLen * scale;
+					float x2 = mx + dirVecX * currentGradStrength * maxVecLen * scale;
+					float y2 = my + dirVecY * currentGradStrength * maxVecLen * scale;
+
+					// draw gradient visual_imagealization
+					draw::Opaque<cimage::RGB8> brush(*img,cimage::RGB8(255,255,255));
+					//x1, y1, x2, y2
+					draw::Line(brush,x1,y1,x2,y2);
+
+					/*line(visual_image,
+						 Point(x1*scaleFactor,y1*scaleFactor),
+						 Point(x2*scaleFactor,y2*scaleFactor),
+						 CV_RGB(0,0,255),
+						 1);*/
+
+			} // for (all bins)
+		}
+	}
+	cimage::Save(percorso,*img);
+	free(img);
 }
+
 
 HOGPyramid::HOGPyramid(cimage::CImageRGB8 & srcImage, SearchRange range, int padx, int pady, int interval) : padx_(0),
 pady_(0), interval_(0)
 {
-
 	int nSkyPixels = srcImage.H() * 0.0; //only keep the lower 70% of the image
 	/*
 	cimage::CImageRGB8 croppedImage(srcImage.W(),srcImage.H() - nSkyPixels);
@@ -121,7 +171,9 @@ pady_(0), interval_(0)
 	std::cout << "LEVELS: " << maxScale+1 << std::endl;
 
 	//cimage scaling cant be done in parallel because cimage uses Boost pool to allocate buffers which is not thread-safe
-	cimage::CImageRGB8 scaledImages[maxScale+1];
+	//cimage::CImageRGB8 scaledImages[maxScale+1];
+	vector<cimage::CImageRGB8> scaledImages(maxScale+1);
+
 	for (int i=0;i<interval; ++i) {
 		double scale = pow(2.0, static_cast<double>(-i) / interval);
 #pragma omp critical
@@ -182,8 +234,8 @@ pady_(0), interval_(0)
 
 		// Second octave at the original resolution
 		if (i + interval <= maxScale) {
-			Hog(scaledImages[i], levels_[i + interval], padx, pady, 8);
-			//Hog(scaledImages[i], levels_[i + interval], padx, pady, 8, offsets_[i+interval].first, offsets_[i+interval].second);
+			//Hog(scaledImages[i], levels_[i + interval], padx, pady, 8);
+			Hog(scaledImages[i], levels_[i + interval], padx, pady, 8, offsets_[i+interval].first, offsets_[i+interval].second);
 		}
 
 		/**solo per debug elimina-------------
@@ -216,7 +268,10 @@ pady_(0), interval_(0)
 			//aaaaaaaaaaaaacimage::Convert(croppedImage,scaledImg2,cimage::BILINEAR_INTERPOLATION);
 
 			//cimage::CImageRGB8 scaledImg2 = CImageResize(srcImage, srcImage.W() * scale + 0.5, srcImage.H() * scale + 0.5);
-			Hog(scaledImages[i + j * interval], levels_[i + j * interval], padx, pady, 8);
+
+			//Hog(scaledImages[i + j * interval], levels_[i + j * interval], padx, pady, 8);
+			Hog(scaledImages[i + j * interval], levels_[i + j * interval], padx, pady, 8, offsets_[i+j*interval].first, offsets_[i+j*interval].second);
+
 			/*solo per debug, elimina:
 			draw::Opaque<cimage::RGB8> brush2(scaledImg2,cimage::RGB8(255,0,0));
 			draw::Rectangle(brush2,math::Rect2i(2,2,8*4,8*11));
@@ -262,11 +317,12 @@ pady_(0), interval_(0)
 	}
 #endif
 
+	/*
 	for (int i=0;i<maxScale;i++) {
 		std::cout << "OFFSET min=" << offsets_[i].first << std::endl;
 		string percorso = "/home/alox/hogLevel"+ boost::lexical_cast<std::string>(i) + ".png";
 		saveLevel(percorso,static_cast<HOGPyramid::Level>(levels_[i]) );
-	}
+	}*/
 
 }
 
@@ -293,6 +349,16 @@ const vector<HOGPyramid::Level> & HOGPyramid::levels() const
 bool HOGPyramid::empty() const
 {
 	return levels().empty();
+}
+
+int HOGPyramid::getPositionOctaveBelow(int y, int src_level) {
+	assert(src_level >= interval_);
+
+	int srcOffset = offsets_[src_level].first/8;
+	int dstOffset = (src_level>=interval_*2) ? offsets_[src_level-interval_].first/8 : offsets_[src_level-interval_].first/4;
+
+	int y2 = (y+srcOffset) * 2 - pady_ - dstOffset;
+	return y2;
 }
 
 void HOGPyramid::convolve(const Level & filter, vector<Matrix> & convolutions) const

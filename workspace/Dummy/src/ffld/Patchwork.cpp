@@ -125,11 +125,11 @@ interval_(pyramid.interval())
 											  rectangles_[i].first.width());
 	}
 	
-
+	/*
 	for (int i = 0; i < nbPlanes; ++i) {
 		string percorso = "/home/alox/patchworkPlane"+ boost::lexical_cast<std::string>(i) + ".png";
 		savePlane(percorso,planes_[i]);
-	}
+	}*/
 
 	// Transform the planes
 	int i;

@@ -82,21 +82,28 @@ void CImageResize_(const cimage::RGB8* src, int srcWidth, int srcHeight, cimage:
 	}
 }
 
+typedef boost::shared_ptr<cimage::CImageRGB8> sharedCimagePtr;
+
 //Public version of the resize function. It resizes the image by consecutive halving, using bilinear interpolation
 //then applies an extra resize if needed to reach the defined width and height
-cimage::CImageRGB8 CImageResize(cimage::CImageRGB8 & srcImage, int width, int height) {
+cimage::CImageRGB8 CImageResize(cimage::CImageRGB8 &srcImage, int width, int height) {
 	//Empty image
-	if ((width <= 0) || (height <= 0))
+	if ((width <= 0) || (height <= 0)) {
 		return cimage::CImageRGB8(0,0);
+		//sharedCimagePtr result(new cimage::CImageRGB8(0,0));
+		//return result;
+	}
 
 	int width_ = srcImage.W();
 	int height_ = srcImage.H();
 
 	// Same dimensions
-	if ((width == width_) && (height == height_))
+	if ((width == width_) && (height == height_)) {
 		return srcImage;
+	}
 
 	//allocate a new cImage
+	//boost::shared_ptr<cimage::CImageRGB8> result(new cimage::CImageRGB8(width,height));
 	cimage::CImageRGB8 result(width,height);
 
 	//Resize the image at each octave

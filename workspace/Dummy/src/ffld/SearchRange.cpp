@@ -51,8 +51,9 @@ void SearchRange::setMaxModelHeight(int h) {
 void SearchRange::draw(cimage::CImageRGB8 & debugImage) {
 	cimage::RGB8* dstBuffer = debugImage.Buffer();
 	int width = debugImage.W();
+	int height = debugImage.H();
 
-	for (int i=0;i<m_ranges.size();i++) {
+	for (int i=0;i<m_ranges.size()&&i<height;i++) {
 		//std::cout << "first:" << ranges[i].first << " second:" << ranges[i].second << std::endl;
 
 		dstBuffer[i*(width)+m_ranges[i].first].B = 255;
@@ -84,9 +85,9 @@ std::pair<int,int> SearchRange::getUsefulLineRange(float scale) {
 	}
 	//top = top - (width*2); //assumo altezza del pedone doppia della base, piu' o meno e' cosi' ma posso usare il modello per maggior precisione (6*11 o 4*11)
 	//if (top < 0) top=0;
-	top -= m_maxModelHeight;
+	top -= m_maxModelHeight/scale;
 	if (top < 0) top=0;
-	std::cout << "TOOOOOOOOOOOOOOOOOOOOOOOOOP:" << top << std::endl;
+	//std::cout << "TOOOOOOOOOOOOOOOOOOOOOOOOOP:" << top << std::endl;
 	//sempre multiplo di 4, per difetto
 	//top = top - (top%4);
 	return std::pair<int,int>(top,bottom);

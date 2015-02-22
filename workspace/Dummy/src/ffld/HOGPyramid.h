@@ -148,7 +148,11 @@ public:
 	static HOGPyramid::Level Flip(const HOGPyramid::Level & filter);
 	
 	/// Save a pyramid level to file
-	static void saveLevel(std::string percorso, Level level);
+	static void saveLevel(std::string percorso, Level level, float multiplier=1.0f);
+
+	///convert a Y coordinate from one scale to the corresponding coordinate one octave below
+	///(from root filter position to part filters positions), taking care of offsets
+	int getPositionOctaveBelow(int y, int src_level);
 
 private:
 #ifndef FFLD_HOGPYRAMID_FELZENSZWALB_FEATURES

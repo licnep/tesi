@@ -395,16 +395,17 @@ void CDummy::On_Execute()
 	myfile.open(filename);
 
 	for (int i = 0; i < detections.size(); ++i) {
-		bool plausible = r.isPlausibleSize(detections[i].bottom(),detections[i].width());
-		if(plausible) {
+		//bool plausible = r.isPlausibleSize(detections[i].bottom(),detections[i].width());
+		//if(plausible) {
 		myfile << "Pedestrian -1 -1 -10 "
 				<< detections[i].left() << " "
 				<< detections[i].top() << " "
 				<< detections[i].right() << " "
 				<< detections[i].bottom() << " "
-				<< "-1 -1 -1 -1000 -1000 -1000 -10 " << (plausible ? detections[i].score : (detections[i].score - 1))
+				<< "-1 -1 -1 -1000 -1000 -1000 -10 " << detections[i].score << " " //(plausible ? detections[i].score : (detections[i].score - 1))
+				<< detections[i].l
 				<< endl;
-		}
+		//}
 	}
 	myfile.close();
 
