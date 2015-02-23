@@ -71,7 +71,7 @@ bool SearchRange::isPlausibleSize(int lineFromTop, int width) {
 
 //TODO: this should be cached unless the parameters w0 and w1 are changed
 std::pair<int,int> SearchRange::getUsefulLineRange(float scale) {
-	//return std::pair<int,int>(0,m_ranges.size()-1);
+	return std::pair<int,int>(0,m_ranges.size()-1);
 	//return std::pair<int,int>(100,m_ranges.size()-190);
 	int width = 8*4/scale; //hog cell size (one level above)=8, filter base size=4
 	//width = 8*4;

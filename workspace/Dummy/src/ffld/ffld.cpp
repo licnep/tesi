@@ -430,7 +430,7 @@ int CFfld::dpmDetect(std::string model_path,cimage::CImageRGB8 & srcImage, doubl
 	//double threshold = -0.5;//0.0; -0.5 abbastanza bene
 	int interval = Globals::PYRAMID_INTERVAL; //10;
 	double overlap = 0.5;
-	//threshold = -10;//interval = 10;
+	threshold = -10;interval = 10;
 
 	//cout << "dpmINTERVAALLLLLLLLLLL::" << Globals::PYRAMID_INTERVAL << endl;
 

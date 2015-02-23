@@ -24,6 +24,8 @@
 #include <Processing/Vision/CImage/BasicOperations/BasicOperations.h>
 #include <Processing/Vision/CImage/Conversions/CImageConversions.h>
 #include <Processing/Vision/CImage/Filters/SobelFilter.h>
+#include <Processing/Vision/CImage/Draw/Brushes.h>
+#include <Processing/Vision/CImage/Draw/Box.h>
 
 #define __LOCATION__ __CLASS_METHOD__
 // #define __LOCATION__ __FILE_LINE__
@@ -248,6 +250,53 @@ void CDummy::On_ShutDown()
     delete m_pDetectedWindow;
 }
 
+void printWidthStats() {
+	vector<Detection> groundTruth;
+	char filename[256];
+	for (int i=0;i<7480;i++) {
+		sprintf(filename, "/home/alox/Tesi/Sequenze/Kitti/training/label_2/%06d.txt",i);
+		FILE *fp = fopen(filename,"r");
+		if (!fp) {
+			  cout << "No ground truth data available at " << filename << endl;
+			return;
+		}
+		while (!feof(fp)) {
+			double trash, x1,y1,x2,y2;
+			char str[255];
+			if (fscanf(fp, "%s %lf %d %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf",
+						   str, &trash, &trash, &trash,
+						   &x1,   &y1,     &x2,    &y2,
+						   &trash,      &trash,        &trash,       &trash,
+						   &trash,      &trash,        &trash )==15) {
+				//Detection(HOGPyramid::Scalar score, int l, int x, int y, FFLD::Rectangle bndbox)
+				FFLD::Rectangle bndbox(x1,y1,x2-x1,y2-y1);
+			  if (strcmp(str,"Pedestrian")==0) {
+				  groundTruth.push_back( Detection(100,0,x1,y1,bndbox) );
+			  }
+			}
+		}
+		fclose(fp);
+	}
+	//here detections has been populated with all pedestrian ground thrut detections, now we calculate, for each row, the min and max width
+	int MAX_ROWS=370;
+	int mins[MAX_ROWS], maxs[MAX_ROWS];
+	for (int i=0;i<MAX_ROWS;i++) {mins[i] = 9999; maxs[i] = 0;}
+
+	ofstream myfile;
+	myfile.open("ranges.txt");
+	for (int r=0; r<groundTruth.size();r++) {
+		int row = groundTruth[r].bottom();
+		int width = groundTruth[r].width();
+		if (width < mins[row]) mins[row] = width;
+		if (width > maxs[row]) maxs[row] = width;
+		myfile << row << "  \t" << width << endl;
+	}
+	myfile.close();
+	for (int i=0;i<MAX_ROWS;i++) {
+		cout << i << "  \t" << mins[i] << "  \t" << maxs[i] << endl;
+	}
+}
+
 void CDummy::On_Execute()
 {
 	int frameNumber = 0;
@@ -388,6 +437,9 @@ void CDummy::On_Execute()
 	cout << "THRESHOLDDDDDDDDDDDD ::::::::" << m_threshold << endl;
 	ffld.dpmDetect(m_modelPath,m_srcImageRGB, m_threshold,r,detections);
 
+	//load ground truth data if present
+	loadGroundTruth(frameNumber,m_srcImageRGB,detections);
+
 	//print detections to file using KITTI format for evaluation
 	ofstream myfile;
 	char filename[100];
@@ -415,11 +467,74 @@ void CDummy::On_Execute()
 	m_inputImageMono = m_srcImageRGB;
 	r.draw(m_inputImageMono);
 
+	//printWidthStats();
+
     // chiamiamo la funzione di disegno
     Output();
 }
 
+void CDummy::loadGroundTruth(int frameNumber, cimage::CImageRGB8 &srcImage,vector<Detection> detections) {
+	// Try to open the label file
+	char filename[256];
+	sprintf(filename, "/home/alox/Tesi/Sequenze/Kitti/training/label_2/%06d.txt",frameNumber);
+	ifstream in(filename, ios::binary);
 
+	if (!in.is_open()) {
+		cout << "No ground truth data available at " << filename << endl;
+		return;
+	}
+
+
+	vector<Detection> groundTruth;
+	// holds all ground truth (ignored ground truth is indicated by an index vector
+	//vector<tGroundtruth> groundtruth;
+	FILE *fp = fopen(filename,"r");
+	if (!fp) {
+		  cout << "No ground truth data available at " << filename << endl;
+		return;
+	}
+	while (!feof(fp)) {
+	    double trash, x1,y1,x2,y2;
+	    char str[255];
+	    if (fscanf(fp, "%s %lf %d %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf",
+	                   str, &trash, &trash, &trash,
+	                   &x1,   &y1,     &x2,    &y2,
+	                   &trash,      &trash,        &trash,       &trash,
+	                   &trash,      &trash,        &trash )==15) {
+	    	//Detection(HOGPyramid::Scalar score, int l, int x, int y, FFLD::Rectangle bndbox)
+	    	FFLD::Rectangle bndbox(x1,y1,x2-x1,y2-y1);
+	      if (strcmp(str,"Pedestrian")==0) {
+	    	  groundTruth.push_back( Detection(100,0,x1,y1,bndbox) );
+	      }
+	    }
+	}
+	fclose(fp);
+
+	ofstream detectedFile,undetectedFile;
+	detectedFile.open("detected.txt", ios::out | ios::app);
+	undetectedFile.open("undetected.txt", ios::out | ios::app);
+
+	//draw ground truth, dark green if it was detected, light green if it wasn't
+	for (int i=0;i<groundTruth.size();i++) {
+		bool detected = false;
+		Intersector intersect(groundTruth[i], 0.5f, false);
+		for (int j=0;j<detections.size();j++) {
+			if (intersect(detections[j])) {
+				detected = true;
+			}
+		}
+		math::Rect2i r(groundTruth[i].left(),groundTruth[i].top(),groundTruth[i].right(),groundTruth[i].bottom());
+		draw::Opaque<cimage::RGB8> brush(srcImage, detected ? cimage::RGB8(0,150,0) : cimage::RGB8(0,255,0) );
+		draw::Rectangle(brush,r);
+		if (detected)
+			detectedFile << groundTruth[i].bottom() << "\t" << groundTruth[i].width() << endl;
+		else
+			undetectedFile << groundTruth[i].bottom() << "\t" << groundTruth[i].width() << endl;
+	}
+
+	detectedFile.close();
+	undetectedFile.close();
+}
 
 void CDummy::Output()
 {

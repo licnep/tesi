@@ -62,6 +62,7 @@ class CDummy : public CApplication
     private:
 
         void Output();
+        void loadGroundTruth(int frameNumber, cimage::CImageRGB8 &srcImage,vector<Detection> detections);
 
         std::vector<std::string> m_cameraNames;
         std::string m_inputCameraName;
