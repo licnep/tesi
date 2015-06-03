@@ -6,14 +6,14 @@
 #include <boost/graph/graph_concepts.hpp>
 #include <Data/CImage/Images/CImageRGB8.h>*/
 #include <SearchRange.h>
-
+#include "Globals.h"
 
 void SearchRange::setSearchRange(int width, int height, dev::CCamera *camera,cimage::CImageRGB8 & debugImage, float w0 = 0.2f, float w1 = 1.0f) {
 
 	//std::string range_algo = INIFile()->Value<std::string>("RANGE MODE", "LINES"); // LINES, STATIC or SIZE
 
 	int max_width = width/2;  //INIFile()->Value<int>("MAX WIDTH", width/2);
-	int min_width =  20;  //std::max(m_cls[0]->Width(), m_cls[1]->Width() ); // INIFile()->Value<int>("MIN WIDTH", 32);
+	int min_width =  10;  //std::max(m_cls[0]->Width(), m_cls[1]->Width() ); // INIFile()->Value<int>("MIN WIDTH", 32);
 
 	//if (range_algo == "SIZE")
 
@@ -62,6 +62,7 @@ void SearchRange::draw(cimage::CImageRGB8 & debugImage) {
 }
 
 bool SearchRange::isPlausibleSize(int lineFromTop, int width) {
+	if (!FFLD::Globals::SEARCH_RANGES_ENABLED) return true;
 	if ( width > m_ranges[lineFromTop].second || width < m_ranges[lineFromTop].first ) return false;
 	return true;
 }
@@ -71,9 +72,13 @@ bool SearchRange::isPlausibleSize(int lineFromTop, int width) {
 
 //TODO: this should be cached unless the parameters w0 and w1 are changed
 std::pair<int,int> SearchRange::getUsefulLineRange(float scale) {
-	return std::pair<int,int>(0,m_ranges.size()-1);
+	if (!FFLD::Globals::SEARCH_RANGES_ENABLED) {
+		return std::pair<int,int>(0,99999);
+	}
+	//return std::pair<int,int>(0,m_ranges.size()-1);
 	//return std::pair<int,int>(100,m_ranges.size()-190);
-	int width = 8*4/scale; //hog cell size (one level above)=8, filter base size=4
+	//width of the filter in the image:
+	int width = (8*4/scale)/FFLD::Globals::GLOBAL_SCALE; //hog cell size (one level above)=8, filter base size=4
 	//width = 8*4;
 
 	int top=m_ranges.size(),bottom=0; //initialize to inverse value (max to min and min to max)
@@ -90,12 +95,15 @@ std::pair<int,int> SearchRange::getUsefulLineRange(float scale) {
 	//std::cout << "TOOOOOOOOOOOOOOOOOOOOOOOOOP:" << top << std::endl;
 	//sempre multiplo di 4, per difetto
 	//top = top - (top%4);
+	top *= FFLD::Globals::GLOBAL_SCALE; bottom *= FFLD::Globals::GLOBAL_SCALE;
 	return std::pair<int,int>(top,bottom);
 }
 
 
 void SearchRange::Size(std::vector<std::pair<int,int> > & ranges, const dev::CameraParams & cameraParams, double w0, double w1, double z0, double z1, int min_width, int max_width, double max_distance, unsigned int height, double border)
 {
+	std::cout << "HEEEEEEEEEEEEEEEEEEIGHT:" << height << std::endl;
+
 	PerspectiveMapping pm(cameraParams);
     InversePerspectiveMapping ipm(cameraParams);
 

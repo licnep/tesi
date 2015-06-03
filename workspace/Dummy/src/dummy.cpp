@@ -26,6 +26,7 @@
 #include <Processing/Vision/CImage/Filters/SobelFilter.h>
 #include <Processing/Vision/CImage/Draw/Brushes.h>
 #include <Processing/Vision/CImage/Draw/Box.h>
+#include <Data/CImage/IO/CImageIO.h>
 
 #define __LOCATION__ __CLASS_METHOD__
 // #define __LOCATION__ __FILE_LINE__
@@ -161,15 +162,24 @@ void CDummy::On_Initialization()
     ui::var::Range<int> interval(&m_interval, 1, 10, 1);
     config.Bind(interval, "PYRAMID INTERVAL", 4);
 
+	ui::var::Range<float> sliderScale(&m_scale, 0.5f, 2.0f, 0.1f);
+	config.Bind(sliderScale, "SCALE", 1.0f);
+
+    ui::var::Range<int> value(&m_value, 0, 150, 2);
+    config.Bind(value, "VALUE", 40);
+    
+    Value<bool> enableSearchRanges(&m_enableSearchRanges);
+	config.Bind(enableSearchRanges, "ENABLE SEARCH RANGES", true);
+
+	Value<bool> showGroundTruth(&m_showGroundTruth);
+	config.Bind(showGroundTruth, "SHOW GROUND TRUTH", true);
+
     ui::var::Range<float> sliderW0(&m_W0, 0.0f, 2.0f, 0.01f);
     config.Bind(sliderW0, "W0", 0.2f);
 
     ui::var::Range<float> sliderW1(&m_W1, 0.0f, 2.0f, 0.01f);
 	config.Bind(sliderW1, "W1", 1.0f);
 
-    ui::var::Range<int> value(&m_value, 0, 150, 2);
-    config.Bind(value, "VALUE", 40);
-    
     Value<bool> showCircle(&m_showCircle);
     config.Bind(showCircle, "SHOW CIRCLE", false);
     
@@ -184,6 +194,9 @@ void CDummy::On_Initialization()
                       std::make_pair("Second", 1),
                       std::make_pair("Third", 2));
     
+    ui::var::Range<float> overlap(&m_overlap, 0.1f, 1.0f, 0.1f);
+	config.Bind(overlap, "OVERLAP", 0.5f);
+
     Slider thresholdSlider(threshold, "Threshold");
 
     //popoliamo il pannello dell'applicazione
@@ -208,12 +221,12 @@ void CDummy::On_Initialization()
                     (
 						Slider(interval, "Pyramid interval"),
                         thresholdSlider, //Slider(threshold, "Threshold"),
+						CheckBox(enableSearchRanges,"Use search ranges"),
 						Slider(sliderW0, "W0"),
 						Slider(sliderW1, "W1"),
-                        Slider(value, "Value"),
-                        CheckBox(showCircle, "Show circle"),
-                        CheckBox(showBox, "Show box"),
-                        CheckBox(showText, "Show text"),
+						Slider(overlap, "Overlap"),
+						Slider(sliderScale, "Scale"),
+                        CheckBox(showGroundTruth, "Show Ground Truth"),
                         ComboBox(features, "Features")
                     )
                 )
@@ -312,13 +325,17 @@ void CDummy::On_Execute()
         log_debug << " Processing frame: " << m_synchro.LastFrameFrom<dev::CCamera>(*m_pCam).TimeStamp << std::endl;
     }
 
+    FFLD::Globals::GLOBAL_SCALE = m_scale;
+    FFLD::Globals::SEARCH_RANGES_ENABLED = m_enableSearchRanges;
+
     // se nel file INI non compaiono WIDTH o HEIGHT le corrispondenti variabili membro di Dummy m_width e m_height hanno assunto
     // il valore di default specificato nella Bind, cioè 0, a cui sostituiamo la risoluzione del frame corrente
-    if(!m_width)
-        m_width = image->W();
-    if(!m_height)
-        m_height = image->H();
+    //if(!m_width)
+        m_width = image->W(); // * FFLD::Globals::GLOBAL_SCALE;
+    //if(!m_height)
+        m_height = image->H(); // * FFLD::Globals::GLOBAL_SCALE;
 
+    cout << "WIDTH:===================================================" << m_width << "x" << m_height << endl;
     // per semplicità eseguiamo la Resize comunque: se m_width e m_height sono già corrette non succede nulla
     Resize(m_inputImageMono, m_width, m_height);
     Resize(m_inputImageRGB, m_width, m_height);
@@ -429,16 +446,18 @@ void CDummy::On_Execute()
 	int argc = sizeof(argv) / sizeof(char*) - 1;
 	//main_ffld(argc,argv,m_srcImageRGB);
 	SearchRange r;
-	r.setSearchRange(image->W(),image->H(),m_pCam,m_inputImageMono, m_W0, m_W1);
+	r.setSearchRange(m_srcImageRGB.W(),m_srcImageRGB.H(),m_pCam,m_srcImageRGB, m_W0, m_W1);
 
 	vector<Detection> detections;
 	//"/home/alox/Tesi/workspace/Dummy/src/ffld/models/person_final2007.txt"
 	FFLD::Globals::PYRAMID_INTERVAL = m_interval;
+	FFLD::Globals::OVERLAP = m_overlap;
 	cout << "THRESHOLDDDDDDDDDDDD ::::::::" << m_threshold << endl;
 	ffld.dpmDetect(m_modelPath,m_srcImageRGB, m_threshold,r,detections);
 
 	//load ground truth data if present
-	loadGroundTruth(frameNumber,m_srcImageRGB,detections);
+	if (m_showGroundTruth)
+		loadGroundTruth(frameNumber,m_srcImageRGB,detections);
 
 	//print detections to file using KITTI format for evaluation
 	ofstream myfile;
@@ -504,7 +523,9 @@ void CDummy::loadGroundTruth(int frameNumber, cimage::CImageRGB8 &srcImage,vecto
 	    	//Detection(HOGPyramid::Scalar score, int l, int x, int y, FFLD::Rectangle bndbox)
 	    	FFLD::Rectangle bndbox(x1,y1,x2-x1,y2-y1);
 	      if (strcmp(str,"Pedestrian")==0) {
-	    	  groundTruth.push_back( Detection(100,0,x1,y1,bndbox) );
+	    	  Detection d(100,0,x1,y1,bndbox);
+	    	  //d.scale(FFLD::Globals::GLOBAL_SCALE);
+	    	  groundTruth.push_back( d );
 	      }
 	    }
 	}
@@ -513,6 +534,10 @@ void CDummy::loadGroundTruth(int frameNumber, cimage::CImageRGB8 &srcImage,vecto
 	ofstream detectedFile,undetectedFile;
 	detectedFile.open("detected.txt", ios::out | ios::app);
 	undetectedFile.open("undetected.txt", ios::out | ios::app);
+	ofstream allUndetecteds;
+	char filename2[100];
+	sprintf(filename2, "/home/alox/Tesi/undetections/%06d.txt",frameNumber);
+	allUndetecteds.open(filename2);
 
 	//draw ground truth, dark green if it was detected, light green if it wasn't
 	for (int i=0;i<groundTruth.size();i++) {
@@ -526,14 +551,26 @@ void CDummy::loadGroundTruth(int frameNumber, cimage::CImageRGB8 &srcImage,vecto
 		math::Rect2i r(groundTruth[i].left(),groundTruth[i].top(),groundTruth[i].right(),groundTruth[i].bottom());
 		draw::Opaque<cimage::RGB8> brush(srcImage, detected ? cimage::RGB8(0,150,0) : cimage::RGB8(0,255,0) );
 		draw::Rectangle(brush,r);
-		if (detected)
+		if (detected) {
 			detectedFile << groundTruth[i].bottom() << "\t" << groundTruth[i].width() << endl;
-		else
-			undetectedFile << groundTruth[i].bottom() << "\t" << groundTruth[i].width() << endl;
+		} else {
+			undetectedFile << groundTruth[i].bottom() << "\t" << groundTruth[i].width() << "\t" << frameNumber << endl;
+			//print undetected to file using KITTI format if we want to train on them
+			allUndetecteds << "Pedestrian -1 -1 -10 "
+					<< groundTruth[i].left() << " "
+					<< groundTruth[i].top() << " "
+					<< groundTruth[i].right() << " "
+					<< groundTruth[i].bottom() << " "
+					<< "-1 -1 -1 -1000 -1000 -1000 -10 " << 999
+					<< endl;
+			//string percorso = "/home/alox/Tesi/undetections/" + boost::lexical_cast<std::string>(frameNumber) +".jpg";;
+			//cimage::Save(percorso,srcImage);
+		}
 	}
 
 	detectedFile.close();
 	undetectedFile.close();
+	allUndetecteds.close();
 }
 
 void CDummy::Output()

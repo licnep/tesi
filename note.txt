@@ -1,3 +1,97 @@
+test velocita': (2.4 turbo, 300 frame)
+sr standard = 0.35 1.30
+
+4 modelli, int2, ground truth: 104 +-14
+cs, 6models : 105ms +-8
+cs 4modelli : 115 +-9
+cs, 12 modelli : 162+-15 (151-140)
+cs, 18 modelli : 202+-21 (191-545)
+cs, 1 modello : 84+-7 (77-174)
+
+search ranges: (6 modelli,int2 nogt)
+0.0 - 1.4 : 129+-12 (6modelli) 115 +-10 (4modelli)
+0.0 - 1.3 : 131 +-11
+0.0 - 1.2 : 133 +-10
+0.0 - 1.1 : 131 +-10
+0.0 - 1.0 : 130 +-11
+0.0 - 0.9 : 150 +-45 (probabilmente xke patchwork cambia size molte volte)
+0.0 - 0.8 : 118 +-8
+0.0 - 0.7 : 116 +-9
+0.0 - 0.6 : 114 +-9
+0.0 - 0.3 : 98  +-7
+
+0.1 - 1.0 : 128 +-10
+0.2 - 1.0 : 127 +-10
+0.3 - 1.0 : 117 +-10
+0.4 - 1.0 : 110 +-8
+0.5 - 1.0 : 102 +-7
+0.6 - 1.0 : 98 +- 7
+
+mAP con:
+0.3 - 1.8 : 0.471766
+0.3 - 1.7 : 0.471376
+0.3 - 1.6 : 0.466440
+0.3 - 1.5 : 0.476136
+0.3 - 1.45: 0.473785
+0.3 - 1.4 : 0.481312
+0.3 - 1.39: 0.490142
+0.3 - 1.38: 0.483495
+0.3 - 1.37: 0.478389
+0.3 - 1.35: 0.475075
+0.3 - 1.3 : 0.474371
+0.3 - 1.2 : 0.466968
+
+
+w1 fissato a 1.39, w0:
+0.5  : 0.451275
+0.4  : 0.480361
+0.38 : 0.485968
+0.36 : 0.488174
+0.35 : 0.489979
+0.348: 0.489958
+0.347: 0.490379
+0.346: 0.490379
+0.345: 0.490348
+0.344: 0.485824 
+0.34 : 0.486095
+0.32 : 0.488709
+0.3  : 0.490142
+0.24 : 0.492232
+0.2  : 0.492232
+0.1  : 0.492232
+
+test scale (int2, w0:9.346, w1:1.39, overlap 0.5)
+0.9 : 0.454295
+1.0 : 0.490379
+1.1 : 0.488989
+1.2 : 0.499855
+1.3 : 0.492551
+1.4 : 0.458347
+1.5 : 0.505175
+1.6 : 0.484626
+1.7 : 0.448545
+1.8 : 0.489315
+1.85: 0.506308
+1.9 : 0.517388
+1.95: 0.490321
+2.0 : 0.501330
+2.2 : 0.452668
+2.5 : 0.442774
+3.0 : 0.462745
+4.0 : 0.436185
+
+int3:
+0.9 : 0.476079
+1.0 : 0.510613 
+1.2 : 0.527700
+1.4 : 0.501467
+1.5 : 0.545608
+1.7 : 0.516607
+1.9 : 0.557161
+2.5 : 
+
+- con int2, s1.7, no sr, crasha 
+
 [[[[
 per i da 0 a interval popola con le scale esponenziali (da 1 a 1/2), a risoluzione doppia
 
@@ -8,17 +102,28 @@ dato un livello, se faccio livello+interval ottengo quello a risoluzione dimezza
 
 TODO:
 
-- I search ranges dovrebbero essere applicati PRIMA di fare maxima suppression. Questo e' MOLTO importante. altrimenti se c'e' detection grande e piccola (e la piccola e' giusta), piccola viene inglobata da grande in non maxima suppression, per poi essere eliminata dai search ranges!
-
-- verificare quali sono i positives che manchiamo (come?) Carichiamo i label, possiamo visualizzarli, e in teoria il meglio sarebbe anche verificare l'overlap (non impossibile dovrei gia' avere il codice necessario).
-
-- overlap deve diventare un parametro
-
-- tante cose da parametrizzare (come quelle per il debugging) 
+- testare influenza speed single thread!
+[x] linkare le detections di esempio
+- mettere una frase sulla pyramid e scales nei primi capitoli
+[x] rifare test 10x1.5 con nuovi w0 e w1
+- mettere grafico p-r migliorer possibile
 
 
-frame 76, threshold 2.8 buono per far vedere cosa cabia usando pyramid interval maggiore (bbox piu' precisi)
-frame 43 c'e' un bug relativo all'offset
+[x] provare con overlap a 0.6 o piu' (es al frame 15 da miglioramenti)
+
+- test at different scales to find scale maximizing AP
+
+
+[x] bug nello scalamento (i searchranges tipo al livello 0 restano uguali, ma invece la dimensione ce sto cercando e' molto piu' piccola!) [risolto credo]
+
+[X] fare statistica dimensioni pedoni label
+
+[x] analisi positivi missed (outputtare lista di frame in cui ci sono dei miss)
+
+- idea di parti sostituibili (tanti modelli di teste, torsi, gambe), e magari le combinazioni hanno uno score del tipo, una testa di lato scora alto con delle gambe di lato, ma non con delle gambe frontali
+
+- frame 76, threshold 2.8 buono per far vedere cosa cabia usando pyramid interval maggiore (bbox piu' precisi)
+or 70, 74, 103
 
 frames w ppl: 422, 4963, 892
 

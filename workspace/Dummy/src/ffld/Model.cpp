@@ -174,6 +174,17 @@ void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matri
 		savePlane(percorso,convolutions[0][j+interval]);
 	}*/
 
+	//pre-calculate the offsets for faster computation of cell position one octave below
+	//for each level used for parts (0 to nbLevels-interval) we store how much to subtract and add to calculate position one octave below.
+	int srcOffsets[nbLevels-interval], dstOffsets[nbLevels-interval];
+	std::vector<std::pair<int,int> > offsets_ = pyramid.offsets();
+	for (int i=0; i< nbLevels-interval; i++) {
+		int src_level = i+interval;
+		srcOffsets[i] = offsets_[src_level].first/8;
+		dstOffsets[i] = (src_level>=interval*2) ? offsets_[src_level-interval].first/8 : offsets_[src_level-interval].first/4;
+	}
+
+
 	// For each part
 	for (int i = 0; i < nbParts; ++i) {
 		// For each part level (the root is interval higher in the pyramid)
@@ -184,16 +195,17 @@ void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matri
 			//string percorso = "/home/alox/partIlevel"+ boost::lexical_cast<std::string>(j) + ".png";
 			//savePlane(percorso,convolutions[0][j+interval]);
 
+
 			// Add the distance transforms of the part one octave below
 			for (int y = 0; y < convolutions[0][j + interval].rows(); ++y) {
 				for (int x = 0; x < convolutions[0][j + interval].cols(); ++x) {
 					// The position of the root one octave below
 					const int x2 = x * 2 - padx;
 					//const int y2 = y * 2 - pady;
-					int skyPixels = 0; //111;
 					//const int y2 = y * 2 - pady - (offsets[j].first-skyPixels)/4;
 
-					const int y2 = pyramid.getPositionOctaveBelow( y, j+interval );
+					//const int y2 = pyramid.getPositionOctaveBelow( y, j+interval );
+					const int y2 = (y+srcOffsets[j]) * 2 - pady - dstOffsets[j];
 					
 					// Nearest-neighbor interpolation
 					if ((x2 >= 0) && (y2 >= 0) && (x2 < convolutions[i + 1][j].cols()) &&

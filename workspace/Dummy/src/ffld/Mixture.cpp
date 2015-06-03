@@ -162,10 +162,10 @@ void Mixture::convolve(const HOGPyramid & pyramid,
 	}
 
 	while (!cached_);
-	
+
 	// Create a patchwork
 	const Patchwork patchwork(pyramid);
-	
+
 	// Convolve the patchwork with the filters
 	vector<vector<HOGPyramid::Matrix> > convolutions(filterCache_.size());
 	patchwork.convolve(filterCache_, convolutions);
@@ -256,8 +256,14 @@ istream & FFLD::operator>>(istream & is, Mixture & mixture)
 			return is;
 		}
 	}
-	
+
+
+	models[3] = models[4];
+	models.pop_back();models.pop_back();
+
+
 	mixture = Mixture(models);
+
 	/*
 	for (int i=0;i<models.size();i++) {
 		models[i].printToFile("/home/alox/model"+ boost::lexical_cast<std::string>(i) + ".png");

@@ -131,6 +131,14 @@ int Rectangle::area() const
 	return max(width(), 0) * max(height(), 0);
 }
 
+void Rectangle::scale(float scale)
+{
+	this->setY(y_*scale);
+	this->setX(x_*scale);
+	this->setHeight(height_*scale);
+	this->setWidth(width_*scale);
+}
+
 ostream & FFLD::operator<<(ostream & os, const Rectangle & rect)
 {
 	return os << rect.x() << ' ' << rect.y() << ' ' << rect.width() << ' ' << rect.height();

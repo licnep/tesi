@@ -8,6 +8,9 @@ namespace FFLD {
 class Globals {
 public:
 	static int PYRAMID_INTERVAL;
+	static float GLOBAL_SCALE;
+	static float OVERLAP;
+	static bool SEARCH_RANGES_ENABLED;
 };
 
 }

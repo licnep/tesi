@@ -104,6 +104,10 @@ public:
 	/// @note Equivalent to max(width(), 0) * max(height(), 0).
 	int area() const;
 	
+	/// Scales the rectangle both in size and coordinates
+	/// (useful if it was detected at a higher or lower resolution)
+	void scale(float scale);
+
 private:
 	int x_;
 	int y_;

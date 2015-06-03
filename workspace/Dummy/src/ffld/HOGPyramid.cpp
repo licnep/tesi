@@ -76,6 +76,7 @@ void HOGPyramid::saveLevel(string percorso, Level level, float multiplier) {
 		}
 	}
 	cimage::Save(percorso,img);*/
+
 	int cSize=16;
 	//cimage::CImageRGB8 img(cols*cSize,rows*cSize);
 	cimage::CImageRGB8 *img = new cimage::CImageRGB8(cols*cSize,rows*cSize);
@@ -115,17 +116,11 @@ void HOGPyramid::saveLevel(string percorso, Level level, float multiplier) {
 					//x1, y1, x2, y2
 					draw::Line(brush,x1,y1,x2,y2);
 
-					/*line(visual_image,
-						 Point(x1*scaleFactor,y1*scaleFactor),
-						 Point(x2*scaleFactor,y2*scaleFactor),
-						 CV_RGB(0,0,255),
-						 1);*/
-
 			} // for (all bins)
 		}
 	}
 	cimage::Save(percorso,*img);
-	free(img);
+	free(img);/**/
 }
 
 

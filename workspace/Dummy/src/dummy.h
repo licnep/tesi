@@ -88,6 +88,10 @@ class CDummy : public CApplication
         float m_threshold, m_W0, m_W1;
         int m_interval;
         int m_value;
+        float m_overlap;
+        float m_scale;
+        bool m_enableSearchRanges;
+        bool m_showGroundTruth;
 
         bool m_showInputMono;
         bool m_showInputHOG;

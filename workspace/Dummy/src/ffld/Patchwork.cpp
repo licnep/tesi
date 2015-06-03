@@ -56,7 +56,8 @@ void savePlane(string percorso, Patchwork::Plane level) {
 	for (int i=0; i<cols;i++) {
 		for (int j=0; j<rows;j++) {
 			std::complex<float> f = level(j, i)(0);
-			float val = f.imag()*255;
+			//float val = f.imag()*255;
+			float val = f.real()/10;
 			dstBuffer[j*cols+i] = cimage::RGB8(val);
 		}
 	}
@@ -142,6 +143,18 @@ interval_(pyramid.interval())
 		fftw_execute_dft_r2c(Forwards_, reinterpret_cast<double *>(planes_[i].data()->data()),
 							 reinterpret_cast<fftw_complex *>(planes_[i].data()->data()));
 #endif
+		/*
+	vector<vector<Patchwork::Matrix> > sums(nbPlanes);
+	Map<HOGPyramid::Matrix, Aligned> output(reinterpret_cast<HOGPyramid::Scalar *>(planes_[0].data()), MaxRows_,HalfCols_ * 2);
+	for (int i = 0; i < nbPlanes; ++i) {
+		string percorso = "/home/alox/transformedPlane"+ boost::lexical_cast<std::string>(i) + ".png";
+		savePlane(percorso,planes_[i]);
+		//fftwf_execute_dft_c2r(Inverse_, reinterpret_cast<fftwf_complex *>(planes_[i].data()->data()),output.data() );
+		//percorso = "/home/alox/antitransformedPlane"+ boost::lexical_cast<std::string>(i) + ".png";
+		//saveMatrix(percorso,reinterpret_cast<HOGPyramid::Matrix *>(output.data()) );
+		//savePlane(percorso,planes_[i]);
+	}
+	*/
 }
 
 int Patchwork::padx() const
@@ -217,6 +230,14 @@ void Patchwork::convolve(const vector<Filter> & filters,
 		for (int j = 0; j < nbFilters; ++j)
 			for (int k = 0; k < nbPlanes; ++k)
 				sums[j][k](i) = filters[j].first(i).cwiseProduct(planes_[k](i)).sum();
+	/*
+	for (int c = HalfCols_/2;c < HalfCols_;c++) {
+		for (int r=0; r< MaxRows_; r++) {
+			for (int j = 0; j < nbFilters; ++j)
+				for (int k = 0; k < nbPlanes; ++k)
+					sums[j][k](c*MaxRows_+r) = 0;
+		}
+	}*/
 
 	// Transform back the results and store them in convolutions
 	convolutions.resize(nbFilters);
