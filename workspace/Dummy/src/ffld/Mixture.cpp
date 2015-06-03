@@ -264,6 +264,7 @@ istream & FFLD::operator>>(istream & is, Mixture & mixture)
 
 	mixture = Mixture(models);
 
+	//For DEBUGGING purposes, save mixture images to files
 	/*
 	for (int i=0;i<models.size();i++) {
 		models[i].printToFile("/home/alox/model"+ boost::lexical_cast<std::string>(i) + ".png");

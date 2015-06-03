@@ -140,11 +140,6 @@ void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matri
 					 vector<HOGPyramid::Matrix> & scores,
 					 vector<vector<Positions> > * positions) const
 {
-	std::cout << "Model::Convolve::DIMENSIONE MODELLO:" << std::endl;
-	std::cout << "width: " << this->rootSize().first << "  height: " << this->rootSize().second << std::endl;
-	//std::cout << "Model::Convolve::DIMENSIONE PARTI:" << std::endl; //sempre 6x6
-	//std::cout << "width: " << this->partSize().first << "  height: " << this->partSize().second << std::endl;
-
 	// Invalid parameters
 	if (empty() || pyramid.empty() || (convolutions.size() != parts_.size()))
 		return;
@@ -169,6 +164,7 @@ void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matri
 	// Temporary data needed by the distance transforms
 	vector<Scalar> tmp(pyramid.levels()[0].size());
 
+	// uncomment for DEBUGGING purposes, save model levels to file
 	/*for (int j = 0; j < nbLevels - interval; ++j) {
 		string percorso = "/home/alox/ROOTlevel"+ boost::lexical_cast<std::string>(j) + ".png";
 		savePlane(percorso,convolutions[0][j+interval]);
@@ -192,6 +188,7 @@ void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matri
 			//A for each level except the smallest ones (only used for root filters), calculate the part optimal positions and deformation costs given any root position
 			DT2D(convolutions[i + 1][j], parts_[i + 1], &tmp[0],
 				 positions ? &(*positions)[i][j] : 0);
+			//For DEBUGGING purposses:
 			//string percorso = "/home/alox/partIlevel"+ boost::lexical_cast<std::string>(j) + ".png";
 			//savePlane(percorso,convolutions[0][j+interval]);
 
@@ -201,10 +198,6 @@ void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matri
 				for (int x = 0; x < convolutions[0][j + interval].cols(); ++x) {
 					// The position of the root one octave below
 					const int x2 = x * 2 - padx;
-					//const int y2 = y * 2 - pady;
-					//const int y2 = y * 2 - pady - (offsets[j].first-skyPixels)/4;
-
-					//const int y2 = pyramid.getPositionOctaveBelow( y, j+interval );
 					const int y2 = (y+srcOffsets[j]) * 2 - pady - dstOffsets[j];
 					
 					// Nearest-neighbor interpolation
@@ -216,7 +209,9 @@ void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matri
 				}
 			}
 		}
-	}/**/
+	}
+
+	//Uncomment for DEBUGGING purposes:
 	/*
 #pragma omp critical
 	for (int j = interval; j < nbLevels; ++j) {
@@ -233,8 +228,6 @@ void Model::convolve(const HOGPyramid & pyramid, vector<vector<HOGPyramid::Matri
 		for (i = 0; i < nbLevels; ++i)
 			scores[i].array() += bias_;
 	}
-
-	//std::cout << "scores:" << scores.size() << std::endl; //sempre 41 score e 8 positions
 }
 
 void Model::DT1D(const Scalar * x, int n, Scalar a, Scalar b, Scalar * z, int * v, Scalar * y,

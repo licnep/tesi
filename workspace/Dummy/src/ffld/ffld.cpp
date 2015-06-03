@@ -247,8 +247,6 @@ void detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, in
 
 	// Cache the size of the models
 	vector<pair<int, int> > sizes(mixture.models().size());
-	
-	//std::cout << "MIXTURE.MODELS SIZE = " << mixture.models().size() << std::endl; //6 models
 
 	for (int i = 0; i < sizes.size(); ++i) {
 		sizes[i] = mixture.models()[i].rootSize();
@@ -290,7 +288,7 @@ void detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, in
 						bndbox.setHeight(min(bndbox.height(), height - bndbox.y()));
 						//int nSkyPixels = srcImage.H() * 0.0;
 						
-						if (!bndbox.empty()) { // && i>pyramid.interval()*2) //TODO: remove second part only for testing offsets
+						if (!bndbox.empty()) {
 							if (range.isPlausibleSize(bndbox.bottom()/Globals::GLOBAL_SCALE,bndbox.width()/Globals::GLOBAL_SCALE) ) {
 								detections.push_back(Detection(score, i, x, y, bndbox));
 							}
@@ -339,9 +337,7 @@ void detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, in
 			// The position of the root one octave below
 			const int argmax = argmaxes[detections[j].l](detections[j].y, detections[j].x);
 			const int x2 = detections[j].x * 2 - pyramid.padx();
-			//const int y2 = detections[j].y * 2 - pyramid.pady();
 			const int l = detections[j].l - pyramid.interval();
-			//const int y2 = detections[j].y * 2 - pyramid.pady() - (pyramid.offsets()[l].first)/4;
 			const int y2 = pyramid.getPositionOctaveBelow(detections[j].y,detections[j].l);
 			
 			// Scale = 8 / 2^(1 - j / interval)
@@ -352,53 +348,31 @@ void detect(cimage::CImageRGB8 &srcImage, const Mixture & mixture, int width, in
 
 				const FFLD::Rectangle bndbox((positions[argmax][k][l](y2, x2)(0) - pyramid.padx()) *
 											 scale + 0.5,
-											 //(positions[argmax][k][l](y2, x2)(1) - pyramid.pady()) *
 											 (positions[argmax][k][l](y2, x2)(1) - pyramid.pady() + yOffset) *
 											 scale + 0.5,
 											 mixture.models()[argmax].partSize().second * scale + 0.5,
 											 mixture.models()[argmax].partSize().second * scale + 0.5);
 
-				// Truncate the object //TODO capire perche' tenendole entro 8 dal bordo non crasha
+				// Truncate the object
 				bndbox.setX(max(bndbox.x(), 8));
 				bndbox.setY(max(bndbox.y(), 8));
 				bndbox.setWidth(min(bndbox.width(), width -8 - bndbox.x()));
 				bndbox.setHeight(min(bndbox.height(), height -8 - bndbox.y()));
 
-				//bndbox.setX(2);bndbox.setY(2);
-				//bndbox.setWidth(10);bndbox.setHeight(10);
 				bndbox.scale(1.0f/Globals::GLOBAL_SCALE);
 
 				math::Rect2i r(bndbox.left(),bndbox.top(),bndbox.right(),bndbox.bottom());
-//#pragma omp critical
-//				{
-					draw::Opaque<cimage::RGB8> brush(srcImage,cimage::RGB8(0,0,255));
-					draw::Rectangle(brush,r);
-//				}
-
+				draw::Opaque<cimage::RGB8> brush(srcImage,cimage::RGB8(0,0,255));
+				draw::Rectangle(brush,r);
 			}
 			detections[j].scale(1.0f/Globals::GLOBAL_SCALE);
 
-			//if (range.isPlausibleSize(detections[j].bottom(),detections[j].width()) ) {
-				// Draw the root last
-				//drawR(im, detections[j], 255, 0, 0, 2);
-				math::Rect2i r(detections[j].left(),detections[j].top(),detections[j].right(),detections[j].bottom());
-//#pragma omp critical
-//				{
-					draw::Opaque<cimage::RGB8> brush(srcImage,cimage::RGB8(255,0,0));
-					draw::Rectangle(brush,r);
-//				}
-			//}
+			// Draw the root last
+			math::Rect2i r(detections[j].left(),detections[j].top(),detections[j].right(),detections[j].bottom());
+			draw::Opaque<cimage::RGB8> brush(srcImage,cimage::RGB8(255,0,0));
+			draw::Rectangle(brush,r);
 		}
-		
-		//im.save(images + '/' + id + ".jpg");
-		//cimage::Save("/home/alox/buttaScalata.jpg",srcImage);
 	}
-
-	/*
-	//riporto alla scala originale prima di fare l'output su file
-	for (int i=0;i<detections.size();i++) {
-		detections[i].scale(1.0f/Globals::GLOBAL_SCALE);
-	}*/
 
 }
 
@@ -425,8 +399,6 @@ int CFfld::init(std::string model_path) {
 
 	start();
 
-	//mMixture.cacheFilters();
-
 	cout << "Transformed the filters in " << stop() << " ms" << endl;
 
 }
@@ -440,43 +412,18 @@ int CFfld::dpmDetect(std::string model_path,cimage::CImageRGB8 & srcImage, doubl
 	string images = "asdNotEmpty";
 	int nbNegativeScenes = -1;
 	int padding = 6; //12 was default
-	//double threshold = -0.5;//0.0; -0.5 abbastanza bene
 	int interval = Globals::PYRAMID_INTERVAL; //10;
 	double overlap = Globals::OVERLAP; //0.5;
-	//threshold = -10;//interval = 10;
 
 	cimage::CImageRGB8 doubleSize = CImageResize(srcImage, srcImage.W() * Globals::GLOBAL_SCALE, srcImage.H() * Globals::GLOBAL_SCALE);
-
-	//cout << "dpmINTERVAALLLLLLLLLLL::" << Globals::PYRAMID_INTERVAL << endl;
 
 	//find the tallest model in the mixture (useful for the search range)
 	std::vector<FFLD::Model> models = mMixture.models();
 	int maxH = 0;
 	for (int i=0; i<models.size(); i++) {
-		//std::cout<< "HEIGHHHHHHHHHHT::" << models[i].rootSize().first << std::endl;
 		if (models[i].rootSize().first > maxH) maxH = models[i].rootSize().first;
 	}
 	r.setMaxModelHeight(maxH*8); //8 is the size of the hog cell in pixels
-
-	//JPEGImage butta;
-	/*
-	// Try to open the mixture
-	ifstream in(model.c_str(), ios::binary);
-
-	if (!in.is_open()) {
-		showUsage();
-		cerr << "\nInvalid model file " << model << endl;
-		return -1;
-	}
-
-	//Mixture mixture;
-	in >> mMixture;
-
-	if (mMixture.empty()) {
-		showUsage();
-		cerr << "\nInvalid model file " << model << endl;
-		return -1;
-	}*/
 
 	// Compute the HOG features
 	start();
@@ -491,7 +438,7 @@ int CFfld::dpmDetect(std::string model_path,cimage::CImageRGB8 & srcImage, doubl
 
 	cout << "Computed HOG features in " << stop() << " ms" << endl;
 
-	// Initialize the Patchwork class  TODO:: this should be done only once at startup
+	// Initialize the Patchwork class
 	start();
 
 	//find the tallest pyramid plane
@@ -512,8 +459,6 @@ int CFfld::dpmDetect(std::string model_path,cimage::CImageRGB8 & srcImage, doubl
 		return -1;
 	}
 
-	//cout << "Initialized FFTW in " << stop() << " ms" << endl;
-
 	if (oldMaxRows!=maxRows || oldMaxCols!=maxCols) {
 		cout << "Plane size changed, re-caching filters" << endl;
 		mMixture.cacheFilters();
@@ -524,9 +469,6 @@ int CFfld::dpmDetect(std::string model_path,cimage::CImageRGB8 & srcImage, doubl
 	// Compute the detections
 	start();
 
-	//vector<Detection> detections;
-
-	//detect(mixture, image.width(), image.height(), pyramid, threshold, overlap, file, out,images, detections);
 	detect(srcImage,mMixture, doubleSize.W(), doubleSize.H(), pyramid, threshold, overlap, "filenameBUTTA", std::cout ,images, detections, r);
 
 	cout << "Computed the convolutions and distance transforms in " << stop() << " ms" << endl;

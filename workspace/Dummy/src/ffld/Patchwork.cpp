@@ -126,6 +126,7 @@ interval_(pyramid.interval())
 											  rectangles_[i].first.width());
 	}
 	
+	// Uncomment for DEBUGGING purposes
 	/*
 	for (int i = 0; i < nbPlanes; ++i) {
 		string percorso = "/home/alox/patchworkPlane"+ boost::lexical_cast<std::string>(i) + ".png";
@@ -143,7 +144,9 @@ interval_(pyramid.interval())
 		fftw_execute_dft_r2c(Forwards_, reinterpret_cast<double *>(planes_[i].data()->data()),
 							 reinterpret_cast<fftw_complex *>(planes_[i].data()->data()));
 #endif
-		/*
+
+	// Uncomment for debugging purposes
+	/*
 	vector<vector<Patchwork::Matrix> > sums(nbPlanes);
 	Map<HOGPyramid::Matrix, Aligned> output(reinterpret_cast<HOGPyramid::Scalar *>(planes_[0].data()), MaxRows_,HalfCols_ * 2);
 	for (int i = 0; i < nbPlanes; ++i) {
@@ -294,7 +297,7 @@ void Patchwork::convolve(const vector<Filter> & filters,
 	}
 	std::cout << "butta:" << butta << std::endl;
 
-	//scelgo filtro 3 arbitrariamente
+	// Uncomment for DEBUGGING purposes
 	/*for (int i=0;i<nbPlanes;i++) {
 		string percorso = "/home/alox/convolutions"+ boost::lexical_cast<std::string>(i) + ".png";
 		saveMatrix(percorso,convolutions[1][i]);
