@@ -145,13 +145,13 @@ void CDummy::On_Initialization()
     config.Bind(height, "HEIGHT", 0);
     
     Value<bool> showInputMono(&m_showInputMono);
-    config.Bind(showInputMono, "SHOW INPUT MONO", false);
+    config.Bind(showInputMono, "SHOW INPUT AND DETECTIONS", false);
     
     Value<bool> showInputHOG(&m_showInputHOG);
     config.Bind(showInputHOG, "SHOW INPUT HOG", false);
     
     Value<bool> showDetected(&m_showDetected);
-    config.Bind(showDetected, "SHOW DETECTED", false);
+    config.Bind(showDetected, "SHOW OPENCV DETECTIONS", false);
     
     Value<string> modelPath(&m_modelPath);
     config.Bind(modelPath, "MODEL PATH", "/home/alox/Tesi/ffld/models/kitti1000.txt");
@@ -188,11 +188,6 @@ void CDummy::On_Initialization()
     
     Value<bool> showText(&m_showText);
     config.Bind(showText, "SHOW TEXT", false);
-
-    Map<int> features(&m_selectedFeature,
-                      std::make_pair("First", 0),
-                      std::make_pair("Second", 1),
-                      std::make_pair("Third", 2));
     
     ui::var::Range<float> overlap(&m_overlap, 0.1f, 1.0f, 0.1f);
 	config.Bind(overlap, "OVERLAP", 0.5f);
@@ -210,9 +205,9 @@ void CDummy::On_Initialization()
                 (
                     VSizer()
                     (
-                        CheckBox(showInputMono, "Show input mono"),
-                        CheckBox(showInputHOG, "Show input HOG"),
-                        CheckBox(showDetected, "Show detected")
+                        CheckBox(showInputMono, "Show input and detections"),
+                        CheckBox(showInputHOG, "Show HOG"),
+                        CheckBox(showDetected, "Show OpenCV detections")
                     )
                 ),
                 Page("Advanced")
@@ -226,8 +221,7 @@ void CDummy::On_Initialization()
 						Slider(sliderW1, "W1"),
 						Slider(overlap, "Overlap"),
 						Slider(sliderScale, "Scale"),
-                        CheckBox(showGroundTruth, "Show Ground Truth"),
-                        ComboBox(features, "Features")
+                        CheckBox(showGroundTruth, "Show Ground Truth")
                     )
                 )
             )
@@ -328,15 +322,11 @@ void CDummy::On_Execute()
     FFLD::Globals::GLOBAL_SCALE = m_scale;
     FFLD::Globals::SEARCH_RANGES_ENABLED = m_enableSearchRanges;
 
-    // se nel file INI non compaiono WIDTH o HEIGHT le corrispondenti variabili membro di Dummy m_width e m_height hanno assunto
-    // il valore di default specificato nella Bind, cioè 0, a cui sostituiamo la risoluzione del frame corrente
-    //if(!m_width)
-        m_width = image->W(); // * FFLD::Globals::GLOBAL_SCALE;
-    //if(!m_height)
-        m_height = image->H(); // * FFLD::Globals::GLOBAL_SCALE;
+    // larghezza e altezza possono variare da un frame all'altro (e' cosi' nel dataset KITTI)
+    m_width = image->W();
+    m_height = image->H();
 
-    cout << "WIDTH:===================================================" << m_width << "x" << m_height << endl;
-    // per semplicità eseguiamo la Resize comunque: se m_width e m_height sono già corrette non succede nulla
+    // eseguiamo la Resize comunque: se m_width e m_height sono già corrette non succede nulla
     Resize(m_inputImageMono, m_width, m_height);
     Resize(m_inputImageRGB, m_width, m_height);
     Resize(m_detectedImage, m_width, m_height);
@@ -349,9 +339,7 @@ void CDummy::On_Execute()
     // convertiamo il frame in una immagine in bianco e nero
     Convert(*image, m_inputImageMono, BAYER_DECODING_LUMINANCE);
 
-    // applichiamo un filtro che converte una immagine CImageMono in una CImageMono usando un kernel SobelVertical di dimensione 3x3
-    //SobelVertical3x3(m_inputImageMono, m_sobelImage);
-
+    // [LEGACY] mostriamo le feature di HOG e detection calcolate con OpenCV se l'utente lo richiede
     if (m_showInputHOG || m_showDetected) {
 		Mat m = CHOGVisualizer::CImageRGB8ToMat(m_inputImageRGB);
 
@@ -362,8 +350,6 @@ void CDummy::On_Execute()
 		resize(m, m, Size(512,256) ); //la dimensione su cui calcolo le feature HOG
 		cvtColor(m, img, COLOR_BGR2GRAY);
 		img.convertTo(img,CV_8U); //converto in scala di grigi perche' openCV vuole scala di grigi (di solito si usano tutti i canali e si prende il gradiente maggiore)
-		//imwrite( "./butta.jpg", img );
-		//cv::gpu::HOGDescriptor d(Size(512,256), Size(16,16), Size(8,8),Size(8,8), 9);
 
 //#ifndef OPENCV3
 		HOGDescriptor d(Size(512,256), Size(16,16), Size(8,8),Size(8,8), 9);
@@ -427,66 +413,46 @@ void CDummy::On_Execute()
 #endif
 		}
 		m_cvChronometer.Stop();
-    }/**/
+    }
 
-	//-m models/person_final2007.txt -i ./result/ -r ./result/result.txt -t=-0.1 004963.jpg
-	//-m /home/alox/Tesi/workspace/Dummy/src/ffld/models/person_final2007.txt -i / -r  -t=-0.1 /home/alox/Tesi/ffld/pedoni.jpg
-	char arg0[] = "ffld";
-	char arg1[] = "-m";
-	char arg2[] = "/home/alox/Tesi/workspace/Dummy/src/ffld/models/person_final2007.txt";
-	char arg3[] = "-i";
-	char arg4[] = "/home/alox/Tesi/workspace/Dummy/src/ffld/result/";
-	char arg5[] = "-r";
-	char arg6[] = "/home/alox/Tesi/workspace/Dummy/src/ffld/result/result.txt";
-	char arg7[] = "-t=-0.1";
-	//char arg8[] = "/home/alox/Tesi/ffld/pedoni.jpg";
-	char arg8[] = "./butta.jpg";
-	char* argv[] = { &arg0[0], &arg1[0], &arg2[0], &arg3[0], &arg4[0], &arg5[0], &arg6[0], &arg7[0], &arg8[0], NULL };
-	FFLD::JPEGImage immmg();
-	int argc = sizeof(argv) / sizeof(char*) - 1;
-	//main_ffld(argc,argv,m_srcImageRGB);
+    // creo la classe SearchRange che puo' variare da fotogramma a fotogramma (dato che le immagini variano di dimensioni)
 	SearchRange r;
 	r.setSearchRange(m_srcImageRGB.W(),m_srcImageRGB.H(),m_pCam,m_srcImageRGB, m_W0, m_W1);
 
 	vector<Detection> detections;
-	//"/home/alox/Tesi/workspace/Dummy/src/ffld/models/person_final2007.txt"
+
 	FFLD::Globals::PYRAMID_INTERVAL = m_interval;
 	FFLD::Globals::OVERLAP = m_overlap;
-	cout << "THRESHOLDDDDDDDDDDDD ::::::::" << m_threshold << endl;
+
+	// qui succede la magia
 	ffld.dpmDetect(m_modelPath,m_srcImageRGB, m_threshold,r,detections);
 
-	//load ground truth data if present
+	// carica i label corretti se presenti
 	if (m_showGroundTruth)
 		loadGroundTruth(frameNumber,m_srcImageRGB,detections);
 
-	//print detections to file using KITTI format for evaluation
+	// print detections to file using KITTI format for evaluation
 	ofstream myfile;
 	char filename[100];
 	sprintf(filename, "/home/alox/Tesi/detections/%06d.txt",frameNumber);
 	myfile.open(filename);
 
 	for (int i = 0; i < detections.size(); ++i) {
-		//bool plausible = r.isPlausibleSize(detections[i].bottom(),detections[i].width());
-		//if(plausible) {
 		myfile << "Pedestrian -1 -1 -10 "
 				<< detections[i].left() << " "
 				<< detections[i].top() << " "
 				<< detections[i].right() << " "
 				<< detections[i].bottom() << " "
-				<< "-1 -1 -1 -1000 -1000 -1000 -10 " << detections[i].score << " " //(plausible ? detections[i].score : (detections[i].score - 1))
+				<< "-1 -1 -1 -1000 -1000 -1000 -10 " << detections[i].score << " "
 				<< detections[i].l
 				<< endl;
-		//}
 	}
 	myfile.close();
 
-	//Mat detectionResult = imread("/home/alox/Tesi/workspace/Dummy/src/ffld/result/butta.jpg");
-	//detectionResult.convertTo(detectionResult,CV_16UC3);
-	//CHOGVisualizer::MatToCImageRGB8(detectionResult,m_inputImageMono);
-	m_inputImageMono = m_srcImageRGB;
-	r.draw(m_inputImageMono);
 
-	//printWidthStats();
+	m_inputImageMono = m_srcImageRGB;
+	// disegno il search range sull'immagine per renderlo piu' comprensibile
+	r.draw(m_inputImageMono);
 
     // chiamiamo la funzione di disegno
     Output();
